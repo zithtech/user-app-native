@@ -144,8 +144,8 @@ const Favourites = () => {
     const renderCustomHeader = () => (
         <View style={[styles.customHeader, { paddingTop: insets.top + vS(10) }]}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity style={[styles.headerIconBtn, { backgroundColor: isDark ? '#FFFFFF' : '#FFFFFF' }]} onPress={() => navigation.goBack()}>
-                    <MaterialCommunityIcons name="arrow-left" size={mS(20)} color="#111827" />
+                <TouchableOpacity style={[styles.headerIconBtn, { backgroundColor: isDark ? appColors.card : '#FFFFFF' }]} onPress={() => navigation.goBack()}>
+                    <MaterialCommunityIcons name="arrow-left" size={mS(20)} color={isDark ? "#FFF" : "#111827"} />
                 </TouchableOpacity>
                 <Text style={[styles.headerTitle, { color: isDark ? "#FFF" : "#111827" }]}>Favourites</Text>
             </View>
@@ -160,7 +160,7 @@ const Favourites = () => {
         const isRecent = index < 2;
 
         return (
-            <View style={[styles.card, { backgroundColor: isDark ? 'transparent' : '#FFFFFF', borderColor: isDark ? '#334155' : '#E5E7EB' }]}>
+            <View style={[styles.card, { backgroundColor: isDark ? appColors.card : '#FFFFFF', borderColor: isDark ? appColors.border : '#E5E7EB' }]}>
                 <View style={styles.cardLeft}>
                     <View style={[styles.iconContainer, { backgroundColor: iconTheme.bg }]}>
                         <MaterialCommunityIcons
@@ -173,8 +173,8 @@ const Favourites = () => {
                         <View style={styles.titleRow}>
                             <Text style={[styles.titleText, { color: isDark ? '#FFF' : '#111827' }]} numberOfLines={1}>{item?.showname || item?.name || 'Other'}</Text>
                             {isRecent && (
-                                <View style={[styles.recentBadge, { backgroundColor: isDark ? 'rgba(255, 255, 255, 0.9)' : '#E8F2FF' }]}>
-                                    <Text style={[styles.recentBadgeText, { color: isDark ? '#3B82F6' : '#3B82F6' }]}>Recent</Text>
+                                <View style={[styles.recentBadge, { backgroundColor: isDark ? appColors.primary + "15" : '#E8F2FF' }]}>
+                                    <Text style={[styles.recentBadgeText, { color: isDark ? appColors.primary : '#3B82F6' }]}>Recent</Text>
                                 </View>
                             )}
                         </View>
@@ -182,13 +182,13 @@ const Favourites = () => {
                             {item.address || 'No address provided'}
                         </Text>
 
-                        <View style={styles.metaRow}>
+                        {/* <View style={styles.metaRow}>
                             <MaterialCommunityIcons name="map-marker-outline" size={mS(10)} color={isDark ? "#9CA3AF" : "#9CA3AF"} />
-                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>2.3 km</Text>
+                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>{item.distance ? `${Number(item.distance).toFixed(1)} km` : ''} </Text>
                             <Text style={[styles.metaDot, { color: isDark ? '#4B5563' : '#D1D5DB' }]}>•</Text>
                             <MaterialCommunityIcons name="clock-outline" size={mS(10)} color={isDark ? "#9CA3AF" : "#9CA3AF"} />
-                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>8 min</Text>
-                        </View>
+                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>{item.eta ? `${Number(item.eta).toFixed(1)} min` : ''}</Text>
+                        </View> */}
                     </View>
                 </View>
                 <View style={styles.actionGroup}>
@@ -211,9 +211,11 @@ const Favourites = () => {
         <View style={styles.footerSection}>
             <View style={styles.sectionHeaderRow}>
                 <Text style={[styles.sectionHeader, { color: isDark ? '#9CA3AF' : '#6B7280' }]}>RECENT LOCATIONS</Text>
-                <TouchableOpacity>
+                {/* <TouchableOpacity onPress={() => {
+                    
+                 }}>
                     <Text style={styles.viewAllText}>View All</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
 
             <View style={styles.recentContainer}>
@@ -222,7 +224,7 @@ const Favourites = () => {
                         key={loc.id || index.toString()}
                         style={[
                             styles.recentCard,
-                            { backgroundColor: isDark ? '#1E293B' : '#F3F4F6' },
+                            { backgroundColor: isDark ? appColors.card : '#F3F4F6' },
                             index !== recentLocations.length - 1 && { marginBottom: vS(8) }
                         ]}
                     >
@@ -263,7 +265,7 @@ const Favourites = () => {
     );
 
     return (
-        <View style={[styles.container, { backgroundColor: isDark ? '#0F172A' : '#F8FAFC' }]}>
+        <View style={[styles.container, { backgroundColor: isDark ? appColors.background : '#F8FAFC' }]}>
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor={isDark ? '#0F172A' : '#F8FAFC'} />
 
             {renderCustomHeader()}

@@ -177,6 +177,7 @@ const WalletScreen = () => {
 
   // Transactions Display State
   const [showAllTransactions, setShowAllTransactions] = useState(false);
+  const [showBalance, setShowBalance] = useState(true);
 
   // Auto Reload Modal
   const [autoReloadVisible, setAutoReloadVisible] = useState(false);
@@ -372,7 +373,31 @@ const WalletScreen = () => {
           <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={appColors.text} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: appColors.text, flex: 1, textAlign: 'center' }]}>My Wallet</Text>
-        <TouchableOpacity style={styles.headerIconBtn}>
+        <TouchableOpacity style={styles.headerIconBtn} onPress={() => navigation.navigate("FAQDetailsScreen", {
+          title: "Wallet FAQ",
+          questions: [
+            {
+              id: '1',
+              question: "How do I add money to my wallet?",
+              answer: "You can add money to your wallet using UPI, Credit/Debit Card, or Net Banking."
+            },
+            // {
+            //   id: '2',
+            //   question: "How do I withdraw money from my wallet?",
+            //   answer: "You can withdraw money from your wallet to your linked bank account."
+            // },
+            {
+              id: '2',
+              question: "How do I check my transaction history?",
+              answer: "You can check your transaction history in the 'Transactions' tab."
+            },
+            {
+              id: '3',
+              question: "How do I change my password?",
+              answer: "You can change your password in the 'Settings' tab."
+            },
+          ]
+        })} >
           <MaterialCommunityIcons name="help-circle-outline" size={mS(24)} color={appColors.text} />
         </TouchableOpacity>
       </View>
@@ -403,9 +428,13 @@ const WalletScreen = () => {
                   <View>
                     <View style={styles.balanceHeader}>
                       <Text style={styles.balanceLabel}>Total Balance</Text>
-                      <MaterialCommunityIcons name="eye" size={mS(16)} color="#FFF" />
+                      <TouchableOpacity onPress={() => setShowBalance(!showBalance)}>
+                        <MaterialCommunityIcons name={showBalance ? "eye" : "eye-off"} size={mS(16)} color="#FFF" />
+                      </TouchableOpacity>
                     </View>
-                    <Text style={styles.balanceValue}>₹{Number(balance).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
+                    <Text style={styles.balanceValue}>
+                      {showBalance ? `₹${Number(balance).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '••••••••'}
+                    </Text>
                   </View>
                   <View style={styles.walletIconContainer}>
                     {/* <MaterialCommunityIcons name="wallet-bifold" size={mS(36)} color="rgba(255,255,255,0.2)" /> */}

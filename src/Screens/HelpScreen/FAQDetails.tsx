@@ -20,11 +20,11 @@ const FAQDetails = ({ route }: any) => {
     return (
         <View style={[styles.container, { backgroundColor: appColors.background }]}>
             {/* --- MODERN HEADER --- */}
-            <View style={[styles.headerCard, { marginTop: vS(16) }]}>
+            <View style={[styles.headerCard, { marginTop: vS(16), backgroundColor: isDark ? appColors.card : '#F0F6FF' }]}>
                 <View style={styles.headerContentWrapper}>
                     <View style={styles.headerTextWrapper}>
-                        <Text style={[styles.headerTitle, { color: '#1E293B' }]}>{title}</Text>
-                        <Text style={[styles.headerSubtitle, { color: '#64748B' }]}>Find answers to the most common questions</Text>
+                        <Text style={[styles.headerTitle, { color: isDark ? appColors.text : '#1E293B' }]}>{title}</Text>
+                        <Text style={[styles.headerSubtitle, { color: isDark ? appColors.lightTextColor : '#64748B' }]}>Find answers to the most common questions</Text>
                     </View>
                     <Image source={require('../../assets/png/FAQImage.png')} style={styles.headerImage} />
                 </View>
@@ -74,8 +74,8 @@ const FAQDetails = ({ route }: any) => {
                                     <Text style={[styles.answerText, { color: appColors.lightTextColor }]}>{item.answer}</Text>
 
                                     {item.id === 'r1' && (
-                                        <TouchableOpacity 
-                                            style={[styles.actionBox, { backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#F4F8FE' }]} 
+                                        <TouchableOpacity
+                                            style={[styles.actionBox, { backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#F4F8FE' }]}
                                             activeOpacity={0.8}
                                         >
                                             <MaterialCommunityIcons name="map-outline" size={mS(18)} color="#3B82F6" />
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     },
     headerCard: {
         marginHorizontal: hS(16),
-        backgroundColor: '#F0F6FF',
         borderRadius: mS(16),
         overflow: 'hidden',
         marginBottom: vS(8),

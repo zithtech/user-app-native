@@ -29,6 +29,7 @@ const ReferAndEarn = () => {
   const referralCode = referralResponse?.data?.referralCode ?? (codeLoading ? '...' : '------');
   const stats = statsResponse?.data || { totalReferrals: 0, totalEarnings: 0 };
   const [showCopyAlert, setShowCopyAlert] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
   const steps = [
     { id: 1, title: 'Invite Friends', desc: 'Share your code with friends & family.', icon: 'account-multiple-outline' },
     { id: 2, title: 'They Register', desc: 'Your friend gets ₹50 off on first ride.', icon: 'clipboard-check-outline' },
@@ -214,7 +215,7 @@ const ReferAndEarn = () => {
         </View>
 
         {/* Terms Link */}
-        <TouchableOpacity style={styles.termsButton}>
+        <TouchableOpacity style={styles.termsButton} onPress={() => setShowTerms(true)}>
           <Text style={styles.termsText}>View Terms & Conditions</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -238,6 +239,36 @@ const ReferAndEarn = () => {
               onPress={() => setShowCopyAlert(false)}
             >
               <Text style={styles.alertButtonText}>OK, Got it</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Terms & Conditions Modal */}
+      <Modal statusBarTranslucent navigationBarTranslucent visible={showTerms}
+        transparent={true}
+        animationType="slide"
+      >
+        <View style={[styles.modalBackdrop, { justifyContent: 'flex-end' }]}>
+          <View style={[styles.termsModalContainer, { backgroundColor: appColors.card }]}>
+            <View style={styles.termsModalHeader}>
+              <Text style={[styles.termsModalTitle, { color: appColors.text }]}>Terms & Conditions</Text>
+              <TouchableOpacity onPress={() => setShowTerms(false)}>
+                <MaterialCommunityIcons name="close" size={mS(24)} color={appColors.text} />
+              </TouchableOpacity>
+            </View>
+            <ScrollView style={styles.termsScrollView} showsVerticalScrollIndicator={false}>
+              <Text style={[styles.termsDummyText, { color: appColors.lightTextColor }]}>
+                1. Eligibility: This offer is valid only for new users who sign up using a valid referral code.{"\n\n"}
+                2. Referral Bonus: The referrer earns ₹100 only after the referred user completes their first ride.{"\n\n"}
+                3. New User Discount: The referred user gets ₹50 off on their first ride.{"\n\n"}
+                4. Validity: The referral bonus and discount have no expiry date but are subject to change at the company's discretion.{"\n\n"}
+                5. Fair Usage: Any fraudulent activity or misuse of the referral program will result in immediate suspension of both accounts and forfeiture of all earned rewards.{"\n\n"}
+                6. Modification: We reserve the right to modify or terminate this program at any time without prior notice.
+              </Text>
+            </ScrollView>
+            <TouchableOpacity style={styles.termsAcceptBtn} onPress={() => setShowTerms(false)}>
+              <Text style={styles.termsAcceptBtnText}>I Understand</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -559,6 +590,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   alertButtonText: {
+    color: '#FFFFFF',
+    fontSize: mS(15),
+    fontWeight: '800',
+  },
+  termsModalContainer: {
+    width: '100%',
+    borderTopLeftRadius: mS(24),
+    borderTopRightRadius: mS(24),
+    padding: mS(24),
+    paddingBottom: mS(40),
+  },
+  termsModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: vS(20),
+  },
+  termsModalTitle: {
+    fontSize: mS(18),
+    fontWeight: '800',
+  },
+  termsScrollView: {
+    maxHeight: vS(300),
+    marginBottom: vS(24),
+  },
+  termsDummyText: {
+    fontSize: mS(14),
+    lineHeight: vS(22),
+  },
+  termsAcceptBtn: {
+    width: '100%',
+    backgroundColor: colors.button,
+    paddingVertical: vS(14),
+    borderRadius: mS(16),
+    alignItems: 'center',
+  },
+  termsAcceptBtnText: {
     color: '#FFFFFF',
     fontSize: mS(15),
     fontWeight: '800',

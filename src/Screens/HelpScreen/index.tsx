@@ -65,7 +65,7 @@ const HelpScreen: React.FC<ScreenProps> = () => {
     );
 
     return (
-        <View style={[styles.container, { backgroundColor: isDark ? '#020617' : '#F8FAFC' }]}>
+        <View style={[styles.container, { backgroundColor: isDark ? appColors.background : '#F8FAFC' }]}>
             {isDark && (
                 <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: vS(200) }}>
                     <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -104,7 +104,7 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                     <View style={styles.contactRow}>
                         <TouchableOpacity
                             activeOpacity={0.7}
-                            style={[styles.contactCard, { backgroundColor: isDark ? 'rgba(15, 23, 42, 0.6)' : '#F4FAF6', borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : '#D1FAE5' }]}
+                            style={[styles.contactCard, { backgroundColor: isDark ? appColors.card : '#F4FAF6', borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : '#D1FAE5' }]}
                             onPress={handleCall}
                         >
                             <View style={[styles.contactIconCircle, { backgroundColor: isDark ? 'rgba(16, 185, 129, 0.1)' : '#ECFDF5' }]}>
@@ -119,7 +119,7 @@ const HelpScreen: React.FC<ScreenProps> = () => {
 
                         <TouchableOpacity
                             activeOpacity={0.7}
-                            style={[styles.contactCard, { backgroundColor: isDark ? 'rgba(15, 23, 42, 0.6)' : '#F4F8FF', borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : '#DBEAFE' }]}
+                            style={[styles.contactCard, { backgroundColor: isDark ? appColors.card : '#F4F8FF', borderColor: isDark ? 'rgba(56, 189, 248, 0.2)' : '#DBEAFE' }]}
                             onPress={handleEmail}
                         >
                             <View style={[styles.contactIconCircle, { backgroundColor: isDark ? 'rgba(56, 189, 248, 0.1)' : '#EFF6FF' }]}>
@@ -136,7 +136,7 @@ const HelpScreen: React.FC<ScreenProps> = () => {
 
                 {/* --- POLISHED SEARCH BAR --- */}
                 <View style={styles.searchWrapper}>
-                    <View style={[styles.searchContainer, { backgroundColor: isDark ? 'rgba(15, 23, 42, 0.6)' : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F1F5F9' }]}>
+                    <View style={[styles.searchContainer, { backgroundColor: isDark ? appColors.card : '#FFFFFF', borderColor: isDark ? appColors.border : '#F1F5F9' }]}>
                         <MaterialCommunityIcons name="magnify" size={mS(20)} color={isDark ? '#64748B' : appColors.lightTextColor} />
                         <TextInput
                             placeholder="Search help topics..."
@@ -152,8 +152,8 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                 <View style={styles.faqSection}>
                     <Text style={[styles.sectionTitle, { color: isDark ? '#F8FAFC' : appColors.text, marginBottom: vS(6) }]}>Browse Categories</Text>
                     <View style={{ width: mS(36), height: vS(3), backgroundColor: isDark ? '#0EA5E9' : '#3B82F6', marginBottom: vS(12), borderRadius: mS(2) }} />
-                    
-                    <View style={[styles.cardContainer, { backgroundColor: isDark ? 'rgba(15, 23, 42, 0.6)' : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F1F5F9', paddingVertical: vS(8) }]}>
+
+                    <View style={[styles.cardContainer, { backgroundColor: isDark ? appColors.card : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F1F5F9', paddingVertical: vS(8) }]}>
                         {filteredCategories.length > 0 ? (
                             filteredCategories.map((cat, index) => (
                                 <TouchableOpacity

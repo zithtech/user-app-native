@@ -55,23 +55,7 @@ const Settings = ({ navigation }: ScreenProps) => {
     };
 
     const handleDelete = () => {
-        Alert.alert(
-            "Delete Account",
-            "This action is permanent and cannot be reversed. Are you sure you want to delete your account?",
-            [
-                { text: "Cancel", style: "cancel" },
-                {
-                    text: "Delete",
-                    onPress: async () => {
-                        const result = await deleteuser(localuser.id).unwrap();
-                        if (result.success) {
-                            ToastAndroid.show('Account Deleted Successfully', ToastAndroid.SHORT);
-                        }
-                    },
-                    style: "destructive"
-                }
-            ]
-        );
+        handleNavigation('DeleteAccountInfoScreen');
     };
 
     const ActionRow = ({ icon, title, subtitle, onPress, showArrow = true, isCritical = false, iconColor, iconBgColor, isCircularIcon = false, hideBorder = false }: RapidoItemProps & { isCircularIcon?: boolean, hideBorder?: boolean }) => (

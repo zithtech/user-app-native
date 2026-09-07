@@ -11,6 +11,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppTheme } from "../../../hooks/useAppTheme";
 
 // Internal Components & Constants
@@ -27,7 +28,8 @@ const RideDetails: React.FC<any> = () => {
     const navigation = useNavigation<any>();
     const route = useRoute<any>();
     const { rideData } = route.params;
-    
+    const insets = useSafeAreaInsets();
+
     // Redux State
     const localuser = useSelector((state: RootState) => state?.userSlice?.user);
 
@@ -58,18 +60,18 @@ const RideDetails: React.FC<any> = () => {
     return (
         <View style={[styles.container, { backgroundColor: isDark ? appColors.background : '#F9FAFB' }]}>
             {/* App Bar Header */}
-            <View style={[styles.appBar, { backgroundColor: appColors.card }]}>
+            <View style={[styles.appBar, { backgroundColor: appColors.card, paddingTop: insets.top + vS(12), paddingBottom: vS(12) }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.appBarIcon}>
                     <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={appColors.text} />
                 </TouchableOpacity>
                 <Text style={[styles.appBarTitle, { color: appColors.text }]}>Ride Details</Text>
-                <TouchableOpacity style={styles.appBarIcon}>
-                    <MaterialCommunityIcons name="dots-vertical" size={mS(24)} color={appColors.text} />
-                </TouchableOpacity>
+                <View style={styles.appBarIcon}>
+                    {/* <MaterialCommunityIcons name="dots-vertical" size={mS(24)} color={appColors.text} /> */}
+                </View>
             </View>
 
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-                
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + vS(40) }]}>
+
                 {/* CARD 1: Ride Info & Trip Route */}
                 <View style={[styles.card, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#E5E7EB' }]}>
                     {/* Ride Info Top */}
@@ -86,7 +88,7 @@ const RideDetails: React.FC<any> = () => {
                             </Text>
                         </View>
                         <View style={styles.rideInfoRight}>
-                            <Image 
+                            <Image
                                 source={require('../../../assets/png/T2Drive_SearchableCar.png')}
                                 style={styles.carImage}
                             />
@@ -156,7 +158,7 @@ const RideDetails: React.FC<any> = () => {
                 </View>
 
                 {/* CARD 2: Need Help */}
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={[styles.helpCard, { backgroundColor: isDark ? 'rgba(37, 99, 235, 0.1)' : '#EFF6FF' }]}
                     onPress={() => navigation.navigate(HelpContactScreen_Nav)}
                 >
@@ -190,7 +192,7 @@ const RideDetails: React.FC<any> = () => {
                             <Text style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Base Fare</Text>
                             <Text style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.base_fare || '0.00'}</Text>
                         </View>
-                        
+
                         <View style={styles.breakdownRow}>
                             <Text style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Driver Allowance</Text>
                             <Text style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.driver_allowance || '0.00'}</Text>
@@ -199,7 +201,7 @@ const RideDetails: React.FC<any> = () => {
                         <View style={[styles.solidDivider, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#E5E7EB' }]} />
 
                         <View style={styles.actionFooter}>
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.actionBtn}
                                 disabled={rideData?.trip_status === 'CANCELLED'}
                                 onPress={() => handleInvoiceAction('email')}
@@ -210,7 +212,7 @@ const RideDetails: React.FC<any> = () => {
 
                             <View style={[styles.verticalDivider, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#E5E7EB' }]} />
 
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.actionBtn}
                                 disabled={rideData?.trip_status === 'CANCELLED'}
                                 onPress={() => handleInvoiceAction('display')}
@@ -270,6 +272,9 @@ const styles = StyleSheet.create({
     appBarTitle: {
         fontSize: mS(18),
         fontWeight: '700',
+        // textAlign: 'center',
+        // justifyContent: 'center',
+        // alignSelf: 'center',
     },
 
     scrollContent: {
@@ -277,7 +282,7 @@ const styles = StyleSheet.create({
         paddingVertical: vS(16),
         paddingBottom: vS(40),
     },
-    
+
     // Shared Card Styles
     card: {
         borderRadius: mS(16),

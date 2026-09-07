@@ -399,7 +399,7 @@ const SafetyScreen = ({ navigation }: any) => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: isDark ? '#020617' : appColors.background }]}>
+        <View style={[styles.container, { backgroundColor: isDark ? appColors.background : appColors.background }]}>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: insets.bottom + vS(40) }}
@@ -491,7 +491,7 @@ const SafetyScreen = ({ navigation }: any) => {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={[styles.cardWrapper, { backgroundColor: isDark ? '#0B1120' : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]}>
+                    <View style={[styles.cardWrapper, { backgroundColor: isDark ? appColors.card : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]}>
                         {emergencyContacts.length === 0 ? (
                             <TouchableOpacity
                                 activeOpacity={0.6}
@@ -552,7 +552,7 @@ const SafetyScreen = ({ navigation }: any) => {
                     </View>
 
                     <View style={styles.quickActionsRow}>
-                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? '#0B1120' : '#FEF2F2', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
+                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? appColors.card : '#FEF2F2', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
                             <View style={[styles.actionIconBox, { backgroundColor: isDark ? '#3F0000' : '#EF4444' }]}>
                                 <MaterialCommunityIcons name="phone" size={mS(24)} color={isDark ? '#FF4D4D' : "#FFF"} />
                             </View>
@@ -560,7 +560,7 @@ const SafetyScreen = ({ navigation }: any) => {
                             <Text style={[styles.actionSubtitle, { color: isDark ? '#9CA3AF' : '#64748B' }]}>Call Emergency</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? '#0B1120' : '#EFF6FF', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
+                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? appColors.card : '#EFF6FF', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
                             <View style={[styles.actionIconBox, { backgroundColor: isDark ? '#001F3F' : '#3B82F6' }]}>
                                 <MaterialCommunityIcons name="map-marker-account" size={mS(24)} color={isDark ? '#00BFFF' : "#FFF"} />
                             </View>
@@ -568,7 +568,7 @@ const SafetyScreen = ({ navigation }: any) => {
                             <Text style={[styles.actionSubtitle, { color: isDark ? '#9CA3AF' : '#64748B' }]}>Share Live Location</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? '#0B1120' : '#FFFBEB', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
+                        <TouchableOpacity style={[styles.quickActionCard, { backgroundColor: isDark ? appColors.card : '#FFFBEB', borderColor: isDark ? 'rgba(255,255,255,0.02)' : 'transparent', borderWidth: 1 }]} activeOpacity={0.7}>
                             <View style={[styles.actionIconBox, { backgroundColor: isDark ? '#3F3F00' : '#F59E0B' }]}>
                                 <MaterialCommunityIcons name="shield-alert" size={mS(24)} color={isDark ? '#FFCC00' : "#FFF"} />
                             </View>
@@ -590,7 +590,7 @@ const SafetyScreen = ({ navigation }: any) => {
                         </View>
                     </View>
 
-                    <TouchableOpacity style={[styles.guidanceCard, { backgroundColor: isDark ? '#0B1120' : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]} activeOpacity={0.7}>
+                    <TouchableOpacity style={[styles.guidanceCard, { backgroundColor: isDark ? appColors.card : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]} activeOpacity={0.7}>
                         <View style={[styles.guideIconBox, { backgroundColor: isDark ? '#003F1F' : '#ECFDF5' }]}>
                             <MaterialCommunityIcons name="shield-check" size={mS(24)} color={isDark ? '#00FF7F' : "#10B981"} />
                         </View>
@@ -601,7 +601,7 @@ const SafetyScreen = ({ navigation }: any) => {
                         <MaterialCommunityIcons name="chevron-right" size={mS(20)} color={isDark ? '#64748B' : appColors.secondaryText} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.guidanceCard, { backgroundColor: isDark ? '#0B1120' : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]} activeOpacity={0.7}>
+                    <TouchableOpacity style={[styles.guidanceCard, { backgroundColor: isDark ? appColors.card : appColors.card, shadowColor: 'transparent', borderColor: isDark ? 'rgba(255,255,255,0.02)' : appColors.border, borderWidth: 1 }]} activeOpacity={0.7}>
                         <View style={[styles.guideIconBox, { backgroundColor: isDark ? '#001F3F' : '#EFF6FF' }]}>
                             <MaterialCommunityIcons name="share-variant" size={mS(24)} color={isDark ? '#00BFFF' : "#3B82F6"} />
                         </View>

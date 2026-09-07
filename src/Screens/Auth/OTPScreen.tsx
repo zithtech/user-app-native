@@ -50,6 +50,7 @@ const OTPScreen: React.FC<any> = ({ navigation }) => {
     const [resendTimer, setResendTimer] = useState<number>(59);
     const [canResend, setCanResend] = useState<boolean>(false);
     const [lockoutTime, setLockoutTime] = useState<number>(0);
+    const [devOtp, setDevOtp] = useState<string | undefined>(OTPdata?.otp);
 
     // ✅ For resend OTP
     const [requestOtp, { isLoading: resending }] = useRequestOtpMutation();
@@ -89,7 +90,7 @@ const OTPScreen: React.FC<any> = ({ navigation }) => {
     const handleResendCode = async () => {
         if (!canResend) return;
         try {
-            await requestOtp({
+            const response = await requestOtp({
                 phone_number: userData.phone_number,
                 role: 'customer',
                 device_id,
@@ -99,6 +100,10 @@ const OTPScreen: React.FC<any> = ({ navigation }) => {
             setOtp('');
             setResendTimer(59);
             setCanResend(false);
+
+            if (response?.data?.otp) {
+                setDevOtp(response.data.otp);
+            }
         } catch (error: any) {
             Alert.alert('Error', error?.data?.message || 'Failed to resend OTP');
         }
@@ -272,11 +277,11 @@ const OTPScreen: React.FC<any> = ({ navigation }) => {
                     />
 
                     {/* TEMPORARY OTP */}
-                    {OTPdata?.otp ? (
+                    {devOtp ? (
                         <View style={[localStyles.devOtpBanner, isDark && { backgroundColor: '#FFFFFF' }]}>
                             <MaterialCommunityIcons name="information-outline" size={mS(16)} color="#0284C7" />
                             <Text style={localStyles.devOtpText}>
-                                Temporary Dev OTP: {OTPdata.otp}
+                                Temporary Dev OTP: {devOtp}
                             </Text>
                         </View>
                     ) : null}

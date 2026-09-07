@@ -165,7 +165,7 @@ const WelcomeScreen: React.FC<any> = ({ navigation }) => {
               <Text style={[styles.loginText, { color: isDark ? '#FFFFFF' : '#0F172A' }]}>Log In</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.createAccountContainer} onPress={() => navigation.navigate('LoginScreen')}>
+            <TouchableOpacity style={styles.createAccountContainer} onPress={() => navigation.navigate(SignUpScreen_Nav)}>
               <Text style={[styles.newHereText, { color: isDark ? '#CBD5E1' : '#64748B' }]}>
                 New here? <Text style={styles.createAccountText}>Create an account</Text>
               </Text>

@@ -104,13 +104,13 @@ const NotificationScreen = () => {
     const renderItem = ({ item }: { item: Notification }) => {
         const iconDetails = getIcon(item.type, isDark);
         // Clean up moment output for brevity like "1 hour ago", "3 hours ago"
-        const timeAgo = moment(item.time).fromNow(); 
+        const timeAgo = moment(item.time).fromNow();
 
         return (
             <TouchableOpacity
                 style={[
-                    styles.notificationCard, 
-                    { backgroundColor: appColors.card }, 
+                    styles.notificationCard,
+                    { backgroundColor: appColors.card },
                     !item.read && [styles.unreadCard, { backgroundColor: appColors.card, borderLeftColor: '#0B309B' }]
                 ]}
                 activeOpacity={0.8}
@@ -145,15 +145,20 @@ const NotificationScreen = () => {
 
             {/* HEADER */}
             <View style={[styles.header, { paddingTop: insets.top + vS(10), backgroundColor: appColors.background }]}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-                    <MaterialCommunityIcons name="arrow-left" size={mS(24)} color="#1E293B" />
+                <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.backBtn,
+                { backgroundColor: isDark ? '#111827' : '#EFF6FF', borderColor: isDark ? '#111827' : '#DBEAFE' }]}>
+                    <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={isDark ? '#F7FAFC' : '#1E293B'} />
                 </TouchableOpacity>
                 <View style={styles.headerTitleContainer}>
                     <Text style={[styles.headerTitle, { color: appColors.text }]}>Notifications</Text>
                     <Text style={[styles.headerSubtitle, { color: '#64748B' }]}>{unreadCount} unread • {totalCount} total</Text>
                 </View>
                 {notifications.length > 0 ? (
-                    <TouchableOpacity onPress={handleClearAll} style={styles.clearBtn}>
+                    <TouchableOpacity onPress={handleClearAll} style={[styles.clearBtn,
+                    {
+                        backgroundColor: isDark ? '#111827' : '#EFF6FF',
+                        borderColor: isDark ? '#111827' : '#DBEAFE'
+                    }]}>
                         <Text style={styles.markReadText}>Clear All</Text>
                     </TouchableOpacity>
                 ) : <View style={{ width: hS(70) }} />}
@@ -170,20 +175,23 @@ const NotificationScreen = () => {
                                 style={[
                                     styles.tabBtn,
                                     isActive ? styles.activeTabBtn : styles.inactiveTabBtn,
-                                    { backgroundColor: isActive ? '#0B309B' : '#FFFFFF' }
+                                    {
+                                        backgroundColor: isActive ? '#0B309B' : isDark ? '#111827' : '#FFFFFF',
+                                        borderColor: isDark ? '#111827' : '#DBEAFE'
+                                    }
                                 ]}
                                 onPress={() => setActiveTab(tab.id)}
                             >
                                 {tab.icon && (
-                                    <MaterialCommunityIcons 
-                                        name={tab.icon} 
-                                        size={mS(16)} 
-                                        color={isActive ? '#FFFFFF' : '#64748B'} 
-                                        style={styles.tabIcon} 
+                                    <MaterialCommunityIcons
+                                        name={tab.icon}
+                                        size={mS(16)}
+                                        color={isActive ? '#FFFFFF' : '#64748B'}
+                                        style={styles.tabIcon}
                                     />
                                 )}
                                 <Text style={[
-                                    styles.tabText, 
+                                    styles.tabText,
                                     { color: isActive ? '#FFFFFF' : '#64748B' },
                                     isActive && { fontWeight: '700' }
                                 ]}>

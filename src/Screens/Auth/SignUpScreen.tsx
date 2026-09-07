@@ -43,6 +43,67 @@ import { usePreValidateReferralCodeMutation } from '../../service/referralApi';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const getEditDistance = (a: string, b: string): number => {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  return matrix[b.length][a.length];
+};
+
+const POPULAR_DOMAINS = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
+const POPULAR_EXT = ['com', 'in', 'org', 'net', 'edu', 'gov', 'co.in'];
+
+const getEmailTypoError = (email: string) => {
+  if (!email || !email.includes('@')) return null;
+  const parts = email.split('@');
+  if (parts.length !== 2) return null;
+  const domainFull = parts[1].toLowerCase();
+
+  // If exact match with a popular domain, it's valid
+  if (POPULAR_DOMAINS.includes(domainFull)) return null;
+
+  // Check if it's a typo of a popular domain (distance 1 or 2)
+  for (const popular of POPULAR_DOMAINS) {
+    const distance = getEditDistance(domainFull, popular);
+    if (distance > 0 && distance <= 2) {
+      return `Did you mean '${popular}'?`;
+    }
+  }
+
+  // Check extensions
+  const domainParts = domainFull.split('.');
+  if (domainParts.length >= 2) {
+    const ext = domainParts[domainParts.length - 1];
+    if (!POPULAR_EXT.includes(ext)) {
+      if (getEditDistance(ext, 'com') <= 1) {
+        return "Did you mean '.com'?";
+      }
+    }
+  }
+
+  return null;
+};
+
 const SignUpScreen: React.FC<any> = ({ navigation }) => {
   const [sendOtp, { isLoading: otpLoading }] = useSendOtpMutation();
   const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
@@ -91,10 +152,12 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
 
   // --- Logic ---
   const handleSignUp = async () => {
-    if (!firstName || !mobileNumber || !mobileValidation.valid || !EMAIL_REGEX.test(email) || !dob || !agreedToTerms) {
+    if (!firstName || !mobileNumber || !mobileValidation.valid || !EMAIL_REGEX.test(email) || !!getEmailTypoError(email) || !dob || !agreedToTerms) {
       setShowValidation(true);
       if (!agreedToTerms) {
         ToastAndroid.show("Please agree to the Terms & Conditions.", ToastAndroid.SHORT);
+      } else if (getEmailTypoError(email)) {
+        ToastAndroid.show(getEmailTypoError(email) as string, ToastAndroid.SHORT);
       } else {
         ToastAndroid.show("Please fill all required fields correctly.", ToastAndroid.SHORT);
       }
@@ -315,10 +378,10 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             icon="account-outline"
             appColors={appColors}
             isDark={isDark}
-            hasError={showValidation && (!firstName || firstName.trim().length < 2 || firstName.trim().length > 30 || /[^a-zA-Z\s]/.test(firstName))}
+            hasError={(showValidation && (!firstName || firstName.trim().length < 2 || firstName.trim().length > 30)) || /[^a-zA-Z\s]/.test(firstName)}
             errorMessage={
-              !firstName ? "First Name is required" :
-                /[^a-zA-Z\s]/.test(firstName) ? "First Name should not contain numbers or special characters" :
+              /[^a-zA-Z\s]/.test(firstName) ? "First Name should not contain numbers or special characters" :
+                !firstName ? "First Name is required" :
                   (firstName.trim().length < 2 || firstName.trim().length > 30) ? "First Name must be 2-30 characters" : undefined
             }
           />
@@ -333,7 +396,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             icon="account-outline"
             appColors={appColors}
             isDark={isDark}
-            hasError={showValidation && !!(lastName && (lastName.trim().length < 2 || lastName.trim().length > 30 || /[^a-zA-Z\s]/.test(lastName)))}
+            hasError={(showValidation && !!(lastName && (lastName.trim().length < 2 || lastName.trim().length > 30))) || !!(lastName && /[^a-zA-Z\s]/.test(lastName))}
             errorMessage={
               lastName && /[^a-zA-Z\s]/.test(lastName) ? "Last Name should not contain numbers or special characters" :
                 lastName && (lastName.trim().length < 2 || lastName.trim().length > 30) ? "Last Name must be 2-30 characters" : undefined
@@ -428,8 +491,12 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             icon="email-outline"
             appColors={appColors}
             isDark={isDark}
-            hasError={showValidation && (!email || !EMAIL_REGEX.test(email))}
-            errorMessage={!email ? "Email Address is required" : "Invalid email format"}
+            hasError={(showValidation && !email) || (email.length > 0 && !EMAIL_REGEX.test(email)) || !!getEmailTypoError(email)}
+            errorMessage={
+              !email && showValidation ? "Email Address is required" :
+              getEmailTypoError(email) ? getEmailTypoError(email) :
+              (email.length > 0 && !EMAIL_REGEX.test(email)) ? "Invalid email format" : undefined
+            }
           />
 
           <View style={styles.fieldContainer}>

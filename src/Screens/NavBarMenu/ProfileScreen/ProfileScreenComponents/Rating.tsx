@@ -56,7 +56,7 @@ const RatingInfoScreen = () => {
     ];
 
     return (
-        <View style={[styles.container, { backgroundColor: appColors.background }]}>
+        <View style={[styles.container, { backgroundColor: isDark ? "#020813" : appColors.background }]}>
             <ScrollView
                 contentContainerStyle={[
                     styles.scrollContent,
@@ -99,7 +99,7 @@ const RatingInfoScreen = () => {
                                 {index !== steps.length - 1 && <View style={[styles.verticalLineBottom, { backgroundColor: appColors.border }]} />}
                             </View>
 
-                            <View style={[styles.stepCard, { backgroundColor: isDark ? appColors.card : '#FFF', borderColor: isDark ? appColors.border : 'transparent', borderWidth: isDark ? 1 : 0 }]}>
+                            <View style={[styles.stepCard, { backgroundColor: isDark ? '#0A1931' : '#FFF', borderColor: isDark ? '#1E3A8A' : 'transparent', borderWidth: isDark ? 1 : 0 }]}>
                                 <View style={[styles.stepIconBox, { backgroundColor: step.color + '15' }]}>
                                     <Icon name={step.icon} size={mS(24)} color={step.color} />
                                 </View>
@@ -118,7 +118,7 @@ const RatingInfoScreen = () => {
 
                 {/* CURRENT RATING CARD */}
                 <Animated.View entering={FadeInUp.delay(800).duration(800)}>
-                    <View style={[styles.ratingCard, { backgroundColor: isDark ? appColors.card : '#F8FAFC', borderWidth: isDark ? 1 : 0, borderColor: appColors.border }]}>
+                    <View style={[styles.ratingCard, { backgroundColor: isDark ? '#0A1931' : '#F8FAFC', borderWidth: isDark ? 1 : 0, borderColor: isDark ? "#1E3A8A" : appColors.border }]}>
                         <View style={styles.ratingCardRow}>
                             <View style={styles.ratingLeft}>
                                 <Text style={[styles.ratingTitle, { color: appColors.text }]}>Your Current Rating</Text>

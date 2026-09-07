@@ -131,8 +131,8 @@ const Preferences = () => {
         }
     };
 
-    const PreferenceToggle = ({ title, description, icon, prefKey, iconColor, iconBgColor }: { title: string, description: string, icon: string, prefKey: PreferenceKey, iconColor: string, iconBgColor: string }) => (
-        <View style={[styles.toggleRow, { borderBottomColor: isDark ? appColors.border : '#F1F5F9' }]}>
+    const PreferenceToggle = ({ title, description, icon, prefKey, iconColor, iconBgColor, borderBottomColor }: { title: string, description: string, icon: string, prefKey: PreferenceKey, iconColor: string, iconBgColor: string, borderBottomColor?: string }) => (
+        <View style={[styles.toggleRow, { borderBottomColor: borderBottomColor }]}>
             <View style={[styles.iconContainer, { backgroundColor: isDark ? appColors.iconBox : iconBgColor }]}>
                 <MaterialCommunityIcons name={icon} size={mS(20)} color={isDark ? '#38BDF8' : iconColor} />
             </View>
@@ -209,7 +209,7 @@ const Preferences = () => {
                     <Text style={[styles.sectionTitle, { color: appColors.secondaryText }]}>Email Settings</Text>
                 </View>
 
-                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? appColors.border : '#F1F5F9' }]}>
+                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? "transparent" : '#F1F5F9' }]}>
                     <PreferenceToggle
                         icon="file-document-outline"
                         title="Ride Invoices"
@@ -217,6 +217,7 @@ const Preferences = () => {
                         prefKey="invoice_email"
                         iconColor="#1D4ED8"
                         iconBgColor="#EFF6FF"
+                        borderBottomColor={isDark ? appColors.border : '#F1F5F9'}
                     />
                     <PreferenceToggle
                         icon="brightness-percent"
@@ -225,6 +226,7 @@ const Preferences = () => {
                         prefKey="promo_email"
                         iconColor="#1E3A8A"
                         iconBgColor="#EFF6FF"
+                        borderBottomColor={isDark ? "transparent" : '#F1F5F9'}
                     />
                 </View>
 
@@ -233,7 +235,7 @@ const Preferences = () => {
                     <Text style={[styles.sectionTitle, { color: appColors.secondaryText }]}>Direct Messaging</Text>
                 </View>
 
-                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? appColors.border : '#F1F5F9' }]}>
+                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? "transparent" : '#F1F5F9' }]}>
                     <PreferenceToggle
                         icon="whatsapp"
                         title="WhatsApp Updates"
@@ -241,6 +243,7 @@ const Preferences = () => {
                         prefKey="whatsapp_updates"
                         iconColor="#15803D"
                         iconBgColor="#DCFCE7"
+                        borderBottomColor={isDark ? appColors.border : '#F1F5F9'}
                     />
                     <PreferenceToggle
                         icon="message-text-outline"
@@ -249,6 +252,7 @@ const Preferences = () => {
                         prefKey="sms_alerts"
                         iconColor="#1D4ED8"
                         iconBgColor="#EFF6FF"
+                        borderBottomColor={isDark ? "transparent" : '#F1F5F9'}
                     />
                 </View>
 
@@ -257,7 +261,7 @@ const Preferences = () => {
                     <Text style={[styles.sectionTitle, { color: appColors.secondaryText }]}>Mobile App</Text>
                 </View>
 
-                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? appColors.border : '#F1F5F9' }]}>
+                <View style={[styles.cardContainer, { backgroundColor: appColors.card, borderColor: isDark ? "transparent" : '#F1F5F9' }]}>
                     <PreferenceToggle
                         icon="bell-ring-outline"
                         title="Push Notifications"
@@ -265,6 +269,7 @@ const Preferences = () => {
                         prefKey="push_notifications"
                         iconColor="#6D28D9"
                         iconBgColor="#F3E8FF"
+                        borderBottomColor={isDark ? "transparent" : '#F1F5F9'}
                     />
                 </View>
 
@@ -336,7 +341,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: vS(12),
         paddingHorizontal: hS(12),
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
     },
     iconContainer: {
         width: mS(36),

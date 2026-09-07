@@ -52,11 +52,14 @@ export const lightColors = {
 export const darkColors = {
   primary: '#60A5FA', // Premium Radiant Blue
   button: '#3B82F6',
-  background: '#0F172A', // Deep Slate Dark
-  card: '#1E293B',      // Medium Slate Card
+  // background: '#0F172A', // Deep Slate Dark
+  background: '#020813', // Deep Slate Dark
+  // card: '#1E293B',      // Medium Slate Card
+  card: '#0A1931',      // Medium Slate Card
   text: '#F8FAFC',      // Clean White Text
   lightTextColor: '#94A3B8', // Slate Secondary
-  border: '#334155',
+  // border: '#334155',
+  border: '#1E3A8A',
   notification: '#1E293B',
   success: '#10B981',
   error: '#EF4444',

@@ -178,7 +178,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
               placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
               keyboardType="phone-pad"
               value={mobileNumber}
-              onChangeText={setMobileNumber}
+              onChangeText={(text) => setMobileNumber(text.replace(/[^0-9]/g, ""))}
               style={[localStyles.phoneInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
               maxLength={10}
             />

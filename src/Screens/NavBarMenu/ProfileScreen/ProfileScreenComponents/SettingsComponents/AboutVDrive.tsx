@@ -84,7 +84,7 @@ const AboutVDrive = ({ navigation }: any) => {
             <Animated.View style={[
                 styles.featureCard,
                 { opacity: itemFade, transform: [{ translateY: itemSlide }] },
-                { backgroundColor: isDark ? '#1E293B' : '#FFFFFF', shadowColor: isDark ? '#000' : '#000' }
+                { backgroundColor: isDark ? appColors.card : '#FFFFFF', shadowColor: isDark ? '#000' : '#000' }
             ]}>
                 <View style={styles.featureIconContainer}>
                     {isPng ? (
@@ -104,13 +104,13 @@ const AboutVDrive = ({ navigation }: any) => {
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor="transparent" translucent />
 
             {/* Top Light Blue Gradient */}
-            <View style={[styles.topGradient, { backgroundColor: isDark ? '#1E293B' : '#F8FAFF' }]} />
+            <View style={[styles.topGradient, { backgroundColor: isDark ? appColors.background : '#F8FAFF' }]} />
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + vS(20) }}>
 
                 {/* HEADER */}
                 <View style={[styles.header, { paddingTop: insets.top + vS(10) }]}>
-                    <TouchableOpacity onPress={() => navigation?.goBack()} style={[styles.backButton, { backgroundColor: isDark ? '#334155' : '#F1F5F9' }]}>
+                    <TouchableOpacity onPress={() => navigation?.goBack()} style={[styles.backButton, { backgroundColor: isDark ? appColors.card : '#F1F5F9' }]}>
                         <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={isDark ? '#FFFFFF' : '#1E293B'} />
                     </TouchableOpacity>
                     <Text style={[styles.headerTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>About</Text>
@@ -133,7 +133,7 @@ const AboutVDrive = ({ navigation }: any) => {
                     <Image source={require('../../../../../assets/png/AboutPageImage.png')} style={[styles.cityImage, isDark && { opacity: 0.8 }]} resizeMode="cover" />
 
                     {/* OVERLAPPING STATS CARD */}
-                    <View style={[styles.statsCard, { backgroundColor: isDark ? '#1E293B' : '#FFFFFF' }]}>
+                    <View style={[styles.statsCard, { backgroundColor: isDark ? appColors.card : '#FFFFFF' }]}>
                         <StatItem icon="car" value="100+" label="Rides" color="#0B309B" />
                         <View style={[styles.statDivider, { backgroundColor: isDark ? '#334155' : '#E2E8F0' }]} />
                         <StatItem icon="account" value="50+" label="Drivers" color="#0B309B" />

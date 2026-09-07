@@ -45,6 +45,12 @@ export const PreferencesScreen_Nav: string = 'PreferencesScreen';
 export const NotificationScreen_Nav: string = 'NotificationScreen';
 export const SafetyScreen_Nav: string = 'SafetyScreen';
 
+export const DeleteAccountInfoScreen_Nav: string = 'DeleteAccountInfoScreen';
+export const DeleteAccountReasonScreen_Nav: string = 'DeleteAccountReasonScreen';
+export const DeleteAccountVerifyScreen_Nav: string = 'DeleteAccountVerifyScreen';
+export const DeleteAccountConfirmScreen_Nav: string = 'DeleteAccountConfirmScreen';
+export const DeleteAccountSuccessScreen_Nav: string = 'DeleteAccountSuccessScreen';
+
 export const SearchDriverScreen_Nav: string = 'SearchDriverScreen';
 export const ContactScreen_Nav: string = 'ContactScreen';
 
