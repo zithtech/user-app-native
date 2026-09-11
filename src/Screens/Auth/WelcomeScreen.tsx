@@ -24,6 +24,7 @@ import { useAppTheme } from '../../hooks/useAppTheme';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { hS, mS, vS } from '../../lib/responsive';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 
 // ✅ No fetch, no checkSession, no useEffect
 // App.tsx handles all session validation
@@ -58,7 +59,7 @@ const WelcomeScreen: React.FC<any> = ({ navigation }) => {
         <Image source={item.image} style={styles.carImage} resizeMode='cover' />
         <LinearGradient
           colors={[bgColor, 'transparent']}
-          style={{ position: 'absolute', top: 0, left: 0, right: 0, height: vS(60) }}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, height: vS(120) }}
         />
         <LinearGradient
           colors={['transparent', bgColor]}
@@ -97,27 +98,29 @@ const WelcomeScreen: React.FC<any> = ({ navigation }) => {
     <View style={[styles.container, { backgroundColor: isDark ? appColors.background : '#F4F7FB', paddingTop: insets.top, paddingBottom: insets.bottom > 0 ? insets.bottom : 20 }]}>
 
       <View style={styles.content}>
-        <View style={styles.topSection}>
-          <View style={styles.logoContainer}>
-            {
-              isDark ?
-                <Image
-                  source={require('../../assets/png/t2drive_logo.png')}
-                  style={{ width: hS(100), height: vS(24), resizeMode: 'contain' }}
-                />
-                : <Image
-                  source={require('../../assets/png/T2DriveDarkLogo.png')}
-                  style={{ width: hS(100), height: vS(24), resizeMode: 'contain' }}
-                />
-            }
+        <ResponsiveContainer style={{ flex: 0 }} contentContainerStyle={{ flex: 0 }}>
+          <View style={styles.topSection}>
+            <View style={styles.logoContainer}>
+              {
+                isDark ?
+                  <Image
+                    source={require('../../assets/png/t2drive_logo.png')}
+                    style={{ width: hS(100), height: vS(24), resizeMode: 'contain' }}
+                  />
+                  : <Image
+                    source={require('../../assets/png/T2DriveDarkLogo.png')}
+                    style={{ width: hS(100), height: vS(24), resizeMode: 'contain' }}
+                  />
+              }
+            </View>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(24), fontWeight: '800', color: isDark ? '#FFFFFF' : '#0F172A', marginTop: vS(24), textAlign: 'center' }}>
+              Welcome to <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#0066FF' }}>T2Drive</Text>
+            </Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.subtitle, { color: isDark ? '#E2E8F0' : '#475569', marginTop: vS(8), fontSize: mS(14), paddingHorizontal: hS(20) }]}>
+              Book affordable rides with T2Drive, your trusted ride-sharing companion.
+            </Text>
           </View>
-          <Text style={{ fontSize: mS(24), fontWeight: '800', color: isDark ? '#FFFFFF' : '#0F172A', marginTop: vS(24), textAlign: 'center' }}>
-            Welcome to <Text style={{ color: '#0066FF' }}>T2Drive</Text>
-          </Text>
-          <Text style={[styles.subtitle, { color: isDark ? '#E2E8F0' : '#475569', marginTop: vS(8), fontSize: mS(14), paddingHorizontal: hS(20) }]}>
-            Book affordable rides with T2Drive, your trusted ride-sharing companion.
-          </Text>
-        </View>
+        </ResponsiveContainer>
 
         <View style={styles.carContainer}>
           <FlatList
@@ -141,37 +144,39 @@ const WelcomeScreen: React.FC<any> = ({ navigation }) => {
         </View>
 
 
-        <View style={styles.bottomWrapper}>
-          <View style={styles.paginationContainer}>
-            {currentCarouselData.map((_, index) => (
-              <View key={index} style={[styles.dot, activeIndex === index && styles.activeDot]} />
-            ))}
-          </View>
+        <ResponsiveContainer style={{ flex: 0 }} contentContainerStyle={{ flex: 0 }}>
+          <View style={styles.bottomWrapper}>
+            <View style={styles.paginationContainer}>
+              {currentCarouselData.map((_, index) => (
+                <View key={index} style={[styles.dot, activeIndex === index && styles.activeDot]} />
+              ))}
+            </View>
 
-          <View style={styles.bottomSection}>
-            <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted} activeOpacity={0.8}>
-              <View style={styles.buttonTextContainer}>
-                <Text style={styles.getStartedText}>Get Started</Text>
-              </View>
-              <View style={styles.iconCircleContainer}>
-                <View style={styles.iconCircle}>
-                  <MaterialCommunityIcons name="chevron-right" size={24} color="#0066FF" />
+            <View style={styles.bottomSection}>
+              <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted} activeOpacity={0.8}>
+                <View style={styles.buttonTextContainer}>
+                  <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.getStartedText}>Get Started</Text>
                 </View>
-              </View>
-            </TouchableOpacity>
+                <View style={styles.iconCircleContainer}>
+                  <View style={styles.iconCircle}>
+                    <MaterialCommunityIcons name="chevron-right" size={24} color="#0066FF" />
+                  </View>
+                </View>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.loginButton, { backgroundColor: isDark ? '#1E293B' : '#FFFFFF', borderColor: isDark ? '#334155' : '#CBD5E1' }]} onPress={() => navigation.navigate('LoginScreen')} activeOpacity={0.8}>
-              <MaterialCommunityIcons name="account-outline" size={20} color={isDark ? '#FFFFFF' : '#0F172A'} style={styles.loginIcon} />
-              <Text style={[styles.loginText, { color: isDark ? '#FFFFFF' : '#0F172A' }]}>Log In</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={[styles.loginButton, { backgroundColor: isDark ? '#1E293B' : '#FFFFFF', borderColor: isDark ? '#334155' : '#CBD5E1' }]} onPress={() => navigation.navigate('LoginScreen')} activeOpacity={0.8}>
+                <MaterialCommunityIcons name="account-outline" size={20} color={isDark ? '#FFFFFF' : '#0F172A'} style={styles.loginIcon} />
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.loginText, { color: isDark ? '#FFFFFF' : '#0F172A' }]}>Log In</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.createAccountContainer} onPress={() => navigation.navigate(SignUpScreen_Nav)}>
-              <Text style={[styles.newHereText, { color: isDark ? '#CBD5E1' : '#64748B' }]}>
-                New here? <Text style={styles.createAccountText}>Create an account</Text>
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.createAccountContainer} onPress={() => navigation.navigate(SignUpScreen_Nav)}>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.newHereText, { color: isDark ? '#CBD5E1' : '#64748B' }]}>
+                  New here? <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.createAccountText}>Create an account</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </ResponsiveContainer>
       </View>
     </View>
   );
@@ -206,7 +211,7 @@ const styles = StyleSheet.create({
   carContainer: {
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flex: 1,
   },
   carImage: {

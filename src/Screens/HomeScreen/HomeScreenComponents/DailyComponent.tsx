@@ -184,8 +184,8 @@ export function DailyComponent() {
                         <Text style={[styles.badgeText, { color: isDark ? '#E2E8F0' : '#000' }]}>LIMITED TIME OFFER</Text>
                     </View>
 
-                    <Text style={[fonts.bold, styles.heroTitle, { color: isDark ? '#FFFFFF' : appColors.text }]}>
-                        Get Scheduled <Text style={{ color: isDark ? '#3B82F6' : appColors.text }}>Drivers</Text>
+                    <Text style={[fonts.bold, styles.heroTitle, { color: isDark ? '#FFFFFF' : "#FFFFFF" }]}>
+                        Get Scheduled <Text style={{ color: isDark ? '#3B82F6' : '#3B82F6' }}>Drivers</Text>
                     </Text>
 
                     <Text style={[styles.heroDescription, { color: isDark ? '#9CA3AF' : '#E0E7FF' }]}>

@@ -7,6 +7,7 @@ import { RootState } from '../../../../redux/store';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BookedTripScreen_Nav, TabNavigation_Nav } from '../../../../Navigations/navigations';
 import { useAppTheme } from '../../../../hooks/useAppTheme';
+import { ResponsiveContainer } from '../../../../Components/ResponsiveContainer';
 import { useGetActiveTripbyUserIdQuery, useGetTripQuery } from '../../../../service/userApi';
 
 const ScheduledTripsList = () => {
@@ -97,19 +98,19 @@ const ScheduledTripsList = () => {
                 <View style={styles.cardTopRow}>
                     {/* Date Block */}
                     <View style={[styles.dateBlock, { borderColor: isDark ? 'rgba(255,255,255,0.1)' : '#E2E8F0', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#F8FAFC' }]}>
-                        <Text style={[styles.dateMonth, { color: '#3B82F6' }]}>{month}</Text>
-                        <Text style={[styles.dateDay, { color: appColors.text }]}>{date}</Text>
-                        <Text style={[styles.dateWeekday, { color: appColors.secondaryText }]}>{day}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dateMonth, { color: '#3B82F6' }]}>{month}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dateDay, { color: appColors.text }]}>{date}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dateWeekday, { color: appColors.secondaryText }]}>{day}</Text>
                     </View>
 
                     {/* Trip Info Block */}
                     <View style={styles.tripInfoBlock}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                            <Text style={[styles.rideTypeTitle, { color: '#2563EB', flex: 1 }]} numberOfLines={1}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rideTypeTitle, { color: '#2563EB', flex: 1 }]} numberOfLines={1}>
                                 {rideTypeTitle}
                             </Text>
                             <View style={[styles.statusBadge, { backgroundColor: statusInfo.bgColor }]}>
-                                <Text style={[styles.statusBadgeText, { color: statusInfo.textColor }]}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.statusBadgeText, { color: statusInfo.textColor }]}>
                                     {statusInfo.label}
                                 </Text>
                             </View>
@@ -119,7 +120,7 @@ const ScheduledTripsList = () => {
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                             <MaterialCommunityIcons name="clock-outline" size={14} color="#64748B" />
-                            <Text style={[styles.timeText, { color: isDark ? appColors.text : '#0F172A' }]}>{timeStr}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.timeText, { color: isDark ? appColors.text : '#0F172A' }]}>{timeStr}</Text>
                         </View>
 
                         {/* Timeline Addresses */}
@@ -130,10 +131,10 @@ const ScheduledTripsList = () => {
                                 <MaterialCommunityIcons name="map-marker" size={12} color="#EF4444" style={{ marginLeft: -2 }} />
                             </View>
                             <View style={styles.addressSection}>
-                                <Text style={[styles.addressText, { color: isDark ? appColors.text : '#0F172A' }]} numberOfLines={2}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.addressText, { color: isDark ? appColors.text : '#0F172A' }]} numberOfLines={2}>
                                     {item.pickup_address || 'Current Location'}
                                 </Text>
-                                <Text style={[styles.addressText, { color: isDark ? appColors.text : '#0F172A', marginTop: 12 }]} numberOfLines={2}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.addressText, { color: isDark ? appColors.text : '#0F172A', marginTop: 12 }]} numberOfLines={2}>
                                     {item.drop_address}
                                 </Text>
                             </View>
@@ -149,17 +150,17 @@ const ScheduledTripsList = () => {
                     <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                         <MaterialCommunityIcons name="account-outline" size={18} color="#1E3A8A" />
                         {isSearching ? (
-                            <Text style={[styles.driverText, { color: appColors.secondaryText }]} numberOfLines={1}>
-                                Driver: <Text style={{ color: '#2563EB', fontWeight: '600' }}>Searching...</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.driverText, { color: appColors.secondaryText }]} numberOfLines={1}>
+                                Driver: <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#2563EB', fontWeight: '600' }}>Searching...</Text>
                             </Text>
                         ) : (
-                            <Text style={[styles.driverText, { color: appColors.secondaryText }]} numberOfLines={1}>
-                                Driver: <Text style={{ color: appColors.text, fontWeight: '600' }}>{item.driver_details?.full_name || 'Assigned'}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.driverText, { color: appColors.secondaryText }]} numberOfLines={1}>
+                                Driver: <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontWeight: '600' }}>{item.driver_details?.full_name || 'Assigned'}</Text>
                             </Text>
                         )}
                     </View>
                     <View style={[styles.serviceBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#F1F5F9' }]}>
-                        <Text style={[styles.serviceBadgeText, { color: appColors.secondaryText }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.serviceBadgeText, { color: appColors.secondaryText }]}>
                             {item.trip_status || 'SCHEDULED'}
                         </Text>
                     </View>
@@ -171,8 +172,8 @@ const ScheduledTripsList = () => {
     const renderEmptyState = () => (
         <View style={styles.emptyState}>
             <MaterialCommunityIcons name="calendar-blank" size={60} color={isDark ? 'rgba(255, 255, 255, 0.1)' : "#E2E8F0"} />
-            <Text style={[styles.emptyTitle, { color: appColors.text }]}>No scheduled rides</Text>
-            <Text style={[styles.emptySub, { color: appColors.secondaryText }]}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyTitle, { color: appColors.text }]}>No scheduled rides</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptySub, { color: appColors.secondaryText }]}>
                 {activeTab === 'upcoming' ? "Your upcoming bookings will appear here." : "Your past bookings will appear here."}
             </Text>
         </View>
@@ -186,7 +187,7 @@ const ScheduledTripsList = () => {
                     style={[styles.bookBtn, { backgroundColor: 'transparent', borderWidth: 1, borderColor: '#2563EB', marginTop: 16 }]}
                     onPress={() => navigation.navigate(TabNavigation_Nav, { screen: 'Activity' })}
                 >
-                    <Text style={[styles.bookBtnText, { color: '#2563EB' }]}>View All Past Trips</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.bookBtnText, { color: '#2563EB' }]}>View All Past Trips</Text>
                 </TouchableOpacity>
             );
         }
@@ -196,8 +197,8 @@ const ScheduledTripsList = () => {
             <TouchableOpacity style={[styles.footerAlert, { backgroundColor: isDark ? appColors.card : '#F8FAFC' }]}>
                 <MaterialCommunityIcons name="calendar-clock" size={36} color="#2563EB" />
                 <View style={{ flex: 1, marginLeft: 12 }}>
-                    <Text style={[styles.alertTitle, { color: appColors.text }]}>Need to make changes?</Text>
-                    <Text style={[styles.alertSub, { color: appColors.secondaryText }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.alertTitle, { color: appColors.text }]}>Need to make changes?</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.alertSub, { color: appColors.secondaryText }]}>
                         You can reschedule or cancel up to 2 hours before pickup.
                     </Text>
                 </View>
@@ -209,13 +210,14 @@ const ScheduledTripsList = () => {
     return (
         <View style={[styles.container, { backgroundColor: appColors.background, paddingTop: insets.top }]}>
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor={appColors.background} />
+            <ResponsiveContainer>
 
             {/* Header */}
             <View style={[styles.header, { backgroundColor: appColors.background }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconBtn}>
                     <MaterialCommunityIcons name="arrow-left" size={24} color={appColors.text} />
                 </TouchableOpacity>
-                <Text style={[styles.headerTitle, { color: appColors.text }]}>Scheduled Trips</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: appColors.text }]}>Scheduled Trips</Text>
                 {isFetching || isPastFetching ? (
                     <View style={styles.iconBtn}>
                         <ActivityIndicator size="small" color={appColors.text} />
@@ -233,13 +235,13 @@ const ScheduledTripsList = () => {
                     style={[styles.tab, activeTab === 'upcoming' && styles.activeTab]}
                     onPress={() => setActiveTab('upcoming')}
                 >
-                    <Text style={[styles.tabText, { color: activeTab === 'upcoming' ? '#2563EB' : appColors.secondaryText }]}>Upcoming</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tabText, { color: activeTab === 'upcoming' ? '#2563EB' : appColors.secondaryText }]}>Upcoming</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[styles.tab, activeTab === 'past' && styles.activeTab]}
                     onPress={() => setActiveTab('past')}
                 >
-                    <Text style={[styles.tabText, { color: activeTab === 'past' ? '#2563EB' : appColors.secondaryText }]}>Past</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tabText, { color: activeTab === 'past' ? '#2563EB' : appColors.secondaryText }]}>Past</Text>
                 </TouchableOpacity>
             </View>
 
@@ -251,7 +253,7 @@ const ScheduledTripsList = () => {
                 contentContainerStyle={styles.listContent}
                 ListHeaderComponent={
                     activeTab === 'upcoming' && scheduledTrips.length > 0 ? (
-                        <Text style={styles.sectionTitle}>UPCOMING TRIPS</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.sectionTitle}>UPCOMING TRIPS</Text>
                     ) : null
                 }
                 ListEmptyComponent={renderEmptyState}
@@ -267,9 +269,10 @@ const ScheduledTripsList = () => {
                     onPress={() => navigation.goBack()}
                 >
                     <MaterialCommunityIcons name="plus" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
-                    <Text style={styles.bookBtnText}>Book New Trip</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.bookBtnText}>Book New Trip</Text>
                 </TouchableOpacity>
             </View>
+            </ResponsiveContainer>
         </View>
     );
 };

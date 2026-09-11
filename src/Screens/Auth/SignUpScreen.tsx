@@ -23,7 +23,8 @@ import { Styles } from '../../lib/styles';
 import colors from '../../constant/colors';
 import fonts from '../../constant/fonts';
 import { OTPScreen_Nav, TabNavigation_Nav, TermsAndConditions_Nav, PrivacyPolicy_Nav } from '../../Navigations/navigations';
-import { hS, vS, mS } from '../../lib/responsive'; // Assuming these are your responsive helpers
+import { hS, vS, mS } from '../../lib/responsive';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer'; // Assuming these are your responsive helpers
 
 // --- Components ---
 import Button from '../../Components/Button';
@@ -329,10 +330,11 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
+        <ResponsiveContainer>
         {/* --- PREMIUM HEADER SECTION --- */}
         <View style={[styles.headerContainer, isDark && { zIndex: 10 }]}>
           {isDark && (
-            <View style={{ position: 'absolute', top: vS(-insets.top), right: hS(-24), width: Dimensions.get('window').width, height: vS(240), pointerEvents: 'none' }}>
+            <View style={{ position: 'absolute', top: vS(-insets.top), right: hS(-24), width: '100%', height: vS(240), pointerEvents: 'none' }}>
               <Image
                 source={require('../../assets/png/SignupBackground.png')}
                 style={{ width: '100%', height: '100%', resizeMode: 'cover', position: 'absolute' }}
@@ -358,8 +360,8 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
           </View>
 
           <View style={{ zIndex: 10 }}>
-            <Text style={[styles.titleText, { color: isDark ? '#FFFFFF' : appColors.text }]}>Create Your Account</Text>
-            <Text style={[styles.descriptionText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, maxWidth: '60%' }]}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.titleText, { color: isDark ? '#FFFFFF' : appColors.text }]}>Create Your Account</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.descriptionText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, maxWidth: '60%' }]}>
               {isDark ? "Let's get you started on the road!" : "Join T2Drive and enjoy seamless travel experience."}
             </Text>
           </View>
@@ -405,7 +407,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
 
           {/* Mobile Number Input */}
           <View style={styles.fieldContainer}>
-            <Text style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Mobile Number</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Mobile Number</Text>
             {/* 
               <View style={[styles.inputWrapper, {
               backgroundColor: isDark ? '#041026' : appColors.card,
@@ -426,14 +428,13 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
                       }}
                       style={styles.flagIcon}
                     />
-                    <Text style={[styles.countryCode, { color: isDark ? '#FFFFFF' : appColors.text }]}>{selectedItem?.value || '+91'}</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.countryCode, { color: isDark ? '#FFFFFF' : appColors.text }]}>{selectedItem?.value || '+91'}</Text>
                     <MaterialCommunityIcons name="chevron-down" size={mS(20)} color={isDark ? '#9CA3AF' : appColors.lightTextColor} />
                   </View>
                 )}
               />
               <View style={[styles.verticalDivider, { backgroundColor: isDark ? '#152B4D' : appColors.divider }]} />
-              <TextInput
-                style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
+              <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
                 placeholder="1234567890"
                 placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
                 keyboardType="phone-pad"
@@ -460,12 +461,11 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
                   }}
                   style={styles.flagIcon}
                 />
-                <Text style={[styles.countryCode, { color: isDark ? '#FFFFFF' : appColors.text }]}>+91</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.countryCode, { color: isDark ? '#FFFFFF' : appColors.text }]}>+91</Text>
                 <MaterialCommunityIcons name="chevron-down" size={mS(20)} color={isDark ? '#9CA3AF' : appColors.lightTextColor} />
               </TouchableOpacity>
               <View style={[styles.verticalDivider, { backgroundColor: isDark ? '#152B4D' : appColors.divider }]} />
-              <TextInput
-                style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
+              <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
                 placeholder="1234567890"
                 placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
                 keyboardType="phone-pad"
@@ -475,7 +475,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
               />
             </View>
             {showValidation && (!mobileValidation.valid) ? (
-              <Text style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>{mobileValidation.message}</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>{mobileValidation.message}</Text>
             ) : null}
           </View>
 
@@ -500,7 +500,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
           />
 
           <View style={styles.fieldContainer}>
-            <Text style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Select Gender</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Select Gender</Text>
             <View style={styles.segmentedControl}>
               {options.map((item, index) => {
                 const isSelected = gender === item.value;
@@ -522,7 +522,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
                       size={mS(18)}
                       color={isSelected ? '#FFFFFF' : isDark ? '#9CA3AF' : '#64748B'}
                     />
-                    <Text style={[
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                       styles.segmentText,
                       { color: isDark ? '#9CA3AF' : appColors.text },
                       isSelected && styles.segmentTextActive
@@ -538,8 +538,8 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
           {/* DOB Input */}
           <View style={styles.fieldContainer}>
             <View style={styles.fieldLabelRow}>
-              <Text style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Date of Birth</Text>
-              <Text style={styles.fieldAsterisk}>*</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Date of Birth</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.fieldAsterisk}>*</Text>
             </View>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -551,19 +551,19 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
               }]}
             >
               <MaterialCommunityIcons name="calendar-month-outline" size={mS(20)} color={isDark ? '#FFFFFF' : appColors.lightTextColor} />
-              <Text style={[styles.premiumPickerText, { color: dob ? (isDark ? '#FFFFFF' : appColors.text) : (isDark ? '#9CA3AF' : appColors.lightTextColor) }]}>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.premiumPickerText, { color: dob ? (isDark ? '#FFFFFF' : appColors.text) : (isDark ? '#9CA3AF' : appColors.lightTextColor) }]}>
                 {dob ? formatDatePretty(dob) : "Select your birthday"}
               </Text>
               <MaterialCommunityIcons name="chevron-down" size={mS(20)} color={isDark ? '#9CA3AF' : appColors.lightTextColor} />
             </TouchableOpacity>
             {showValidation && !dob ? (
-              <Text style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>Date of Birth is required</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>Date of Birth is required</Text>
             ) : null}
           </View>
 
           {/* --- REFERRAL SECTION --- */}
           <View style={styles.fieldContainer}>
-            <Text style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Referral Code (Optional)</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Referral Code (Optional)</Text>
             <View style={[styles.inputWrapper, {
               backgroundColor: isDark ? '#041026' : appColors.card,
               borderColor: referralError ? '#EF4444' : isReferralApplied ? '#10B981' : isDark ? '#152B4D' : appColors.border,
@@ -576,8 +576,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
                   color={referralError ? '#EF4444' : isReferralApplied ? '#10B981' : isDark ? '#FFFFFF' : appColors.lightTextColor}
                 />
               </View>
-              <TextInput
-                placeholder="Enter referral code"
+              <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholder="Enter referral code"
                 placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
                 style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
                 value={referralCode}
@@ -600,17 +599,17 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
                   style={[styles.applyButton, { backgroundColor: isDark ? '#007BFF' : appColors.button }]}
                 >
                   {isValidatingReferral ? (
-                    <Text style={styles.applyButtonText}>...</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.applyButtonText}>...</Text>
                   ) : (
-                    <Text style={styles.applyButtonText}>Apply</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.applyButtonText}>Apply</Text>
                   )}
                 </TouchableOpacity>
               )}
             </View>
             {referralError ? (
-              <Text style={styles.errorText}>{referralError}</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.errorText}>{referralError}</Text>
             ) : isReferralApplied ? (
-              <Text style={styles.successText}>Code applied successfully!</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.successText}>Code applied successfully!</Text>
             ) : null}
           </View>
 
@@ -621,10 +620,10 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             <TouchableOpacity onPress={() => setAgreedToTerms(!agreedToTerms)}>
               {agreedToTerms ? <View style={{ backgroundColor: isDark ? '#007BFF' : 'transparent', borderRadius: 4 }}><CheckedIcon width={mS(18)} height={mS(18)} fill={isDark ? '#007BFF' : appColors.primary} /></View> : <UnCheckedIcon width={mS(18)} height={mS(18)} stroke={isDark ? '#9CA3AF' : appColors.lightTextColor} />}
             </TouchableOpacity>
-            <Text style={[styles.termsText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.termsText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>
               By signing up, you agree to T2Drive's
-              <Text onPress={() => navigation.navigate(TermsAndConditions_Nav)} style={[fonts.bold, { color: isDark ? '#00BFFF' : appColors.text, textDecorationLine: 'underline' }]}> Terms & Conditions </Text>
-              and <Text onPress={() => navigation.navigate(PrivacyPolicy_Nav)} style={[fonts.bold, { color: isDark ? '#00BFFF' : appColors.text, textDecorationLine: 'underline' }]}>Privacy Policy</Text>.
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} onPress={() => navigation.navigate(TermsAndConditions_Nav)} style={[fonts.bold, { color: isDark ? '#00BFFF' : appColors.text, textDecorationLine: 'underline' }]}> Terms & Conditions </Text>
+              and <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} onPress={() => navigation.navigate(PrivacyPolicy_Nav)} style={[fonts.bold, { color: isDark ? '#00BFFF' : appColors.text, textDecorationLine: 'underline' }]}>Privacy Policy</Text>.
             </Text>
           </View>
 
@@ -637,7 +636,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             style={[styles.signUpButton, { backgroundColor: isDark ? '#007BFF' : '#0B3370', borderRadius: isDark ? mS(12) : mS(8) }]}
           >
             <View style={styles.buttonContentRow}>
-              <Text style={styles.signUpButtonText}>Sign Up</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.signUpButtonText}>Sign Up</Text>
               {(!updateLoading && !otpLoading) && (
                 <MaterialCommunityIcons name="arrow-right" size={mS(20)} color="#fff" style={styles.buttonIcon} />
               )}
@@ -647,10 +646,10 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
 
         <View pointerEvents="none" style={[styles.taxiPosition, { marginHorizontal: -hS(24) }]}>
           {isDark ? (
-            <View style={{ width: Dimensions.get('window').width, height: vS(220), justifyContent: 'flex-end', alignItems: 'center', marginTop: vS(20) }}>
+            <View style={{ width: '100%', height: vS(220), justifyContent: 'flex-end', alignItems: 'center', marginTop: vS(20) }}>
               <Image
                 source={require('../../assets/png/SignupBackground.png')}
-                style={{ width: Dimensions.get('window').width, height: '100%', resizeMode: 'cover', position: 'absolute' }}
+                style={{ width: '100%', height: '100%', resizeMode: 'cover', position: 'absolute' }}
               />
               {/* <Image
                 source={require('../../assets/png/LoginscreenLocation.png')}
@@ -668,6 +667,7 @@ const SignUpScreen: React.FC<any> = ({ navigation }) => {
             />
           )}
         </View>
+        </ResponsiveContainer>
       </ScrollView>
 
       {showDatePicker && (
@@ -693,8 +693,8 @@ const FormInput = ({ label, icon, required, appColors, isDark, hasError, errorMe
   <View style={styles.fieldContainer}>
     {label && (
       <View style={styles.fieldLabelRow}>
-        <Text style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>{label}</Text>
-        {required && <Text style={styles.fieldAsterisk}>*</Text>}
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>{label}</Text>
+        {required && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.fieldAsterisk}>*</Text>}
       </View>
     )}
     <View style={[styles.inputWrapper, {
@@ -705,14 +705,13 @@ const FormInput = ({ label, icon, required, appColors, isDark, hasError, errorMe
       <View style={[styles.iconBox, { backgroundColor: isDark ? 'transparent' : appColors.background }]}>
         <MaterialCommunityIcons name={icon} size={mS(20)} color={hasError ? '#EF4444' : isDark ? '#FFFFFF' : appColors.lightTextColor} />
       </View>
-      <TextInput
-        placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
+      <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
         style={[styles.textInput, { color: isDark ? '#FFFFFF' : appColors.text }]}
         {...props}
       />
     </View>
     {hasError && errorMessage ? (
-      <Text style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>{errorMessage}</Text>
+      <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(4), marginLeft: hS(4) }}>{errorMessage}</Text>
     ) : null}
   </View>
 );

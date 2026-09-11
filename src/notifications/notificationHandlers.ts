@@ -51,6 +51,7 @@ const NotificationHandler: React.FC = () => {
             case NotificationType.DRIVER_ASSIGNED:
             case NotificationType.RIDE_STARTED:
             case NotificationType.RIDE_COMPLETED:
+            case NotificationType.TRIP_CHAT_MESSAGE:
                 if (tripId) {
                     navigation.navigate(BookedTripScreen_Nav, { trip_id: tripId });
                 }

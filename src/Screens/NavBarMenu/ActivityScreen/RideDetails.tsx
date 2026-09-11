@@ -22,6 +22,7 @@ import generateInvoicePDF from "../../Invoice/GenerateInvoice";
 import { RootState } from "../../../redux/store";
 import { hS, mS, vS } from "../../../lib/responsive";
 import { HelpContactScreen_Nav } from "../../../Navigations/navigations";
+import { ResponsiveContainer } from "../../../Components/ResponsiveContainer";
 
 const RideDetails: React.FC<any> = () => {
     const { colors: appColors, isDark } = useAppTheme();
@@ -64,27 +65,27 @@ const RideDetails: React.FC<any> = () => {
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.appBarIcon}>
                     <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={appColors.text} />
                 </TouchableOpacity>
-                <Text style={[styles.appBarTitle, { color: appColors.text }]}>Ride Details</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.appBarTitle, { color: appColors.text }]}>Ride Details</Text>
                 <View style={styles.appBarIcon}>
                     {/* <MaterialCommunityIcons name="dots-vertical" size={mS(24)} color={appColors.text} /> */}
                 </View>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + vS(40) }]}>
-
+                <ResponsiveContainer>
                 {/* CARD 1: Ride Info & Trip Route */}
                 <View style={[styles.card, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#E5E7EB' }]}>
                     {/* Ride Info Top */}
                     <View style={styles.rideInfoTop}>
                         <View style={styles.rideInfoLeft}>
-                            <Text style={[styles.rideTypeTitle, { color: appColors.text }]}>Cab Ride</Text>
-                            <Text style={[styles.dateTimeText, { color: appColors.secondaryText }]}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rideTypeTitle, { color: appColors.text }]}>Cab Ride</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dateTimeText, { color: appColors.secondaryText }]}>
                                 {rideData?.scheduled_start_time ? formatDate(rideData.scheduled_start_time) : 'N/A'}
                                 {' • '}
                                 {rideData?.scheduled_start_time ? new Date(rideData.scheduled_start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) : ''}
                             </Text>
-                            <Text style={[styles.fareTextMain, rideData?.trip_status === 'CANCELLED' && styles.strikethrough, { color: appColors.text }]}>
-                                ₹{fareValue} <Text style={{ color: appColors.secondaryText }}>(est)</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fareTextMain, rideData?.trip_status === 'CANCELLED' && styles.strikethrough, { color: appColors.text }]}>
+                                ₹{fareValue} <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.secondaryText }}>(est)</Text>
                             </Text>
                         </View>
                         <View style={styles.rideInfoRight}>
@@ -101,7 +102,7 @@ const RideDetails: React.FC<any> = () => {
                                     size={mS(14)}
                                     color={rideData?.trip_status === 'COMPLETED' ? '#16A34A' : '#EF4444'}
                                 />
-                                <Text style={[
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                     styles.statusText,
                                     { color: rideData?.trip_status === 'COMPLETED' ? '#16A34A' : '#EF4444' }
                                 ]}>
@@ -115,7 +116,7 @@ const RideDetails: React.FC<any> = () => {
 
                     {/* Trip Route Bottom */}
                     <TouchableOpacity style={styles.routeHeaderRow} onPress={() => setRouteOpen(!routeOpen)} activeOpacity={0.7}>
-                        <Text style={[styles.routeHeaderTitle, { color: appColors.text }]}>Trip Route</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.routeHeaderTitle, { color: appColors.text }]}>Trip Route</Text>
                         <MaterialCommunityIcons name={routeOpen ? "chevron-up" : "chevron-right"} size={mS(20)} color="#2563EB" />
                     </TouchableOpacity>
 
@@ -129,8 +130,8 @@ const RideDetails: React.FC<any> = () => {
                                     <View style={styles.dottedLine} />
                                 </View>
                                 <View style={styles.timelineRight}>
-                                    <Text style={[styles.locationName, { color: appColors.text }]}>{pickupaddressname}</Text>
-                                    <Text style={[styles.locationDetail, { color: appColors.secondaryText }]}>{pickupaddressDetail}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locationName, { color: appColors.text }]}>{pickupaddressname}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locationDetail, { color: appColors.secondaryText }]}>{pickupaddressDetail}</Text>
                                 </View>
                             </View>
 
@@ -141,14 +142,14 @@ const RideDetails: React.FC<any> = () => {
                                     </View>
                                 </View>
                                 <View style={styles.timelineRight}>
-                                    <Text style={[styles.locationName, { color: appColors.text }]}>{dropaddressname}</Text>
-                                    <Text style={[styles.locationDetail, { color: appColors.secondaryText }]}>{dropaddressDetail}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locationName, { color: appColors.text }]}>{dropaddressname}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locationDetail, { color: appColors.secondaryText }]}>{dropaddressDetail}</Text>
                                 </View>
                             </View>
 
                             <View style={styles.estStatsRow}>
                                 <MaterialCommunityIcons name="clock-outline" size={mS(14)} color={appColors.secondaryText} />
-                                <Text style={[styles.estStatsText, { color: appColors.secondaryText }]}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.estStatsText, { color: appColors.secondaryText }]}>
                                     {/* Ideally dynamic values from rideData, using mock to match image for now */}
                                     19.8 mins • 8.1 kms (est)
                                 </Text>
@@ -166,8 +167,8 @@ const RideDetails: React.FC<any> = () => {
                         <MaterialCommunityIcons name="headphones" size={mS(24)} color="#FFFFFF" />
                     </View>
                     <View style={styles.helpTextContainer}>
-                        <Text style={[styles.helpTitle, { color: '#1E3A8A' }]}>Need help?</Text>
-                        <Text style={[styles.helpSubtitle, { color: isDark ? '#94A3B8' : '#475569' }]}>We're a tap away</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.helpTitle, { color: '#1E3A8A' }]}>Need help?</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.helpSubtitle, { color: isDark ? '#94A3B8' : '#475569' }]}>We're a tap away</Text>
                     </View>
                     <MaterialCommunityIcons name="chevron-right" size={mS(20)} color="#2563EB" />
                 </TouchableOpacity>
@@ -176,26 +177,26 @@ const RideDetails: React.FC<any> = () => {
                 <View style={styles.fareSummaryWrapper}>
                     <View style={styles.fareHeaderRow}>
                         <MaterialCommunityIcons name="text-box-outline" size={mS(20)} color={appColors.text} />
-                        <Text style={[styles.fareHeaderTitle, { color: appColors.text }]}>Fare Summary</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fareHeaderTitle, { color: appColors.text }]}>Fare Summary</Text>
                         <MaterialCommunityIcons name="chevron-right" size={mS(20)} color={appColors.secondaryText} />
                     </View>
 
                     <View style={[styles.fareCard, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#E5E7EB' }]}>
                         <View style={styles.fareTotalRow}>
-                            <Text style={[styles.fareTotalLabel, { color: appColors.text }]}>Total Fare</Text>
-                            <Text style={[styles.fareTotalAmount, { color: '#16A34A' }]}>₹{fareValue}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fareTotalLabel, { color: appColors.text }]}>Total Fare</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.fareTotalAmount, { color: '#16A34A' }]}>₹{fareValue}</Text>
                         </View>
 
                         <View style={[styles.dashedDivider, { borderColor: isDark ? 'rgba(255,255,255,0.1)' : '#E2E8F0' }]} />
 
                         <View style={styles.breakdownRow}>
-                            <Text style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Base Fare</Text>
-                            <Text style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.base_fare || '0.00'}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Base Fare</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.base_fare || '0.00'}</Text>
                         </View>
 
                         <View style={styles.breakdownRow}>
-                            <Text style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Driver Allowance</Text>
-                            <Text style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.driver_allowance || '0.00'}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.breakdownLabel, { color: appColors.secondaryText }]}>Driver Allowance</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.breakdownValue, { color: appColors.secondaryText }]}>₹{rideData?.driver_allowance || '0.00'}</Text>
                         </View>
 
                         <View style={[styles.solidDivider, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#E5E7EB' }]} />
@@ -207,7 +208,7 @@ const RideDetails: React.FC<any> = () => {
                                 onPress={() => handleInvoiceAction('email')}
                             >
                                 <MaterialCommunityIcons name="email-outline" size={mS(20)} color="#2563EB" />
-                                <Text style={[styles.actionBtnText, { color: '#2563EB' }]}>Email Receipt</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.actionBtnText, { color: '#2563EB' }]}>Email Receipt</Text>
                             </TouchableOpacity>
 
                             <View style={[styles.verticalDivider, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#E5E7EB' }]} />
@@ -217,7 +218,7 @@ const RideDetails: React.FC<any> = () => {
                                 disabled={rideData?.trip_status === 'CANCELLED'}
                                 onPress={() => handleInvoiceAction('display')}
                             >
-                                <Text style={[styles.actionBtnText, { color: '#2563EB', marginRight: hS(6) }]}>Invoice</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.actionBtnText, { color: '#2563EB', marginRight: hS(6) }]}>Invoice</Text>
                                 <View style={styles.invoiceIconCircle}>
                                     <MaterialCommunityIcons name="download" size={mS(12)} color="#FFFFFF" />
                                 </View>
@@ -229,11 +230,12 @@ const RideDetails: React.FC<any> = () => {
                 {/* Footer Disclaimer */}
                 <View style={[styles.disclaimerBox, { backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#F1F5F9' }]}>
                     <MaterialCommunityIcons name="information-outline" size={mS(20)} color={isDark ? '#CBD5E1' : '#334155'} style={styles.infoIcon} />
-                    <Text style={[styles.disclaimerText, { color: isDark ? '#94A3B8' : '#475569' }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.disclaimerText, { color: isDark ? '#94A3B8' : '#475569' }]}>
                         T2Drive serves solely as a facilitator between you and independent Captains. The fare displayed is an estimate; the final fare is subject to mutual agreement. A tax invoice will not be provided for this trip. Please refer to the T&Cs for further details.
                     </Text>
                 </View>
 
+                </ResponsiveContainer>
             </ScrollView>
 
             {/* Loading Modal */}
@@ -241,7 +243,7 @@ const RideDetails: React.FC<any> = () => {
                 <View style={styles.modalBackground}>
                     <View style={styles.activityWrapper}>
                         <ActivityIndicator size="large" color="#FFFFFF" />
-                        <Text style={styles.loadingText}>Processing...</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.loadingText}>Processing...</Text>
                     </View>
                 </View>
             </Modal>

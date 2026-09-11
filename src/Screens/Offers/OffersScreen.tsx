@@ -21,6 +21,7 @@ import Animated, {
   FadeInDown,
 } from 'react-native-reanimated';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { hS, vS, mS } from '../../lib/responsive';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -128,18 +129,18 @@ const OfferCard = ({ item, index, isDark, colors, userId }: any) => {
     >
       <View style={styles.cardHeader}>
         <View style={[styles.tagContainer, { backgroundColor: cardTheme.tagBg }]}>
-          <Text style={[styles.tagText, { color: cardTheme.tagText }]}>{item.tag}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tagText, { color: cardTheme.tagText }]}>{item.tag}</Text>
         </View>
         <View style={styles.expiryContainer}>
           <MaterialCommunityIcons name="clock-outline" size={14} color={cardTheme.subText} />
-          <Text style={[styles.expiryText, { color: cardTheme.subText }]}>{item.expiry}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.expiryText, { color: cardTheme.subText }]}>{item.expiry}</Text>
         </View>
       </View>
 
       <View style={styles.mainContentRow}>
         <View style={styles.leftContent}>
-          <Text style={[styles.title, { color: cardTheme.text }]}>{item.title}</Text>
-          <Text style={[styles.description, { color: cardTheme.subText }]}>{item.description}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.title, { color: cardTheme.text }]}>{item.title}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.description, { color: cardTheme.subText }]}>{item.description}</Text>
 
           <TouchableOpacity
             onPress={handleCopyCode}
@@ -148,24 +149,24 @@ const OfferCard = ({ item, index, isDark, colors, userId }: any) => {
               { borderColor: cardTheme.boxBg, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#FFFFFF' },
             ]}
           >
-            <Text style={[styles.codeTextPrefix, { color: cardTheme.text }]}>Code: </Text>
-            <Text style={[styles.codeText, { color: cardTheme.boxBg }]}>{item.code}</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.codeTextPrefix, { color: cardTheme.text }]}>Code: </Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.codeText, { color: cardTheme.boxBg }]}>{item.code}</Text>
             <MaterialCommunityIcons name="content-copy" size={16} color={cardTheme.boxBg} style={{ marginLeft: 6 }} />
           </TouchableOpacity>
         </View>
 
         <View style={[styles.discountSquare, { backgroundColor: cardTheme.boxBg }]}>
-          <Text style={[styles.discountValueText, { color: cardTheme.boxText }]} numberOfLines={1} adjustsFontSizeToFit>{item.discount}</Text>
-          <Text style={[styles.discountSubText, { color: cardTheme.boxText }]}>{isPromo ? 'OFF' : 'CASHBACK'}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.discountValueText, { color: cardTheme.boxText }]} numberOfLines={1} adjustsFontSizeToFit>{item.discount}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.discountSubText, { color: cardTheme.boxText }]}>{isPromo ? 'OFF' : 'CASHBACK'}</Text>
         </View>
       </View>
 
       <View style={[styles.footer, { borderTopColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}>
-        <Text style={[styles.footerText, { color: cardTheme.subText }]}>
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerText, { color: cardTheme.subText }]}>
           Min. ride amount: ₹{item.min_ride_amount}
         </Text>
         <TouchableOpacity style={styles.viewDetailsBtn}>
-          <Text style={[styles.viewDetailsText, { color: cardTheme.boxBg }]}>View Details</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.viewDetailsText, { color: cardTheme.boxBg }]}>View Details</Text>
           <MaterialCommunityIcons name="chevron-right" size={16} color={cardTheme.boxBg} />
         </TouchableOpacity>
       </View>
@@ -221,6 +222,7 @@ const OffersScreen: React.FC = () => {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
+      <ResponsiveContainer>
       <FlatList
         data={mappedCoupons}
         keyExtractor={(item) => item.id}
@@ -232,7 +234,7 @@ const OffersScreen: React.FC = () => {
               <WavyBackground />
               
               <View style={styles.bannerTextContainer}>
-                <Text style={styles.bannerTitle}>Exciting discounts{'\n'}and rewards{'\n'}just for you!</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.bannerTitle}>Exciting discounts{'\n'}and rewards{'\n'}just for you!</Text>
               </View>
               <Image source={require('../../assets/png/10_gift_box.png')} style={styles.bannerImage} resizeMode="contain" />
             </View>
@@ -240,15 +242,15 @@ const OffersScreen: React.FC = () => {
             <View style={styles.tabsContainer}>
               <TouchableOpacity style={[styles.tab, styles.activeTab]}>
                 <MaterialCommunityIcons name="label" size={mS(18)} color="#FFFFFF" style={styles.tabIcon} />
-                <Text style={styles.activeTabText}>All Offers</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.activeTabText}>All Offers</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.tab, styles.inactiveTab, { backgroundColor: isDark ? colors.card : '#FFF', borderColor: isDark ? colors.border : '#E2E8F0' }]}>
                 <MaterialCommunityIcons name="brightness-percent" size={mS(16)} color={isDark ? colors.text : '#0F172A'} style={styles.tabIcon} />
-                <Text style={[styles.inactiveTabText, { color: isDark ? colors.text : '#0F172A' }]}>Promos</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.inactiveTabText, { color: isDark ? colors.text : '#0F172A' }]}>Promos</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.tab, styles.inactiveTab, { backgroundColor: isDark ? colors.card : '#FFF', borderColor: isDark ? colors.border : '#E2E8F0' }]}>
                 <MaterialCommunityIcons name="gift-outline" size={mS(16)} color={isDark ? colors.text : '#0F172A'} style={styles.tabIcon} />
-                <Text style={[styles.inactiveTabText, { color: isDark ? colors.text : '#0F172A' }]}>Rewards</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.inactiveTabText, { color: isDark ? colors.text : '#0F172A' }]}>Rewards</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -259,11 +261,12 @@ const OffersScreen: React.FC = () => {
         ListEmptyComponent={() => (
           <View style={styles.emptyContainer}>
             <MaterialCommunityIcons name="ticket-outline" size={mS(80)} color={colors.secondaryText} />
-            <Text style={[styles.emptyText, { color: colors.text }]}>No offers available right now</Text>
-            <Text style={[styles.emptySubText, { color: colors.lightTextColor }]}>Check back later for new promotions</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyText, { color: colors.text }]}>No offers available right now</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptySubText, { color: colors.lightTextColor }]}>Check back later for new promotions</Text>
           </View>
         )}
       />
+      </ResponsiveContainer>
     </SafeAreaView>
   );
 };

@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Share from 'react-native-share';
+import { ResponsiveContainer } from "../../../../Components/ResponsiveContainer";
 import { useAppTheme } from '../../../../hooks/useAppTheme';
 import { hS, vS, mS } from '../../../../lib/responsive';
 import colors from '../../../../constant/colors';
@@ -96,10 +97,11 @@ const ReferAndEarn = () => {
         >
           <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={appColors.text} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: appColors.text }]}>Refer & Earn</Text>
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: appColors.text }]}>Refer & Earn</Text>
         <View style={{ width: mS(40) }} />
       </View>
 
+      <ResponsiveContainer>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Hero Card */}
         <View style={[styles.heroCard, isDark && { backgroundColor: '#1E3A8A' }]}>
@@ -111,47 +113,47 @@ const ReferAndEarn = () => {
               <MaterialCommunityIcons name="gift-outline" size={mS(36)} color="#FFFFFF" />
             </View>
             <View style={styles.heroTextContent}>
-              <Text style={styles.heroSubtitle}>REFERRAL PROGRAM</Text>
-              <Text style={styles.heroTitle}>Refer Friends, Earn Cash</Text>
-              <Text style={styles.heroDesc}>Earn ₹100 for every friend who completes a ride.</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroSubtitle}>REFERRAL PROGRAM</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroTitle}>Refer Friends, Earn Cash</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroDesc}>Earn ₹100 for every friend who completes a ride.</Text>
             </View>
           </View>
           
           <View style={[styles.heroStatsContainer, isDark && { backgroundColor: 'rgba(0,0,0,0.2)' }]}>
             <View style={styles.heroStatItem}>
-              <Text style={styles.heroStatValue}>{stats.total_referrals || 0}</Text>
-              <Text style={styles.heroStatLabel}>Referrals</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatValue}>{stats.total_referrals || 0}</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatLabel}>Referrals</Text>
             </View>
             <View style={styles.heroStatDivider} />
             <View style={styles.heroStatItem}>
-              <Text style={styles.heroStatValue}>₹{stats.total_earnings || 0}</Text>
-              <Text style={styles.heroStatLabel}>Earned</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatValue}>₹{stats.total_earnings || 0}</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatLabel}>Earned</Text>
             </View>
             <View style={styles.heroStatDivider} />
             <View style={styles.heroStatItem}>
-              <Text style={styles.heroStatValue}>₹100</Text>
-              <Text style={styles.heroStatLabel}>Per Referral</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatValue}>₹100</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroStatLabel}>Per Referral</Text>
             </View>
           </View>
         </View>
 
         {/* Your Referral Code */}
-        <Text style={[styles.sectionHeading, { color: appColors.lightTextColor }]}>YOUR REFERRAL CODE</Text>
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionHeading, { color: appColors.lightTextColor }]}>YOUR REFERRAL CODE</Text>
         <View style={[styles.codeCard, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0' }]}>
           <View style={styles.codeTextContainer}>
-            <Text style={[styles.codeText, { color: appColors.text }]}>{referralCode}</Text>
-            <Text style={[styles.tapTip, { color: appColors.lightTextColor }]}>Tap the button to copy & share</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.codeText, { color: appColors.text }]}>{referralCode}</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tapTip, { color: appColors.lightTextColor }]}>Tap the button to copy & share</Text>
           </View>
           <TouchableOpacity style={[styles.copyButton, isDark && { backgroundColor: 'rgba(59, 130, 246, 0.2)' }]} onPress={handleCopyCode} activeOpacity={0.7}>
             <MaterialCommunityIcons name="content-copy" size={mS(16)} color={isDark ? '#60A5FA' : '#1D4ED8'} />
-            <Text style={[styles.copyButtonText, isDark && { color: '#60A5FA' }]}>Copy</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.copyButtonText, isDark && { color: '#60A5FA' }]}>Copy</Text>
           </TouchableOpacity>
         </View>
 
         {/* Share Button */}
         <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
           <MaterialCommunityIcons name="share-variant" size={mS(20)} color="#FFFFFF" />
-          <Text style={styles.shareButtonText}>Share Referral Link</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.shareButtonText}>Share Referral Link</Text>
         </TouchableOpacity>
 
         {/* Social Sharing */}
@@ -160,30 +162,30 @@ const ReferAndEarn = () => {
             <View style={styles.socialIconBox}>
               <MaterialCommunityIcons name="whatsapp" size={mS(26)} color="#25D366" />
             </View>
-            <Text style={[styles.socialText, { color: appColors.text }]}>WhatsApp</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.socialText, { color: appColors.text }]}>WhatsApp</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.socialBtn, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0' }]} onPress={() => openSocial('telegram')}>
             <View style={styles.socialIconBox}>
               <MaterialCommunityIcons name="send-outline" size={mS(24)} color="#3B82F6" style={{ transform: [{ rotate: '-45deg' }, { translateX: 2 }] }} />
             </View>
-            <Text style={[styles.socialText, { color: appColors.text }]}>Telegram</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.socialText, { color: appColors.text }]}>Telegram</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.socialBtn, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0' }]} onPress={() => openSocial('email')}>
             <View style={styles.socialIconBox}>
               <MaterialCommunityIcons name="email-outline" size={mS(26)} color="#EA4335" />
             </View>
-            <Text style={[styles.socialText, { color: appColors.text }]}>Email</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.socialText, { color: appColors.text }]}>Email</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.socialBtn, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0' }]} onPress={handleShare}>
             <View style={styles.socialIconBox}>
               <MaterialCommunityIcons name="dots-horizontal" size={mS(26)} color="#94A3B8" />
             </View>
-            <Text style={[styles.socialText, { color: appColors.text }]}>More</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.socialText, { color: appColors.text }]}>More</Text>
           </TouchableOpacity>
         </View>
 
         {/* How It Works */}
-        <Text style={[styles.howItWorksHeading, { color: appColors.text }]}>How It Works</Text>
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.howItWorksHeading, { color: appColors.text }]}>How It Works</Text>
         <View style={[styles.stepsContainer, { backgroundColor: appColors.card, borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0' }]}>
           {steps.map((step, index) => (
             <View key={step.id}>
@@ -191,21 +193,21 @@ const ReferAndEarn = () => {
                 <View style={[styles.stepIconBox, { backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#EFF6FF' }]}>
                   <MaterialCommunityIcons name={step.icon} size={mS(22)} color="#3B82F6" />
                   <View style={[styles.stepNumberBadge, { borderColor: appColors.card }]}>
-                    <Text style={styles.stepNumberText}>{index + 1}</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.stepNumberText}>{index + 1}</Text>
                   </View>
                 </View>
                 <View style={styles.stepContentView}>
-                  <Text style={[styles.stepTitle, { color: appColors.text }]}>{step.title}</Text>
-                  <Text style={[styles.stepDesc, { color: appColors.lightTextColor }]}>{step.desc}</Text>
+                  <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.stepTitle, { color: appColors.text }]}>{step.title}</Text>
+                  <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.stepDesc, { color: appColors.lightTextColor }]}>{step.desc}</Text>
                 </View>
                 {index === 1 && (
                   <View style={[styles.rewardBadge, isDark && { backgroundColor: 'rgba(59, 130, 246, 0.15)' }]}>
-                    <Text style={[styles.rewardBadgeText, isDark && { color: '#60A5FA' }]}>₹50 off</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rewardBadgeText, isDark && { color: '#60A5FA' }]}>₹50 off</Text>
                   </View>
                 )}
                 {index === 2 && (
                   <View style={[styles.rewardBadge, isDark && { backgroundColor: 'rgba(59, 130, 246, 0.15)' }]}>
-                    <Text style={[styles.rewardBadgeText, isDark && { color: '#60A5FA' }]}>₹100</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rewardBadgeText, isDark && { color: '#60A5FA' }]}>₹100</Text>
                   </View>
                 )}
               </View>
@@ -216,9 +218,10 @@ const ReferAndEarn = () => {
 
         {/* Terms Link */}
         <TouchableOpacity style={styles.termsButton} onPress={() => setShowTerms(true)}>
-          <Text style={styles.termsText}>View Terms & Conditions</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.termsText}>View Terms & Conditions</Text>
         </TouchableOpacity>
       </ScrollView>
+      </ResponsiveContainer>
 
       {/* Premium In-App Alert Modal */}
       <Modal statusBarTranslucent navigationBarTranslucent visible={showCopyAlert}
@@ -230,15 +233,15 @@ const ReferAndEarn = () => {
             <View style={[styles.alertIconBox, { backgroundColor: 'rgba(16, 185, 129, 0.15)' }]}>
               <MaterialCommunityIcons name="check-circle" size={mS(36)} color="#10B981" />
             </View>
-            <Text style={[styles.alertTitle, { color: appColors.text }]}>Copied!</Text>
-            <Text style={[styles.alertDesc, { color: appColors.lightTextColor }]}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.alertTitle, { color: appColors.text }]}>Copied!</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.alertDesc, { color: appColors.lightTextColor }]}>
               Referral code has been copied to your clipboard.
             </Text>
             <TouchableOpacity
               style={styles.alertButton}
               onPress={() => setShowCopyAlert(false)}
             >
-              <Text style={styles.alertButtonText}>OK, Got it</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.alertButtonText}>OK, Got it</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -252,13 +255,13 @@ const ReferAndEarn = () => {
         <View style={[styles.modalBackdrop, { justifyContent: 'flex-end' }]}>
           <View style={[styles.termsModalContainer, { backgroundColor: appColors.card }]}>
             <View style={styles.termsModalHeader}>
-              <Text style={[styles.termsModalTitle, { color: appColors.text }]}>Terms & Conditions</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.termsModalTitle, { color: appColors.text }]}>Terms & Conditions</Text>
               <TouchableOpacity onPress={() => setShowTerms(false)}>
                 <MaterialCommunityIcons name="close" size={mS(24)} color={appColors.text} />
               </TouchableOpacity>
             </View>
             <ScrollView style={styles.termsScrollView} showsVerticalScrollIndicator={false}>
-              <Text style={[styles.termsDummyText, { color: appColors.lightTextColor }]}>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.termsDummyText, { color: appColors.lightTextColor }]}>
                 1. Eligibility: This offer is valid only for new users who sign up using a valid referral code.{"\n\n"}
                 2. Referral Bonus: The referrer earns ₹100 only after the referred user completes their first ride.{"\n\n"}
                 3. New User Discount: The referred user gets ₹50 off on their first ride.{"\n\n"}
@@ -268,7 +271,7 @@ const ReferAndEarn = () => {
               </Text>
             </ScrollView>
             <TouchableOpacity style={styles.termsAcceptBtn} onPress={() => setShowTerms(false)}>
-              <Text style={styles.termsAcceptBtnText}>I Understand</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.termsAcceptBtnText}>I Understand</Text>
             </TouchableOpacity>
           </View>
         </View>

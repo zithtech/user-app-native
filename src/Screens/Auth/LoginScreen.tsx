@@ -27,6 +27,7 @@ import { hS, vS, mS } from '../../lib/responsive';
 import { useLogin } from '../../service/auth/login';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAppTheme } from '../../hooks/useAppTheme';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 
 const LoginScreen: React.FC<any> = ({ navigation }) => {
   const { colors: appColors, isDark } = useAppTheme();
@@ -60,8 +61,8 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
 
   const renderItem = useCallback(({ item }: any) => (
     <View style={[localStyles.dropdownItem, { backgroundColor: appColors.card }]}>
-      <Text style={[fonts.regular, { fontSize: mS(16), color: appColors.text }]}>{item.label}</Text>
-      <Text style={[fonts.regular, localStyles.countryName, { color: appColors.lightTextColor }]}>{item.name}</Text>
+      <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[fonts.regular, { fontSize: mS(16), color: appColors.text }]}>{item.label}</Text>
+      <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[fonts.regular, localStyles.countryName, { color: appColors.lightTextColor }]}>{item.name}</Text>
     </View>
   ), [appColors]);
 
@@ -74,6 +75,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
       ]}
     >
       <ScrollView contentContainerStyle={localStyles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <ResponsiveContainer>
         {/* PREMIUM HEADER SECTION */}
         <View style={localStyles.headerSection}>
           <View style={localStyles.logoContainer}>
@@ -90,19 +92,19 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
               />
             )}
           </View>
-          <Text style={[localStyles.titleText, { color: isDark ? '#FFFFFF' : appColors.text }]}>Welcome to T2Drive</Text>
-          <Text style={[localStyles.descriptionText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.titleText, { color: isDark ? '#FFFFFF' : appColors.text }]}>Welcome to T2Drive</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.descriptionText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>
             Log in or sign up to book rides, rent cars or hire trusted drivers.
           </Text>
         </View>
 
         {/* Decorative Car Illustration */}
-        <View style={[localStyles.illustrationContainer, { width: Dimensions.get('window').width }]}>
+        <View style={[localStyles.illustrationContainer, { width: '100%' }]}>
           {isDark ? (
-            <View style={{ width: Dimensions.get('window').width, height: vS(260), justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: '100%', height: vS(260), justifyContent: 'center', alignItems: 'center' }}>
               <Image
                 source={require('../../assets/png/LoginScreenImageBackground.png')}
-                style={{ width: Dimensions.get('window').width, height: '100%', resizeMode: 'stretch', position: 'absolute' }}
+                style={{ width: '100%', height: '100%', resizeMode: 'stretch', position: 'absolute' }}
               />
               <Image
                 source={require('../../assets/png/LoginScreenMobile.png')}
@@ -122,7 +124,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
         </View>
 
         <View style={localStyles.fieldContainer}>
-          <Text style={[localStyles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Mobile Number</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.fieldLabel, { color: isDark ? '#FFFFFF' : appColors.text }]}>Mobile Number</Text>
           {/* DropDown UI for Mobile Number */}
           {/* <View style={[localStyles.mobileInputWrapper, { backgroundColor: isDark ? '#0A1931' : appColors.card, borderColor: isDark ? '#152B4D' : appColors.border }]}>
             <DropDown
@@ -139,15 +141,14 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
                     }}
                     style={localStyles.flagIcon}
                   />
-                  <Text style={[localStyles.countryText, { color: appColors.text }]}>{selectedItem?.value || '+91'}</Text>
+                  <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.countryText, { color: appColors.text }]}>{selectedItem?.value || '+91'}</Text>
                   <MaterialCommunityIcons name="chevron-down" size={mS(20)} color={appColors.lightTextColor} />
                 </View>
               )}
             />
             <View style={[localStyles.verticalDivider, { backgroundColor: appColors.divider }]} />
 
-            <TextInput
-              placeholder="1234567890"
+            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholder="1234567890"
               placeholderTextColor={appColors.lightTextColor}
               keyboardType="phone-pad"
               value={mobileNumber}
@@ -168,13 +169,12 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
                 }}
                 style={localStyles.flagIcon}
               />
-              <Text style={[localStyles.countryText, { color: isDark ? '#FFFFFF' : appColors.text }]}>+91</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.countryText, { color: isDark ? '#FFFFFF' : appColors.text }]}>+91</Text>
               <MaterialCommunityIcons name="chevron-down" size={mS(20)} color={isDark ? '#9CA3AF' : appColors.lightTextColor} />
             </TouchableOpacity>
             <View style={[localStyles.verticalDivider, { backgroundColor: isDark ? '#152B4D' : appColors.divider }]} />
 
-            <TextInput
-              placeholder="Enter mobile number"
+            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholder="Enter mobile number"
               placeholderTextColor={isDark ? '#9CA3AF' : appColors.lightTextColor}
               keyboardType="phone-pad"
               value={mobileNumber}
@@ -196,7 +196,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
           ]}
         >
           <View style={localStyles.buttonContentRow}>
-            <Text style={localStyles.primaryButtonText}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={localStyles.primaryButtonText}>
               {loading ? 'Sending...' : 'Send OTP'}
             </Text>
             {!loading && <MaterialCommunityIcons name="arrow-right" size={mS(20)} color="#fff" style={localStyles.buttonIcon} />}
@@ -206,7 +206,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
         {/* Divider */}
         <View style={localStyles.dividerContainer}>
           <View style={[localStyles.line, { backgroundColor: isDark ? '#152B4D' : appColors.divider }]} />
-          <Text style={[localStyles.orText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>or</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.orText, { color: isDark ? '#9CA3AF' : appColors.lightTextColor }]}>or</Text>
           <View style={[localStyles.line, { backgroundColor: isDark ? '#152B4D' : appColors.divider }]} />
         </View>
 
@@ -218,7 +218,7 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
             { backgroundColor: isDark ? '#0A1931' : '#FFFFFF', borderColor: isDark ? '#152B4D' : appColors.border }
           ]}
         >
-          <Text style={[localStyles.secondaryButtonText, { color: isDark ? '#FFFFFF' : appColors.text }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.secondaryButtonText, { color: isDark ? '#FFFFFF' : appColors.text }]}>
             Create Account
           </Text>
         </Button>
@@ -229,33 +229,34 @@ const LoginScreen: React.FC<any> = ({ navigation }) => {
             <View style={isDark ? { backgroundColor: 'transparent', padding: mS(4), borderRadius: mS(20), marginBottom: vS(4), shadowColor: '#007BFF', shadowOpacity: 0.8, shadowRadius: 10, elevation: 10 } : {}}>
               <MaterialCommunityIcons name="shield-check" size={mS(30)} color={isDark ? '#007BFF' : appColors.lightTextColor} />
             </View>
-            <Text style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>Safe Rides</Text>
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Your safety</Text>}
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10) }}>comes first</Text>}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>Safe Rides</Text>
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Your safety</Text>}
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10) }}>comes first</Text>}
           </View>
           <View style={localStyles.footerIconItem}>
             <View style={isDark ? { backgroundColor: 'transparent', padding: mS(4), borderRadius: mS(20), marginBottom: vS(4), shadowColor: '#00BFFF', shadowOpacity: 0.8, shadowRadius: 10, elevation: 10 } : {}}>
               <MaterialCommunityIcons name="account-check" size={mS(30)} color={isDark ? '#00BFFF' : appColors.lightTextColor} />
             </View>
-            <Text style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>Verified Drivers</Text>
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Trusted &</Text>}
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10) }}>background checked</Text>}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>Verified Drivers</Text>
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Trusted &</Text>}
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10) }}>background checked</Text>}
           </View>
           <View style={localStyles.footerIconItem}>
             <View style={isDark ? { backgroundColor: 'transparent', padding: mS(4), borderRadius: mS(20), marginBottom: vS(4), shadowColor: '#007BFF', shadowOpacity: 0.8, shadowRadius: 10, elevation: 10 } : {}}>
               <MaterialCommunityIcons name="headphones" size={mS(30)} color={isDark ? '#007BFF' : appColors.lightTextColor} />
             </View>
-            <Text style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>24/7 Support</Text>
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Always here</Text>}
-            {isDark && <Text style={{ color: '#9CA3AF', fontSize: mS(10) }}>for you</Text>}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.footerIconText, { color: isDark ? '#FFFFFF' : appColors.lightTextColor, fontWeight: isDark ? '700' : '500' }]}>24/7 Support</Text>
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10), marginTop: vS(2) }}>Always here</Text>}
+            {isDark && <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(10) }}>for you</Text>}
           </View>
         </View>
 
         {isDark && (
           <View style={{ alignItems: 'center', marginTop: vS(24) }}>
-            <Text style={{ color: '#9CA3AF', fontSize: mS(12), fontWeight: '600' }}>Ride Smart. Ride Safe. 💙</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#9CA3AF', fontSize: mS(12), fontWeight: '600' }}>Ride Smart. Ride Safe. 💙</Text>
           </View>
         )}
+        </ResponsiveContainer>
       </ScrollView>
     </KeyboardAvoidingView>
   );

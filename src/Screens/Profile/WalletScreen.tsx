@@ -41,6 +41,7 @@ import {
 } from '../../service/userApi';
 import RazorpayCheckout from 'react-native-razorpay';
 import Config from 'react-native-config';
+import { ResponsiveContainer } from "../../Components/ResponsiveContainer";
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { hS, vS, mS } from '../../lib/responsive';
 import colors from '../../constant/colors';
@@ -372,7 +373,7 @@ const WalletScreen = () => {
         <TouchableOpacity style={styles.headerIconBtn} onPress={() => navigation.goBack()}>
           <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={appColors.text} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: appColors.text, flex: 1, textAlign: 'center' }]}>My Wallet</Text>
+        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: appColors.text, flex: 1, textAlign: 'center' }]}>My Wallet</Text>
         <TouchableOpacity style={styles.headerIconBtn} onPress={() => navigation.navigate("FAQDetailsScreen", {
           title: "Wallet FAQ",
           questions: [
@@ -402,6 +403,7 @@ const WalletScreen = () => {
         </TouchableOpacity>
       </View>
 
+      <ResponsiveContainer>
       <FlatList
         data={showAllTransactions ? transactions : transactions.slice(0, 5)}
         keyExtractor={(item) => item.id}
@@ -427,12 +429,12 @@ const WalletScreen = () => {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <View>
                     <View style={styles.balanceHeader}>
-                      <Text style={styles.balanceLabel}>Total Balance</Text>
+                      <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.balanceLabel}>Total Balance</Text>
                       <TouchableOpacity onPress={() => setShowBalance(!showBalance)}>
                         <MaterialCommunityIcons name={showBalance ? "eye" : "eye-off"} size={mS(16)} color="#FFF" />
                       </TouchableOpacity>
                     </View>
-                    <Text style={styles.balanceValue}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.balanceValue}>
                       {showBalance ? `₹${Number(balance).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '••••••••'}
                     </Text>
                   </View>
@@ -440,7 +442,7 @@ const WalletScreen = () => {
                     {/* <MaterialCommunityIcons name="wallet-bifold" size={mS(36)} color="rgba(255,255,255,0.2)" /> */}
                     <Image source={require('../../assets/png/WalletScreenImage.png')} style={{ width: mS(75), height: mS(75) }} />
                     <View style={styles.currencyBadge}>
-                      <Text style={styles.currencyBadgeText}>₹</Text>
+                      <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.currencyBadgeText}>₹</Text>
                     </View>
                   </View>
                 </View>
@@ -452,7 +454,7 @@ const WalletScreen = () => {
                     activeOpacity={0.85}
                   >
                     <MaterialCommunityIcons name="plus-circle-outline" size={mS(18)} color="#082075" />
-                    <Text style={[styles.cardActionText, { color: '#082075' }]}>Add Money</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.cardActionText, { color: '#082075' }]}>Add Money</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={[styles.cardActionBtn, { backgroundColor: 'rgba(255,255,255,0.15)', marginLeft: hS(12), flex: 1, justifyContent: 'center' }]}
@@ -460,7 +462,7 @@ const WalletScreen = () => {
                     activeOpacity={0.85}
                   >
                     <MaterialCommunityIcons name="lock-outline" size={mS(18)} color="#FFF" />
-                    <Text style={[styles.cardActionText, { color: '#FFF' }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.cardActionText, { color: '#FFF' }]}>
                       {hasWalletPin ? 'Reset PIN' : 'Setup PIN'}
                     </Text>
                   </TouchableOpacity>
@@ -480,9 +482,9 @@ const WalletScreen = () => {
                     <MaterialCommunityIcons name="autorenew" size={mS(20)} color="#FFF" />
                   </View>
                   <View>
-                    <Text style={{ fontSize: mS(15), fontWeight: '700', color: appColors.text }}>Auto Reload</Text>
-                    <Text style={{ fontSize: mS(12), color: appColors.secondaryText, marginTop: vS(2) }}>
-                      {settingsData?.data?.enabled ? <Text style={{ color: '#10B981' }}>Active</Text> : 'Inactive'} • Min. Balance ₹{settingsData?.data?.threshold_amount || 100}
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(15), fontWeight: '700', color: appColors.text }}>Auto Reload</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), color: appColors.secondaryText, marginTop: vS(2) }}>
+                      {settingsData?.data?.enabled ? <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#10B981' }}>Active</Text> : 'Inactive'} • Min. Balance ₹{settingsData?.data?.threshold_amount || 100}
                     </Text>
                   </View>
                 </View>
@@ -494,7 +496,7 @@ const WalletScreen = () => {
             <View style={[styles.securityBannerCard, { backgroundColor: isDark ? 'rgba(16,185,129,0.1)' : '#F0FDF4', borderColor: isDark ? 'rgba(16,185,129,0.2)' : '#DCFCE7' }]}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: hS(8) }}>
                 <MaterialCommunityIcons name="shield-check" size={mS(18)} color="#059669" />
-                <Text style={[styles.securityText, { color: isDark ? '#34D399' : '#047857' }]}>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.securityText, { color: isDark ? '#34D399' : '#047857' }]}>
                   All transactions are end-to-end secured
                 </Text>
               </View>
@@ -502,11 +504,11 @@ const WalletScreen = () => {
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: vS(16), zIndex: 10 }}>
-              <Text style={[styles.sectionTitle, { color: appColors.text, marginBottom: 0 }]}>Recent Transactions</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionTitle, { color: appColors.text, marginBottom: 0 }]}>Recent Transactions</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 {transactions.length > 5 && (
                   <TouchableOpacity onPress={() => setShowAllTransactions(!showAllTransactions)} style={{ marginRight: hS(8) }}>
-                    <Text style={{ color: '#1E3A8A', fontSize: mS(14), fontWeight: '700' }}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#1E3A8A', fontSize: mS(14), fontWeight: '700' }}>
                       {showAllTransactions ? 'See Less' : 'See More'}
                     </Text>
                   </TouchableOpacity>
@@ -528,7 +530,7 @@ const WalletScreen = () => {
                           ) : (
                             <MaterialCommunityIcons name="file-download-outline" size={mS(20)} color={appColors.text} style={{ marginRight: hS(8) }} />
                           )}
-                          <Text style={[styles.dropdownText, { color: appColors.text }]}>Download PDF</Text>
+                          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dropdownText, { color: appColors.text }]}>Download PDF</Text>
                         </TouchableOpacity>
                         <View style={{ height: 1, backgroundColor: isDark ? '#374151' : '#E2E8F0' }} />
                         <TouchableOpacity
@@ -541,7 +543,7 @@ const WalletScreen = () => {
                           ) : (
                             <MaterialCommunityIcons name="share-variant-outline" size={mS(20)} color={appColors.text} style={{ marginRight: hS(8) }} />
                           )}
-                          <Text style={[styles.dropdownText, { color: appColors.text }]}>Share PDF</Text>
+                          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.dropdownText, { color: appColors.text }]}>Share PDF</Text>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -564,15 +566,15 @@ const WalletScreen = () => {
                 <MaterialCommunityIcons name={icon.name} size={mS(22)} color={isDark ? icon.darkColor : icon.color} />
               </View>
               <View style={styles.txnBody}>
-                <Text style={[styles.txnTitle, { color: appColors.text }]} numberOfLines={1}>{item.title}</Text>
-                <Text style={[styles.txnDate, { color: appColors.secondaryText }]}>{item.date} · {item.time}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.txnTitle, { color: appColors.text }]} numberOfLines={1}>{item.title}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.txnDate, { color: appColors.secondaryText }]}>{item.date} · {item.time}</Text>
               </View>
               <View style={styles.txnRight}>
-                <Text style={[styles.txnAmount, { color: isPositive ? '#10B981' : (isDark ? '#F87171' : '#EF4444') }]}>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.txnAmount, { color: isPositive ? '#10B981' : (isDark ? '#F87171' : '#EF4444') }]}>
                   {isPositive ? '+' : ''}₹{Math.abs(Number(item.amount)).toLocaleString('en-IN')}
                 </Text>
                 <View style={[styles.txnBadge, { backgroundColor: isDark ? 'rgba(16,185,129,0.15)' : '#ECFDF5' }]}>
-                  <Text style={[styles.txnBadgeText, { color: '#10B981' }]}>{item.status}</Text>
+                  <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.txnBadgeText, { color: '#10B981' }]}>{item.status}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -595,16 +597,16 @@ const WalletScreen = () => {
           ) : isTxnError ? (
             <View style={styles.emptyState}>
               <MaterialCommunityIcons name="alert-circle-outline" size={mS(56)} color="#EF4444" />
-              <Text style={[styles.emptyText, { color: appColors.text }]}>Failed to load transactions</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyText, { color: appColors.text }]}>Failed to load transactions</Text>
               <TouchableOpacity style={[styles.retryBtn, { backgroundColor: colors.button }]} onPress={onRefresh}>
-                <Text style={styles.retryText}>Retry</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.retryText}>Retry</Text>
               </TouchableOpacity>
             </View>
           ) : (
             <View style={styles.emptyState}>
               <MaterialCommunityIcons name="receipt-text-outline" size={mS(60)} color={isDark ? '#374151' : '#CBD5E1'} />
-              <Text style={[styles.emptyText, { color: appColors.text }]}>No transactions yet</Text>
-              <Text style={[styles.emptySub, { color: appColors.secondaryText }]}>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyText, { color: appColors.text }]}>No transactions yet</Text>
+              <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptySub, { color: appColors.secondaryText }]}>
                 Your wallet activity will appear here.{'\n'}Add money to get started.
               </Text>
             </View>
@@ -614,16 +616,16 @@ const WalletScreen = () => {
       {/* ═══ BOTTOM STICKY FOOTER ═══ */}
       <View style={[styles.bottomStickyFooter, { backgroundColor: isDark ? appColors.card : '#F8FAFC', borderColor: isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0', borderWidth: 1 }]}>
         <View style={styles.footerLeft}>
-          <Text style={[styles.footerLabel, { color: appColors.secondaryText }]}>Current Balance</Text>
-          <Text style={[styles.footerValue, { color: appColors.text }]}>₹{Number(balance).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerLabel, { color: appColors.secondaryText }]}>Current Balance</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerValue, { color: appColors.text }]}>₹{Number(balance).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
         </View>
 
         {/* <View style={{ alignItems: 'flex-start', flex: 1, paddingLeft: hS(8) }}>
           <View style={[styles.trendBadge, { backgroundColor: isTrendPositive ? (isDark ? 'rgba(16,185,129,0.15)' : '#D1FAE5') : (isDark ? 'rgba(239,68,68,0.15)' : '#FEE2E2') }]}>
             <MaterialCommunityIcons name={isTrendPositive ? "arrow-up" : "arrow-down"} size={mS(12)} color={isTrendPositive ? "#10B981" : "#EF4444"} />
-            <Text style={[styles.trendText, { color: isTrendPositive ? '#059669' : '#DC2626' }]}>₹{trendAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.trendText, { color: isTrendPositive ? '#059669' : '#DC2626' }]}>₹{trendAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
           </View>
-          <Text style={[styles.trendSub, { color: appColors.secondaryText }]}>vs last month</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.trendSub, { color: appColors.secondaryText }]}>vs last month</Text>
         </View> */}
 
         {/* <View style={[styles.footerDivider, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#E2E8F0' }]} /> */}
@@ -633,12 +635,13 @@ const WalletScreen = () => {
             <MaterialCommunityIcons name="crown" size={mS(18)} color="#FFF" />
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={[styles.footerRightTitle, { color: appColors.text }]}>Wallet Benefits</Text>
-            <Text style={[styles.footerRightSub, { color: appColors.secondaryText }]} numberOfLines={2}>Use wallet balance to get faster checkouts & offers!</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerRightTitle, { color: appColors.text }]}>Wallet Benefits</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerRightSub, { color: appColors.secondaryText }]} numberOfLines={2}>Use wallet balance to get faster checkouts & offers!</Text>
           </View>
           <MaterialCommunityIcons name="chevron-right" size={mS(20)} color={appColors.secondaryText} />
         </TouchableOpacity> */}
       </View>
+      </ResponsiveContainer>
 
       {/* ═══ AUTO RELOAD MODAL ═══ */}
       <Modal
@@ -654,7 +657,7 @@ const WalletScreen = () => {
         <View style={[styles.modalSheet, { backgroundColor: appColors.card, paddingBottom: insets.bottom + vS(24) }]}>
           <View style={[styles.sheetHandle, { backgroundColor: isDark ? '#4B5563' : '#E2E8F0' }]} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: vS(20) }}>
-            <Text style={[styles.sheetTitle, { color: appColors.text, marginBottom: 0 }]}>Auto Reload</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetTitle, { color: appColors.text, marginBottom: 0 }]}>Auto Reload</Text>
             <Switch
               value={arEnabled}
               onValueChange={setArEnabled}
@@ -663,33 +666,31 @@ const WalletScreen = () => {
             />
           </View>
 
-          <Text style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
             When balance falls below:
           </Text>
           <View style={[styles.amountInputRow, { borderBottomColor: isDark ? '#374151' : '#E2E8F0', marginBottom: vS(16), opacity: arEnabled ? 1 : 0.5 }]} pointerEvents={arEnabled ? 'auto' : 'none'}>
-            <Text style={[styles.rupee, { color: appColors.text, fontSize: mS(20) }]}>₹</Text>
-            <TextInput
-              style={[styles.amountInput, { color: appColors.text, fontSize: mS(24) }]}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rupee, { color: appColors.text, fontSize: mS(20) }]}>₹</Text>
+            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.amountInput, { color: appColors.text, fontSize: mS(24) }]}
               keyboardType="numeric"
               value={arThreshold}
               onChangeText={setArThreshold}
             />
           </View>
 
-          <Text style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
             Top up with:
           </Text>
           <View style={[styles.amountInputRow, { borderBottomColor: isDark ? '#374151' : '#E2E8F0', marginBottom: vS(24), opacity: arEnabled ? 1 : 0.5 }]} pointerEvents={arEnabled ? 'auto' : 'none'}>
-            <Text style={[styles.rupee, { color: appColors.text, fontSize: mS(20) }]}>₹</Text>
-            <TextInput
-              style={[styles.amountInput, { color: appColors.text, fontSize: mS(24) }]}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rupee, { color: appColors.text, fontSize: mS(20) }]}>₹</Text>
+            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.amountInput, { color: appColors.text, fontSize: mS(24) }]}
               keyboardType="numeric"
               value={arReloadAmount}
               onChangeText={setArReloadAmount}
             />
           </View>
 
-          <Text style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetSubtitle, { color: appColors.secondaryText, marginBottom: vS(8) }]}>
             Payment Method:
           </Text>
           <View style={[styles.quickRow, { opacity: arEnabled ? 1 : 0.5 }]} pointerEvents={arEnabled ? 'auto' : 'none'}>
@@ -700,7 +701,7 @@ const WalletScreen = () => {
                 onPress={() => setArPaymentMethod(method)}
                 activeOpacity={0.75}
               >
-                <Text style={[styles.quickBtnText, { color: arPaymentMethod === method ? '#FFF' : appColors.text }]}>{method}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.quickBtnText, { color: arPaymentMethod === method ? '#FFF' : appColors.text }]}>{method}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -714,7 +715,7 @@ const WalletScreen = () => {
             disabled={isUpdatingSettings}
             activeOpacity={0.85}
           >
-            <Text style={styles.proceedBtnText}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.proceedBtnText}>
               {isUpdatingSettings ? 'Saving...' : 'Save Settings'}
             </Text>
             <MaterialCommunityIcons name="check" size={mS(20)} color="#FFF" />
@@ -735,19 +736,18 @@ const WalletScreen = () => {
         </TouchableWithoutFeedback>
         <View style={[styles.modalSheet, { backgroundColor: appColors.card, paddingBottom: insets.bottom + vS(24) }]}>
           <View style={[styles.sheetHandle, { backgroundColor: isDark ? '#4B5563' : '#E2E8F0' }]} />
-          <Text style={[styles.sheetTitle, { color: appColors.text }]}>Add Money to Wallet</Text>
-          <Text style={[styles.sheetSubtitle, { color: appColors.secondaryText }]}>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetTitle, { color: appColors.text }]}>Add Money to Wallet</Text>
+          <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sheetSubtitle, { color: appColors.secondaryText }]}>
             Current balance:{' '}
-            <Text style={{ fontWeight: '800', color: appColors.text }}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontWeight: '800', color: appColors.text }}>
               ₹{Number(balance).toLocaleString('en-IN')}
             </Text>
           </Text>
 
           {/* Amount Input */}
           <View style={[styles.amountInputRow, { borderBottomColor: isDark ? '#374151' : '#E2E8F0' }]}>
-            <Text style={[styles.rupee, { color: appColors.text }]}>₹</Text>
-            <TextInput
-              style={[styles.amountInput, { color: appColors.text }]}
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rupee, { color: appColors.text }]}>₹</Text>
+            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.amountInput, { color: appColors.text }]}
               placeholder="0"
               placeholderTextColor={appColors.secondaryText}
               keyboardType="numeric"
@@ -766,7 +766,7 @@ const WalletScreen = () => {
                 onPress={() => setTopupAmount(amt.toString())}
                 activeOpacity={0.75}
               >
-                <Text style={[styles.quickBtnText, { color: appColors.text }]}>₹{amt}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.quickBtnText, { color: appColors.text }]}>₹{amt}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -780,7 +780,7 @@ const WalletScreen = () => {
             disabled={isCreating || isVerifying}
             activeOpacity={0.85}
           >
-            <Text style={styles.proceedBtnText}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.proceedBtnText}>
               {isCreating || isVerifying ? 'Processing...' : 'Proceed to Pay'}
             </Text>
             <MaterialCommunityIcons name="arrow-right" size={mS(20)} color="#FFF" />

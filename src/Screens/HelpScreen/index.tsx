@@ -11,6 +11,7 @@ import { useAppTheme } from '../../hooks/useAppTheme';
 import { hS, mS, vS } from '../../lib/responsive';
 import FaqChatbotModal from './FaqChatbotModal';
 import Svg, { Path } from 'react-native-svg';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 
 const FAQ_CATEGORIES = [
     {
@@ -77,16 +78,17 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                 </View>
             )}
 
-            <ScrollView
-                showsVerticalScrollIndicator={false}
+            <ResponsiveContainer>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
                 {/* --- MODERN SUPPORT HEADER --- */}
                 <View style={[styles.supportHeader, { backgroundColor: 'transparent' }]}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: vS(16) }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.headerTitle, { color: isDark ? '#F8FAFC' : appColors.text }]}>How can we help you?</Text>
-                            <Text style={[styles.headerSubtitle, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>Our team is here to support you 24/7</Text>
+                        <View style={{ flex: 1, paddingRight: hS(10) }}>
+                            <Text style={[styles.headerTitle, { color: isDark ? '#F8FAFC' : appColors.text }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>How can we help you?</Text>
+                            <Text style={[styles.headerSubtitle, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Our team is here to support you 24/7</Text>
                         </View>
                         {isDark ? (
                             <Image
@@ -111,8 +113,8 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                                 <MaterialCommunityIcons name="phone" size={mS(18)} color="#10B981" />
                             </View>
                             <View style={styles.contactTextWrapper}>
-                                <Text style={[styles.contactLabel, { color: isDark ? '#F8FAFC' : appColors.text }]}>Call Us</Text>
-                                <Text style={[styles.contactSublabel, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>Instant Support</Text>
+                                <Text style={[styles.contactLabel, { color: isDark ? '#F8FAFC' : appColors.text }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Call Us</Text>
+                                <Text style={[styles.contactSublabel, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Instant Support</Text>
                             </View>
                             <MaterialCommunityIcons name="chevron-right" size={mS(16)} color={isDark ? '#64748B' : appColors.lightTextColor} />
                         </TouchableOpacity>
@@ -126,8 +128,8 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                                 <MaterialCommunityIcons name="email" size={mS(18)} color={isDark ? '#38BDF8' : '#3B82F6'} />
                             </View>
                             <View style={styles.contactTextWrapper}>
-                                <Text style={[styles.contactLabel, { color: isDark ? '#F8FAFC' : appColors.text }]}>Email Us</Text>
-                                <Text style={[styles.contactSublabel, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>Within 24 hours</Text>
+                                <Text style={[styles.contactLabel, { color: isDark ? '#F8FAFC' : appColors.text }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Email Us</Text>
+                                <Text style={[styles.contactSublabel, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Within 24 hours</Text>
                             </View>
                             <MaterialCommunityIcons name="chevron-right" size={mS(16)} color={isDark ? '#64748B' : appColors.lightTextColor} />
                         </TouchableOpacity>
@@ -144,13 +146,15 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                             style={[styles.searchInput, { color: isDark ? '#F8FAFC' : appColors.text }]}
                             value={search}
                             onChangeText={setSearch}
+                            allowFontScaling={true}
+                            maxFontSizeMultiplier={1.2}
                         />
                     </View>
                 </View>
 
                 {/* --- FAQ CATEGORIES SECTION --- */}
                 <View style={styles.faqSection}>
-                    <Text style={[styles.sectionTitle, { color: isDark ? '#F8FAFC' : appColors.text, marginBottom: vS(6) }]}>Browse Categories</Text>
+                    <Text style={[styles.sectionTitle, { color: isDark ? '#F8FAFC' : appColors.text, marginBottom: vS(6) }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Browse Categories</Text>
                     <View style={{ width: mS(36), height: vS(3), backgroundColor: isDark ? '#0EA5E9' : '#3B82F6', marginBottom: vS(12), borderRadius: mS(2) }} />
 
                     <View style={[styles.cardContainer, { backgroundColor: isDark ? appColors.card : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F1F5F9', paddingVertical: vS(8) }]}>
@@ -175,8 +179,8 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                                         <MaterialCommunityIcons name={cat.icon} size={mS(22)} color={isDark ? '#60A5FA' : '#1E293B'} />
                                     </View>
                                     <View style={styles.categoryContent}>
-                                        <Text style={[styles.categoryTitle, { color: isDark ? '#F8FAFC' : appColors.text }]}>{cat.title}</Text>
-                                        <Text style={[styles.categorySub, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>{cat.faqs.length} Questions Available</Text>
+                                        <Text style={[styles.categoryTitle, { color: isDark ? '#F8FAFC' : appColors.text }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>{cat.title}</Text>
+                                        <Text style={[styles.categorySub, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>{cat.faqs.length} Questions Available</Text>
                                     </View>
                                     <MaterialCommunityIcons name="chevron-right" size={mS(20)} color={isDark ? '#64748B' : appColors.border} />
                                 </TouchableOpacity>
@@ -184,7 +188,7 @@ const HelpScreen: React.FC<ScreenProps> = () => {
                         ) : (
                             <View style={styles.noResultsBox}>
                                 <MaterialCommunityIcons name="alert-circle-outline" size={mS(32)} color={isDark ? '#64748B' : appColors.lightTextColor} />
-                                <Text style={[styles.noResultsText, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>No help topics found for "{search}"</Text>
+                                <Text style={[styles.noResultsText, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>No help topics found for "{search}"</Text>
                             </View>
                         )}
                     </View>
@@ -192,11 +196,12 @@ const HelpScreen: React.FC<ScreenProps> = () => {
 
                 <View style={styles.footerInfo}>
                     <MaterialCommunityIcons name="shield-check-outline" size={mS(24)} color={isDark ? '#0EA5E9' : "#3B82F6"} style={{ marginBottom: vS(8) }} />
-                    <Text style={[styles.footerText, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]}>We're committed to providing</Text>
-                    <Text style={[styles.footerText, { color: isDark ? '#94A3B8' : appColors.lightTextColor, marginBottom: vS(16) }]}>you the best support experience.</Text>
-                    <Text style={[styles.footerText, { color: isDark ? '#64748B' : appColors.lightTextColor }]}>Version 1.0.42 (Beta)</Text>
+                    <Text style={[styles.footerText, { color: isDark ? '#94A3B8' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>We're committed to providing</Text>
+                    <Text style={[styles.footerText, { color: isDark ? '#94A3B8' : appColors.lightTextColor, marginBottom: vS(16) }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>you the best support experience.</Text>
+                    <Text style={[styles.footerText, { color: isDark ? '#64748B' : appColors.lightTextColor }]} allowFontScaling={true} maxFontSizeMultiplier={1.2}>Version 1.0.42 (Beta)</Text>
                 </View>
             </ScrollView>
+            </ResponsiveContainer>
 
             {/* --- FLOATING CHATBOT BUTTON --- */}
             <TouchableOpacity

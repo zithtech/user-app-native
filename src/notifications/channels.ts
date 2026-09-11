@@ -46,6 +46,8 @@ export const getChannelForType = (type: string): string => {
         PAYMENT_FAILED: NotificationChannels.PAYMENTS,
         SCHEDULED_REMINDER: NotificationChannels.ALARMS,
         WAKEUP_CALL: NotificationChannels.ALARMS,
+        TRIP_CHAT_MESSAGE: NotificationChannels.TRIP_UPDATES,
+        CHAT_MESSAGE: NotificationChannels.TRIP_UPDATES,
     };
     return channelMap[type] || NotificationChannels.GENERAL;
 };

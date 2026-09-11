@@ -11,6 +11,7 @@ import Config from "react-native-config";
 // Import your responsive utilities
 import { hS, vS, mS } from "../../lib/responsive";
 import DriverSelectionPage from "./DriverSelectionPage";
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 import { useAppTheme } from "../../hooks/useAppTheme";
 
 interface ExtendedScreenProps {
@@ -42,16 +43,17 @@ const SelectionPage: React.FC<ExtendedScreenProps> = ({ screenName, TripPayload,
     return (
         <View style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={[styles.bottomWrapper, { backgroundColor: isDark ? colors.background : "#FAFAFA" }]}>
+                <ResponsiveContainer>
 
                 {/* --- TRIP DETAILS CARD --- */}
                 <View style={[styles.detailsCard, { backgroundColor: colors.card, borderColor: colors.border, borderWidth: isDark ? 1 : 0 }]}>
                     {isReferred && isEligible && (
                         <View style={[styles.offerBanner, { backgroundColor: isDark ? 'rgba(16, 185, 129, 0.1)' : '#ECFDF5' }]}>
                             <MaterialCommunityIcons name="ticket-percent" size={mS(16)} color="#10B981" />
-                            <Text style={styles.offerText}>🎉 First Ride Offer Available</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.offerText}>🎉 First Ride Offer Available</Text>
                         </View>
                     )}
-                    <Text style={[styles.sectionHeader, { color: colors.secondaryText }]}>TRIP DETAILS</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionHeader, { color: colors.secondaryText }]}>TRIP DETAILS</Text>
 
                     <View style={styles.rowBetween}>
                         {/* Distance Block */}
@@ -60,8 +62,8 @@ const SelectionPage: React.FC<ExtendedScreenProps> = ({ screenName, TripPayload,
                                 <MaterialCommunityIcons name="map-marker-distance" size={mS(20)} color={colors.primary} />
                             </View>
                             <View>
-                                <Text style={[styles.mainValue, { color: colors.text }]}>{distance ? distance : '20 KM'}</Text>
-                                <Text style={[styles.subLabel, { color: colors.secondaryText }]}>Distance</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.mainValue, { color: colors.text }]}>{distance ? distance : '20 KM'}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.subLabel, { color: colors.secondaryText }]}>Distance</Text>
                             </View>
                         </View>
 
@@ -74,8 +76,8 @@ const SelectionPage: React.FC<ExtendedScreenProps> = ({ screenName, TripPayload,
                                 <MaterialCommunityIcons name="clock-fast" size={mS(20)} color="#EA580C" />
                             </View>
                             <View>
-                                <Text style={[styles.mainValue, { color: colors.text }]}>{duration ? duration : "30 Min"}</Text>
-                                <Text style={[styles.subLabel, { color: colors.secondaryText }]}>Estimated</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.mainValue, { color: colors.text }]}>{duration ? duration : "30 Min"}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.subLabel, { color: colors.secondaryText }]}>Estimated</Text>
                             </View>
                         </View>
                     </View>
@@ -83,7 +85,7 @@ const SelectionPage: React.FC<ExtendedScreenProps> = ({ screenName, TripPayload,
                     {/* Disclaimer/Warning */}
                     <View style={[styles.disclaimerBox, { backgroundColor: isDark ? colors.background : '#F8FAFC' }]}>
                         <MaterialCommunityIcons name="information-outline" size={mS(14)} color={colors.secondaryText} />
-                        <Text style={[styles.disclaimerText, { color: colors.secondaryText }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.disclaimerText, { color: colors.secondaryText }]}>
                             Fare may vary based on actual traffic or route changes.
                         </Text>
                     </View>
@@ -114,6 +116,7 @@ const SelectionPage: React.FC<ExtendedScreenProps> = ({ screenName, TripPayload,
                         setTripPayload={setTripPayload}
                     />
                 </View>
+                </ResponsiveContainer>
             </View>
         </View>
     );

@@ -22,6 +22,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 // Components & Constants
 import { Styles } from "../../lib/styles";
+import { ResponsiveContainer } from "../../Components/ResponsiveContainer";
 import colors from "../../constant/colors";
 import { hS, vS, mS, SCREEN_HEIGHT } from '../../lib/responsive';
 import { GoogleNameIcon, IIcon } from '../../assets/svg';
@@ -350,15 +351,15 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                             <View style={[style.onlineDot, { borderColor: appColors.background }]} />
                         </TouchableOpacity>
                         <View style={style.headerTextContainer}>
-                            <Text style={[style.greetingText, { color: appColors.text }]}>
-                                {getGreeting()}, <Text style={[style.userNameText, { color: appColors.secondaryText }]}>{localUser?.full_name?.split(' ')[0] || localUser?.name?.split(' ')[0] || 'User'}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.greetingText, { color: appColors.text }]}>
+                                {getGreeting()}, <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.userNameText, { color: appColors.secondaryText }]}>{localUser?.full_name?.split(' ')[0] || localUser?.name?.split(' ')[0] || 'User'}</Text>
                             </Text>
                             <View style={style.ratingContainer}>
                                 <AntDesign name="star" size={mS(12)} color="#F59E0B" />
-                                <Text style={[style.ratingText, { color: appColors.text }]}>{localUser?.rating || '4.0'} <Text style={[style.ridesText, { color: appColors.secondaryText }]}>({localUser?.total_rides || '0'})</Text></Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.ratingText, { color: appColors.text }]}>{localUser?.rating || '4.0'} <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.ridesText, { color: appColors.secondaryText }]}>({localUser?.total_rides || '0'})</Text></Text>
                                 {/* <View style={[style.eliteBadge, { backgroundColor: isDark ? 'rgba(59, 130, 246, 0.2)' : '#E0E7FF' }]}>
                                     <MaterialCommunityIcons name="diamond-stone" size={mS(10)} color={isDark ? '#93C5FD' : '#3730A3'} />
-                                    <Text style={[style.eliteText, { color: isDark ? '#93C5FD' : '#3730A3' }]}>ELITE</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.eliteText, { color: isDark ? '#93C5FD' : '#3730A3' }]}>ELITE</Text>
                                 </View> */}
                             </View>
                         </View>
@@ -384,13 +385,14 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                         <MapViewComponent />
                     </Animated.View>
 
+                    <ResponsiveContainer>
                     {/* Location Selection Card */}
                     <Animated.View style={[style.locationCard, { backgroundColor: isDark ? '#0A1931' : appColors.card, borderColor: isDark ? '#1E3A8A' : '#F1F5F9', opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
                         <View style={style.locationRow}>
                             <MaterialCommunityIcons name="record-circle-outline" size={mS(18)} color="#10B981" />
                             <View style={style.locationTextContainer}>
-                                <Text style={[style.locationLabel, { color: appColors.secondaryText }]}>Pickup location</Text>
-                                <Text style={[style.locationValue, { color: appColors.text }]} numberOfLines={1}>{currentAddress}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.locationLabel, { color: appColors.secondaryText }]}>Pickup location</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.locationValue, { color: appColors.text }]} numberOfLines={1}>{currentAddress}</Text>
                             </View>
                             <TouchableOpacity style={[style.targetIconBtn, { backgroundColor: appColors.background, borderColor: isDark ? 'rgba(255,255,255,0.1)' : '#F1F5F9' }]}>
                                 <MaterialCommunityIcons name="crosshairs-gps" size={mS(16)} color={appColors.icon} />
@@ -405,7 +407,7 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                         <View style={style.locationRow}>
                             <MaterialCommunityIcons name="record-circle-outline" size={mS(18)} color="#F59E0B" />
                             <TouchableOpacity style={style.locationTextContainer} onPress={() => navigation.navigate(LocationSearch_Nav, { screenName })}>
-                                <Text style={[style.whereToText, { color: appColors.secondaryText }]}>Where to?</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.whereToText, { color: appColors.secondaryText }]}>Where to?</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={style.plusIconBtn} onPress={() => navigation.navigate(LocationSearch_Nav, { screenName })}>
                                 <MaterialCommunityIcons name="plus" size={mS(18)} color="#FFFFFF" />
@@ -464,8 +466,7 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                                                     : {}
                                             }
                                         />
-                                        <Text
-                                            numberOfLines={1}
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1}
                                             style={[
                                                 style.compactBtnTxtstyle,
                                                 {
@@ -490,9 +491,9 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                     {/* Horizontal How to Book */}
                     <View style={[style.horizontalHowToBook, { backgroundColor: isDark ? 'rgba(2, 132, 199, 0.1)' : '#F0F9FF', borderColor: isDark ? 'rgba(2, 132, 199, 0.2)' : '#BAE6FD' }]}>
                         <View style={style.horizontalHowToBookHeader}>
-                            <Text style={[style.horizontalHowToBookTitle, { color: appColors.text }]}>How to Book a Driver</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.horizontalHowToBookTitle, { color: appColors.text }]}>How to Book a Driver</Text>
                             <View style={style.horizontalHowToBookRight}>
-                                <Text style={[style.horizontalHowToBookSeeWorks, { color: isDark ? '#38BDF8' : '#0284C7' }]}>See how it works</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.horizontalHowToBookSeeWorks, { color: isDark ? '#38BDF8' : '#0284C7' }]}>See how it works</Text>
                                 <MaterialCommunityIcons name="play-circle-outline" size={mS(16)} color={isDark ? '#38BDF8' : '#0284C7'} />
                             </View>
                         </View>
@@ -503,8 +504,8 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                                         <View style={[style.horizontalStepIcon, { backgroundColor: isDark ? `${step.color}20` : step.bgColor }]}>
                                             <MaterialCommunityIcons name={step.title === 'Choose Service' ? 'car' : step.title === 'Enter Locations' ? 'map-marker-path' : step.title === 'Select Driver' ? 'account-tie' : 'check-decagram'} size={mS(20)} color={step.color} />
                                         </View>
-                                        <Text style={[style.horizontalStepTitle, { color: appColors.text }]} numberOfLines={1}>{step.title}</Text>
-                                        <Text style={[style.horizontalStepDesc, { color: appColors.secondaryText }]} numberOfLines={2}>{step.title === 'Choose Service' ? 'Select your ride' : step.title === 'Enter Locations' ? 'Add pickup & drop' : step.title === 'Select Driver' ? 'Pick your driver' : 'Track & enjoy ride'}</Text>
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.horizontalStepTitle, { color: appColors.text }]} numberOfLines={1}>{step.title}</Text>
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[style.horizontalStepDesc, { color: appColors.secondaryText }]} numberOfLines={2}>{step.title === 'Choose Service' ? 'Select your ride' : step.title === 'Enter Locations' ? 'Add pickup & drop' : step.title === 'Select Driver' ? 'Pick your driver' : 'Track & enjoy ride'}</Text>
                                     </View>
                                     {index < bookingSteps.length - 1 && (
                                         <View style={[style.horizontalStepDashedLine, { borderColor: isDark ? 'rgba(255,255,255,0.2)' : '#CBD5E1' }]} />
@@ -514,6 +515,7 @@ const HomeScreen: React.FC<any> = ({ navigation }) => {
                         </View>
                     </View>
 
+                    </ResponsiveContainer>
                 </ScrollView>
             </View>
         </View>

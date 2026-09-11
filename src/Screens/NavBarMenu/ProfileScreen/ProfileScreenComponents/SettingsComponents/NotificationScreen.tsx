@@ -26,6 +26,7 @@ import {
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 import { BookedTripScreen_Nav } from '../../../../../Navigations/navigations';
+import { ResponsiveContainer } from "../../../../../Components/ResponsiveContainer";
 import { useAppTheme } from "../../../../../hooks/useAppTheme";
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -123,15 +124,15 @@ const NotificationScreen = () => {
 
                 <View style={styles.content}>
                     <View style={styles.row}>
-                        <Text style={[styles.title, !item.read && styles.unreadText, { color: appColors.text }]} numberOfLines={1}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.title, !item.read && styles.unreadText, { color: appColors.text }]} numberOfLines={1}>
                             {item.title}
                         </Text>
                         <View style={styles.timeRow}>
-                            <Text style={[styles.time, { color: '#94A3B8' }]}>{timeAgo}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.time, { color: '#94A3B8' }]}>{timeAgo}</Text>
                             {!item.read && <View style={styles.unreadDot} />}
                         </View>
                     </View>
-                    <Text style={[styles.message, { color: '#64748B' }]} numberOfLines={2}>{item.message}</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.message, { color: '#64748B' }]} numberOfLines={2}>{item.message}</Text>
                 </View>
 
                 <MaterialCommunityIcons name="chevron-right" size={mS(20)} color="#CBD5E1" style={styles.chevron} />
@@ -142,6 +143,7 @@ const NotificationScreen = () => {
     return (
         <View style={[styles.container, { backgroundColor: appColors.background }]}>
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor="transparent" translucent />
+            <ResponsiveContainer>
 
             {/* HEADER */}
             <View style={[styles.header, { paddingTop: insets.top + vS(10), backgroundColor: appColors.background }]}>
@@ -150,8 +152,8 @@ const NotificationScreen = () => {
                     <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={isDark ? '#F7FAFC' : '#1E293B'} />
                 </TouchableOpacity>
                 <View style={styles.headerTitleContainer}>
-                    <Text style={[styles.headerTitle, { color: appColors.text }]}>Notifications</Text>
-                    <Text style={[styles.headerSubtitle, { color: '#64748B' }]}>{unreadCount} unread • {totalCount} total</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: appColors.text }]}>Notifications</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerSubtitle, { color: '#64748B' }]}>{unreadCount} unread • {totalCount} total</Text>
                 </View>
                 {notifications.length > 0 ? (
                     <TouchableOpacity onPress={handleClearAll} style={[styles.clearBtn,
@@ -159,7 +161,7 @@ const NotificationScreen = () => {
                         backgroundColor: isDark ? '#111827' : '#EFF6FF',
                         borderColor: isDark ? '#111827' : '#DBEAFE'
                     }]}>
-                        <Text style={styles.markReadText}>Clear All</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.markReadText}>Clear All</Text>
                     </TouchableOpacity>
                 ) : <View style={{ width: hS(70) }} />}
             </View>
@@ -190,7 +192,7 @@ const NotificationScreen = () => {
                                         style={styles.tabIcon}
                                     />
                                 )}
-                                <Text style={[
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                     styles.tabText,
                                     { color: isActive ? '#FFFFFF' : '#64748B' },
                                     isActive && { fontWeight: '700' }
@@ -218,11 +220,12 @@ const NotificationScreen = () => {
                         <View style={[styles.emptyIconContainer, { backgroundColor: appColors.iconBox }]}>
                             <MaterialCommunityIcons name="bell-off-outline" size={mS(70)} color={appColors.secondaryText} />
                         </View>
-                        <Text style={[styles.emptyTitle, { color: appColors.text }]}>All caught up!</Text>
-                        <Text style={[styles.emptySub, { color: appColors.secondaryText }]}>We'll notify you when something important arrives.</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyTitle, { color: appColors.text }]}>All caught up!</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptySub, { color: appColors.secondaryText }]}>We'll notify you when something important arrives.</Text>
                     </View>
                 }
             />
+            </ResponsiveContainer>
         </View>
     );
 };

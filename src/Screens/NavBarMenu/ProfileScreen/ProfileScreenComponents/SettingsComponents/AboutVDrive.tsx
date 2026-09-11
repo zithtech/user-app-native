@@ -16,6 +16,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../../../constant/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { hS, mS, vS } from '../../../../../lib/responsive';
+import { ResponsiveContainer } from '../../../../../Components/ResponsiveContainer';
 import { useAppTheme } from '../../../../../hooks/useAppTheme';
 import Svg, { Path, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
@@ -54,8 +55,8 @@ const AboutVDrive = ({ navigation }: any) => {
     const StatItem = ({ icon, label, value, color }: { icon: string; label: string; value: string; color: string }) => (
         <View style={styles.statItem}>
             <MaterialCommunityIcons name={icon} size={mS(24)} color={isDark && color === '#0B309B' ? '#60A5FA' : color} style={{ marginBottom: vS(4) }} />
-            <Text style={[styles.statValue, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>{value}</Text>
-            <Text style={[styles.statLabel, { color: isDark ? '#9CA3AF' : '#64748B' }]}>{label}</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.statValue, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>{value}</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.statLabel, { color: isDark ? '#9CA3AF' : '#64748B' }]}>{label}</Text>
         </View>
     );
 
@@ -93,8 +94,8 @@ const AboutVDrive = ({ navigation }: any) => {
                         <MaterialCommunityIcons name={iconName} size={mS(28)} color={isDark && iconColor === '#0B309B' ? '#60A5FA' : iconColor} />
                     )}
                 </View>
-                <Text style={[styles.featureTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>{title}</Text>
-                <Text style={[styles.featureDesc, { color: isDark ? '#9CA3AF' : '#64748B' }]}>{desc}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.featureTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>{title}</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.featureDesc, { color: isDark ? '#9CA3AF' : '#64748B' }]}>{desc}</Text>
             </Animated.View>
         );
     };
@@ -113,7 +114,7 @@ const AboutVDrive = ({ navigation }: any) => {
                     <TouchableOpacity onPress={() => navigation?.goBack()} style={[styles.backButton, { backgroundColor: isDark ? appColors.card : '#F1F5F9' }]}>
                         <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={isDark ? '#FFFFFF' : '#1E293B'} />
                     </TouchableOpacity>
-                    <Text style={[styles.headerTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>About</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>About</Text>
                     <View style={{ width: mS(40) }} />
                 </View>
 
@@ -128,7 +129,7 @@ const AboutVDrive = ({ navigation }: any) => {
                                 shadowColor: isDark ? 'white' : appColors.button
                             }]} resizeMode="contain" />
                     }
-                    <Text style={[styles.tagline, { color: isDark ? '#9CA3AF' : '#64748B' }]}>Redefining Your Daily Commute</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tagline, { color: isDark ? '#9CA3AF' : '#64748B' }]}>Redefining Your Daily Commute</Text>
 
                     <Image source={require('../../../../../assets/png/AboutPageImage.png')} style={[styles.cityImage, isDark && { opacity: 0.8 }]} resizeMode="cover" />
 
@@ -142,13 +143,14 @@ const AboutVDrive = ({ navigation }: any) => {
                     </View>
                 </Animated.View>
 
+                <ResponsiveContainer>
                 {/* OUR MISSION */}
                 <View style={styles.contentSection}>
                     <View style={styles.missionHeader}>
                         <View style={[styles.accentLine, isDark && { backgroundColor: '#60A5FA' }]} />
-                        <Text style={[styles.sectionTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>Our Mission</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>Our Mission</Text>
                     </View>
-                    <Text style={[styles.missionText, { color: isDark ? '#9CA3AF' : '#64748B' }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.missionText, { color: isDark ? '#9CA3AF' : '#64748B' }]}>
                         At T2Drive, we're on a mission to revolutionize urban mobility. We believe that getting from point A to point B should be seamless, safe, and sustainable. By connecting thousands of expert drivers with millions of riders, we're building the future of transportation, one ride at a time.
                     </Text>
                 </View>
@@ -187,7 +189,7 @@ const AboutVDrive = ({ navigation }: any) => {
 
                 {/* CONNECT WITH US */}
                 <View style={styles.connectSection}>
-                    <Text style={[styles.connectTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>Connect With Us</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.connectTitle, { color: isDark ? '#FFFFFF' : '#1E293B' }]}>Connect With Us</Text>
                     <View style={styles.socialRow}>
                         {/* Facebook Button */}
                         <TouchableOpacity style={[styles.socialIconBtn, { backgroundColor: '#1877F2' }]}>
@@ -217,17 +219,18 @@ const AboutVDrive = ({ navigation }: any) => {
                     </View>
 
                     <View style={styles.legalRow}>
-                        <Text style={[styles.legalText, { color: isDark ? '#60A5FA' : '#0B309B' }]}>Terms of Service</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.legalText, { color: isDark ? '#60A5FA' : '#0B309B' }]}>Terms of Service</Text>
                         <View style={[styles.legalDot, { backgroundColor: isDark ? '#60A5FA' : '#0B309B' }]} />
-                        <Text style={[styles.legalText, { color: isDark ? '#60A5FA' : '#0B309B' }]}>Privacy Policy</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.legalText, { color: isDark ? '#60A5FA' : '#0B309B' }]}>Privacy Policy</Text>
                     </View>
 
-                    <Text style={[styles.versionText, { color: isDark ? '#E2E8F0' : '#1E293B' }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.versionText, { color: isDark ? '#E2E8F0' : '#1E293B' }]}>
                         ❤️ Made with ❤️ in India
                     </Text>
-                    <Text style={[styles.versionNumber, { color: isDark ? '#F8FAFC' : '#1E293B' }]}>Version 1.0.4</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.versionNumber, { color: isDark ? '#F8FAFC' : '#1E293B' }]}>Version 1.0.4</Text>
                 </View>
 
+                </ResponsiveContainer>
             </ScrollView>
 
             {/* Wavy Background at the bottom */}
@@ -296,7 +299,9 @@ const styles = StyleSheet.create({
     statsCard: {
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
-        width: SCREEN_WIDTH - hS(40),
+        width: '90%',
+        maxWidth: 600,
+        alignSelf: 'center',
         paddingVertical: vS(15),
         borderRadius: mS(16),
         justifyContent: 'space-evenly',
@@ -365,7 +370,7 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
     featureCard: {
-        width: (SCREEN_WIDTH - hS(45)) / 2,
+        width: '48%',
         backgroundColor: '#FFFFFF',
         borderRadius: mS(16),
         padding: mS(15),

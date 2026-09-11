@@ -170,13 +170,24 @@ const SearchingDriver: React.FC<SearchDriverProps> = ({
                 }).unwrap();
                 updatedTripData = { ...updatedTripData, driver_allowance: newAllowance, total_fare: newTotalFare };
             }
+            // Grab the first element if it's an array
+            const tripObj = Array.isArray(updatedTripData) ? updatedTripData[0] : updatedTripData;
 
             const payload = {
-                lat: Number(updatedTripData.pickup_lat),
-                lng: Number(updatedTripData.pickup_lng),
-                newTrip: [updatedTripData],
+                lat: Number(tripObj.pickup_lat),
+                lng: Number(tripObj.pickup_lng),
+                newTrip: tripObj,
                 radius: getStageAndRadius(300).radius,
             };
+
+
+            // const payload = {
+            //     lat: Number(updatedTripData.pickup_lat),
+            //     lng: Number(updatedTripData.pickup_lng),
+            //     newTrip: updatedTripData,
+            //     radius: getStageAndRadius(300).radius,
+            // };
+            console.log(payload, "Search payload")
 
             try {
                 await findNearbyDrivers(payload).unwrap();
@@ -243,7 +254,7 @@ const SearchingDriver: React.FC<SearchDriverProps> = ({
                 const payload = {
                     lat: Number(tripData.pickup_lat),
                     lng: Number(tripData.pickup_lng),
-                    newTrip: [tripData],
+                    newTrip: tripData,
                     radius: currentStageInfo.radius,
                 };
 

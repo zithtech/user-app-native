@@ -52,6 +52,11 @@
         android:resource="@color/notification_icon_color" 
         tools:replace="android:resource"/>
 
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_channel_id"
+        android:value="trip_updates"
+        tools:replace="android:value" />
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Platform, Dimensions, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ResponsiveContainer } from "../../../../Components/ResponsiveContainer";
 import Animated, { FadeInDown, FadeInUp, FadeInLeft } from 'react-native-reanimated';
 import { useAppTheme } from '../../../../hooks/useAppTheme';
 import { hS, mS, vS } from '../../../../lib/responsive';
@@ -57,6 +58,7 @@ const RatingInfoScreen = () => {
 
     return (
         <View style={[styles.container, { backgroundColor: isDark ? "#020813" : appColors.background }]}>
+            <ResponsiveContainer>
             <ScrollView
                 contentContainerStyle={[
                     styles.scrollContent,
@@ -76,8 +78,8 @@ const RatingInfoScreen = () => {
                                 />
                             </View>
                             <View style={styles.heroTextContainer}>
-                                <Text style={styles.heroTitle}>Your Community{'\n'}Reputation</Text>
-                                <Text style={styles.heroSubtitle}>Understanding how ratings{'\n'}empower the T2Drive network</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroTitle}>Your Community{'\n'}Reputation</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.heroSubtitle}>Understanding how ratings{'\n'}empower the T2Drive network</Text>
                             </View>
                         </View>
                     </View>
@@ -104,11 +106,11 @@ const RatingInfoScreen = () => {
                                     <Icon name={step.icon} size={mS(24)} color={step.color} />
                                 </View>
                                 <View style={styles.stepTextContent}>
-                                    <Text style={[styles.stepTitle, { color: appColors.text }]}>{step.title}</Text>
-                                    <Text style={[styles.stepDesc, { color: appColors.lightTextColor }]} numberOfLines={4}>{step.desc}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.stepTitle, { color: appColors.text }]}>{step.title}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.stepDesc, { color: appColors.lightTextColor }]} numberOfLines={4}>{step.desc}</Text>
                                 </View>
                                 <View style={styles.stepRightContent}>
-                                    <Text style={[styles.stepNumber, { color: step.color }]}>{`0${step.id}`}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.stepNumber, { color: step.color }]}>{`0${step.id}`}</Text>
                                     <Icon name="chevron-right" size={mS(20)} color={appColors.lightTextColor} style={{ marginTop: vS(6) }} />
                                 </View>
                             </View>
@@ -121,12 +123,12 @@ const RatingInfoScreen = () => {
                     <View style={[styles.ratingCard, { backgroundColor: isDark ? '#0A1931' : '#F8FAFC', borderWidth: isDark ? 1 : 0, borderColor: isDark ? "#1E3A8A" : appColors.border }]}>
                         <View style={styles.ratingCardRow}>
                             <View style={styles.ratingLeft}>
-                                <Text style={[styles.ratingTitle, { color: appColors.text }]}>Your Current Rating</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.ratingTitle, { color: appColors.text }]}>Your Current Rating</Text>
                                 <View style={styles.ratingScoreRow}>
-                                    <Text style={[styles.ratingScoreText, { color: '#3B82F6' }]}>{currentRating}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.ratingScoreText, { color: '#3B82F6' }]}>{currentRating}</Text>
                                     <Icon name="star" size={mS(24)} color="#3B82F6" />
                                 </View>
-                                <Text style={[styles.ratingSubtitle, { color: appColors.lightTextColor }]}>Based on last {totalTrips} rated trips</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.ratingSubtitle, { color: appColors.lightTextColor }]}>Based on last {totalTrips} rated trips</Text>
 
                             </View>
 
@@ -138,10 +140,10 @@ const RatingInfoScreen = () => {
                                         <Icon key={i} name={i < 4 ? "star" : "star-half-full"} size={mS(18)} color="#3B82F6" />
                                     ))}
                                 </View>
-                                <Text style={[styles.excellentText, { color: appColors.text }]}>Excellent</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.excellentText, { color: appColors.text }]}>Excellent</Text>
                                 <View style={[styles.goodStandingBadge, { backgroundColor: isDark ? 'rgba(16, 185, 129, 0.15)' : '#DCFCE7' }]}>
                                     <Icon name="arrow-up" size={mS(12)} color="#10B981" />
-                                    <Text style={styles.goodStandingText}>Good standing</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.goodStandingText}>Good standing</Text>
                                 </View>
                             </View>
                         </View>
@@ -153,12 +155,13 @@ const RatingInfoScreen = () => {
                     <View style={[styles.disclaimerIconBox, { backgroundColor: isDark ? appColors.card : '#F1F5F9' }]}>
                         <Icon name="shield-check-outline" size={mS(20)} color={isDark ? appColors.text : "#1E293B"} />
                     </View>
-                    <Text style={[styles.disclaimerText, { color: appColors.lightTextColor }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.disclaimerText, { color: appColors.lightTextColor }]}>
                         Ratings help us build a safe, respectful and reliable community for everyone.
                     </Text>
                 </View>
 
             </ScrollView>
+            </ResponsiveContainer>
         </View>
     );
 };

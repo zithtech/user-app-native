@@ -9,6 +9,7 @@ import { TabNavigation_Nav } from '../../../../Navigations/navigations';
 import { TripStatus } from '../../../../enums/trip.enum';
 import Svg, { Path } from 'react-native-svg';
 import { useAppTheme } from '../../../../hooks/useAppTheme';
+import { ResponsiveContainer } from '../../../../Components/ResponsiveContainer';
 
 const { width } = Dimensions.get('window');
 
@@ -196,6 +197,7 @@ export const ScheduledWaitingView = ({
     return (
         <Animated.View style={[styles.container, { opacity: fadeAnim, backgroundColor: isDark ? appColors.background : '#FFFFFF' }]}>
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor={isDark ? appColors.background : '#FFFFFF'} />
+            <ResponsiveContainer>
 
             <ScrollView
                 contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top + vS(10), paddingBottom: vS(100) }]}
@@ -215,10 +217,10 @@ export const ScheduledWaitingView = ({
                         <MaterialCommunityIcons name="check" size={mS(18)} color="#FFFFFF" />
                     </View>
                     <View style={styles.bannerTextContainer}>
-                        <Text style={[styles.bannerTitle, { color: isDark ? '#34D399' : '#0B309B' }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.bannerTitle, { color: isDark ? '#34D399' : '#0B309B' }]}>
                             {isAccepted ? getBadgeTitle() : 'Booking Confirmed! 🎉'}
                         </Text>
-                        <Text style={[styles.bannerSubtitle, { color: isDark ? '#10B981' : '#047857' }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.bannerSubtitle, { color: isDark ? '#10B981' : '#047857' }]}>
                             {isAccepted ? 'Tap to see your ride on map' : 'Your ride has been scheduled successfully.'}
                         </Text>
                     </View>
@@ -243,8 +245,8 @@ export const ScheduledWaitingView = ({
 
                 {/* Status Section */}
                 <View style={styles.statusSection}>
-                    <Text style={[styles.statusTitle, { color: isDark ? appColors.text : '#0B309B' }]}>{getTitle()}</Text>
-                    <Text style={[styles.statusSubtitle, { color: isDark ? appColors.secondaryText : '#64748B' }]}>{getSubtitle()}</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.statusTitle, { color: isDark ? appColors.text : '#0B309B' }]}>{getTitle()}</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.statusSubtitle, { color: isDark ? appColors.secondaryText : '#64748B' }]}>{getSubtitle()}</Text>
 
                     {/* <View style={styles.dotsContainer}>
                         <View style={[styles.dot, styles.activeDot]} />
@@ -265,11 +267,11 @@ export const ScheduledWaitingView = ({
                                     <MaterialCommunityIcons name="calendar-month" size={mS(20)} color={isDark ? '#60A5FA' : '#1877F2'} />
                                 </View>
                                 <View style={styles.colText}>
-                                    <Text style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>SCHEDULED FOR</Text>
-                                    <Text style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>SCHEDULED FOR</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]}>
                                         {new Date(tripData.scheduled_start_time).toLocaleString([], { month: 'short', day: 'numeric', year: 'numeric' })}
                                     </Text>
-                                    <Text style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]}>
                                         {new Date(tripData.scheduled_start_time).toLocaleString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
                                     </Text>
                                 </View>
@@ -284,11 +286,11 @@ export const ScheduledWaitingView = ({
                                     <MaterialCommunityIcons name="car" size={mS(20)} color={isDark ? '#60A5FA' : '#1877F2'} />
                                 </View>
                                 <View style={styles.colText}>
-                                    <Text style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>RIDE TYPE</Text>
-                                    <Text style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]} numberOfLines={1}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>RIDE TYPE</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]} numberOfLines={1}>
                                         {tripData?.ride_type?.includes('OUTSTATION') ? 'Outstation' : (tripData?.ride_type?.replace(/_/g, ' ') || 'Ride')}
                                     </Text>
-                                    <Text style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]} numberOfLines={1}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]} numberOfLines={1}>
                                         {tripData?.ride_type?.includes('ROUND_TRIP') ? 'Round Trip' : 'One Way'}
                                     </Text>
                                 </View>
@@ -307,9 +309,9 @@ export const ScheduledWaitingView = ({
                                 )}
                             </View>
                             <View style={{ flex: 1, marginLeft: hS(12) }}>
-                                <Text style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>DRIVER DETAILS</Text>
-                                <Text style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]}>{driver?.driverName || tripData.driver_name || 'Driver'}</Text>
-                                <Text style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]}>★ {driver?.driverRating || '4.9'} • {driver?.totalRides || '4.5k'} Rides</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colLabel, { color: isDark ? '#60A5FA' : '#3B82F6' }]}>DRIVER DETAILS</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValue, { color: isDark ? appColors.text : '#0F172A' }]}>{driver?.driverName || tripData.driver_name || 'Driver'}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.colValueSub, { color: isDark ? appColors.secondaryText : '#64748B' }]}>★ {driver?.driverRating || '4.9'} • {driver?.totalRides || '4.5k'} Rides</Text>
                             </View>
                             <MaterialCommunityIcons name="chevron-right" size={mS(24)} color={isDark ? appColors.text : "#94A3B8"} />
                         </TouchableOpacity>
@@ -323,8 +325,8 @@ export const ScheduledWaitingView = ({
                                 <MaterialCommunityIcons name="map-marker" size={mS(22)} color="#10B981" />
                             </View>
                             <View style={styles.locTextCol}>
-                                <Text style={styles.locLabel}>PICKUP</Text>
-                                <Text style={[styles.locValue, { color: isDark ? appColors.text : '#1E293B' }]}>{tripData.pickup_address}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.locLabel}>PICKUP</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locValue, { color: isDark ? appColors.text : '#1E293B' }]}>{tripData.pickup_address}</Text>
                             </View>
                         </View>
 
@@ -342,8 +344,8 @@ export const ScheduledWaitingView = ({
                                 <MaterialCommunityIcons name="map-marker" size={mS(22)} color="#EF4444" />
                             </View>
                             <View style={styles.locTextCol}>
-                                <Text style={[styles.locLabel, { color: '#EF4444' }]}>DESTINATION</Text>
-                                <Text style={[styles.locValue, { color: isDark ? appColors.text : '#1E293B' }]}>{tripData.drop_address}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locLabel, { color: '#EF4444' }]}>DESTINATION</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.locValue, { color: isDark ? appColors.text : '#1E293B' }]}>{tripData.drop_address}</Text>
                             </View>
                         </View>
                     </View>
@@ -354,8 +356,8 @@ export const ScheduledWaitingView = ({
                             <MaterialCommunityIcons name="shield-check" size={mS(20)} color="#FFFFFF" />
                         </View>
                         <View style={styles.securityTextCol}>
-                            <Text style={[styles.securityTitle, { color: isDark ? '#34D399' : '#064E3B' }]}>Your ride is secured.</Text>
-                            <Text style={[styles.securitySubtitle, { color: isDark ? '#10B981' : '#047857' }]}>We'll notify you 15 mins before the trip starts.</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.securityTitle, { color: isDark ? '#34D399' : '#064E3B' }]}>Your ride is secured.</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.securitySubtitle, { color: isDark ? '#10B981' : '#047857' }]}>We'll notify you 15 mins before the trip starts.</Text>
                         </View>
                     </View>
 
@@ -373,7 +375,7 @@ export const ScheduledWaitingView = ({
                     borderColor: isDark ? 'rgba(24, 119, 242, 0.3)' : '#DBEAFE'
                 }]} onPress={handleBackToHome}>
                     <MaterialCommunityIcons name="home-outline" size={mS(18)} color={isDark ? '#60A5FA' : '#1877F2'} />
-                    <Text style={[styles.footerBtnTextBlue, { color: isDark ? '#60A5FA' : '#1877F2' }]}>Back to Home</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerBtnTextBlue, { color: isDark ? '#60A5FA' : '#1877F2' }]}>Back to Home</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[styles.footerBtnRed, {
@@ -381,9 +383,10 @@ export const ScheduledWaitingView = ({
                     borderColor: isDark ? 'rgba(239, 68, 68, 0.3)' : '#FEE2E2'
                 }]} onPress={onCancel}>
                     <MaterialCommunityIcons name="close" size={mS(18)} color={isDark ? '#F87171' : '#EF4444'} />
-                    <Text style={[styles.footerBtnTextRed, { color: isDark ? '#F87171' : '#EF4444' }]}>Cancel Request</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerBtnTextRed, { color: isDark ? '#F87171' : '#EF4444' }]}>Cancel Request</Text>
                 </TouchableOpacity>
             </View>
+            </ResponsiveContainer>
         </Animated.View>
     );
 };

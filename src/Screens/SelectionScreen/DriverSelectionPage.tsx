@@ -341,18 +341,17 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
     ]);
     return (
         <View style={[styles.mainContainer, {
-            marginHorizontal: insets.left,
             paddingBottom: insets.bottom,
             backgroundColor: appColors.background
         }]}>
             {/* --- LIST SECTION --- */}
             <View style={styles.listSection}>
-                <Text style={[styles.headerTitle, { color: appColors.text, borderBottomColor: appColors.border }]}>Choose a Driver</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: appColors.text, borderBottomColor: appColors.border }]}>Choose a Driver</Text>
 
                 {isFetchingDrivers ? (
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <ActivityIndicator size="large" color={appColors.primary} />
-                        <Text style={{ marginTop: vS(12), color: appColors.secondaryText, fontSize: mS(14) }}>Finding the best drivers for you...</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ marginTop: vS(12), color: appColors.secondaryText, fontSize: mS(14) }}>Finding the best drivers for you...</Text>
                     </View>
                 ) : (
                     <FlatList
@@ -390,11 +389,11 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
 
                                     <View style={styles.driverInfoContainer}>
                                         <View style={styles.rowBetween}>
-                                            <Text style={[styles.driverLabel, { color: appColors.text }]}>
-                                                DriveV <Text style={{ color: item.name === 'Classic' ? (isDark ? appColors.primary : '#152D5E') : '#185BE5' }}>{item.name}</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.driverLabel, { color: appColors.text }]}>
+                                                DriveV <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: item.name === 'Classic' ? (isDark ? appColors.primary : '#152D5E') : '#185BE5' }}>{item.name}</Text>
                                             </Text>
                                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <Text style={[styles.priceLabel, { color: appColors.text }]}>₹{(
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.priceLabel, { color: appColors.text }]}>₹{(
                                                     item.Price +
                                                     item.allowance +
                                                     (selectedDriver === item.id ? (updatedTip || 0) : 0) -
@@ -409,19 +408,19 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                                             </View>
                                         </View>
                                         {selectedDriver === item.id && appliedCoupon && (
-                                            <Text style={{ fontSize: mS(12), color: colors.primary, fontWeight: '700', textAlign: 'right' }}>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), color: colors.primary, fontWeight: '700', textAlign: 'right' }}>
                                                 Coupon Applied: -₹{appliedCoupon.discount.toFixed(2)}
                                             </Text>
                                         )}
 
                                         <View style={styles.rowBetween}>
-                                            <Text style={[styles.descText, { color: appColors.secondaryText }]} numberOfLines={2}>{item.Description}</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.descText, { color: appColors.secondaryText }]} numberOfLines={2}>{item.Description}</Text>
                                             <TouchableOpacity style={[styles.allowanceBadge, { backgroundColor: isDark ? 'rgba(22, 163, 74, 0.1)' : '#F0FDF4' }]} onPress={() => {
                                                 setVisible(true)
                                                 setModalData(item)
                                             }}>
                                                 <MaterialCommunityIcons name="check-circle" color={'#29AE46'} size={mS(14)} />
-                                                <Text style={styles.allowanceText}> Allowance</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.allowanceText}> Allowance</Text>
                                                 <MaterialCommunityIcons name="information-outline" color={'#29AE46'} size={mS(14)} />
                                             </TouchableOpacity>
                                         </View>
@@ -437,7 +436,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
             <View style={[styles.footerContainer, { backgroundColor: appColors.card, borderColor: appColors.border, borderTopWidth: isDark ? 1 : 0 }]}>
                 {/* Tip Section */}
                 <View style={styles.footerRow}>
-                    <Text style={[styles.footerLabel, { color: appColors.text }]}>Add a Tip</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.footerLabel, { color: appColors.text }]}>Add a Tip</Text>
                     <View style={styles.chipGroup}>
                         {tips.map((tip, index) => {
                             const tipValue = parseFloat(tip.replace('+', ''));
@@ -457,7 +456,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                                     ]}
                                     onPress={() => handleAddTip(tip)}
                                 >
-                                    <Text style={[styles.tipText, { color: isTipSelected ? appColors.primary : appColors.secondaryText }]}>{tip}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.tipText, { color: isTipSelected ? appColors.primary : appColors.secondaryText }]}>{tip}</Text>
                                 </TouchableOpacity>
                             );
                         })}
@@ -483,7 +482,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                                 }
                             }}
                         >
-                            <Text style={[
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                 styles.methodLabel,
                                 { color: item.name === 'Offers' && appliedCoupon ? colors.primary : appColors.text }
                             ]}>
@@ -505,7 +504,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                     onPress={handleBookRide}
                     style={[styles.bookBtn, { opacity: (!selectedDriver || isLoading) ? 0.6 : 1 }]}
                 >
-                    <Text style={styles.bookBtnText}>Book a Ride</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.bookBtnText}>Book a Ride</Text>
                 </Button>
             </View>
 
@@ -514,12 +513,12 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                 <View style={[styles.modalOverlay, { backgroundColor: "rgba(0,0,0,0.6)" }]}>
                     <View style={[styles.modalContent, { backgroundColor: appColors.card, borderColor: appColors.border, borderWidth: isDark ? 1 : 0 }]}>
                         <View style={styles.rowBetween}>
-                            <Text style={[styles.modalTitle, { color: appColors.text }]}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.modalTitle, { color: appColors.text }]}>
                                 Allowance Detail ₹{((modalData?.allowance || 0) + (selectedDriver === modalData?.id ? (updatedTip || 0) : 0)).toFixed(2)}
                             </Text>
                             <MaterialCommunityIcons name="close" size={mS(22)} color={appColors.text} onPress={() => setVisible(false)} />
                         </View>
-                        <Text style={[styles.modalBody, { color: appColors.secondaryText }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.modalBody, { color: appColors.secondaryText }]}>
                             Cab Ride cost (₹{(modalData?.Price || 0).toFixed(2)}) + Allowance (₹{((modalData?.allowance || 0) + (selectedDriver === modalData?.id ? (updatedTip || 0) : 0)).toFixed(2)})
                             {"\n"}(driver’s return travel to ensure fair pricing).
                         </Text>
@@ -534,28 +533,28 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                         <TouchableOpacity onPress={() => setIsInfoModalVisible(false)} style={{ padding: mS(5), marginLeft: -mS(5) }}>
                             <MaterialCommunityIcons name="close" size={mS(24)} color={appColors.text} />
                         </TouchableOpacity>
-                        <Text style={[styles.modalTitle, { color: appColors.text, marginLeft: hS(10) }]}>Fare Details</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.modalTitle, { color: appColors.text, marginLeft: hS(10) }]}>Fare Details</Text>
                     </View>
 
                     <View style={{ padding: hS(20), flex: 1 }}>
                         <View style={{ backgroundColor: appColors.card, padding: mS(15), borderRadius: mS(12), borderWidth: isDark ? 1 : 0, borderColor: appColors.border, marginBottom: vS(20) }}>
                             <View style={[styles.rowBetween, { marginBottom: vS(10) }]}>
-                                <Text style={{ color: appColors.text, fontSize: mS(14) }}>Base Fare</Text>
-                                <Text style={{ color: appColors.text, fontSize: mS(14), fontWeight: '600' }}>₹{(modalData?.Price || 0).toFixed(2)}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(14) }}>Base Fare</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(14), fontWeight: '600' }}>₹{(modalData?.Price || 0).toFixed(2)}</Text>
                             </View>
                             <View style={[styles.rowBetween, { marginBottom: vS(10) }]}>
-                                <Text style={{ color: appColors.text, fontSize: mS(14) }}>Allowance</Text>
-                                <Text style={{ color: appColors.text, fontSize: mS(14), fontWeight: '600' }}>₹{((modalData?.allowance || 0) + (selectedDriver === modalData?.id ? (updatedTip || 0) : 0)).toFixed(2)}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(14) }}>Allowance</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(14), fontWeight: '600' }}>₹{((modalData?.allowance || 0) + (selectedDriver === modalData?.id ? (updatedTip || 0) : 0)).toFixed(2)}</Text>
                             </View>
                             {selectedDriver === modalData?.id && appliedCoupon && (
                                 <View style={[styles.rowBetween, { marginBottom: vS(10) }]}>
-                                    <Text style={{ color: colors.primary, fontSize: mS(14) }}>Discount</Text>
-                                    <Text style={{ color: colors.primary, fontSize: mS(14), fontWeight: '600' }}>-₹{appliedCoupon.discount.toFixed(2)}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: colors.primary, fontSize: mS(14) }}>Discount</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: colors.primary, fontSize: mS(14), fontWeight: '600' }}>-₹{appliedCoupon.discount.toFixed(2)}</Text>
                                 </View>
                             )}
                             <View style={[styles.rowBetween, { paddingTop: vS(10), borderTopWidth: 1, borderTopColor: appColors.border }]}>
-                                <Text style={{ color: appColors.text, fontSize: mS(16), fontWeight: '700' }}>Total Fare</Text>
-                                <Text style={{ color: appColors.text, fontSize: mS(16), fontWeight: '700' }}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(16), fontWeight: '700' }}>Total Fare</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.text, fontSize: mS(16), fontWeight: '700' }}>
                                     ₹{((modalData?.Price || 0) + (modalData?.allowance || 0) + (selectedDriver === modalData?.id ? (updatedTip || 0) : 0) - (selectedDriver === modalData?.id ? (appliedCoupon?.discount || 0) : 0)).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                 </Text>
                             </View>
@@ -564,14 +563,14 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                         <View style={{ gap: vS(12) }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#EFF6FF', padding: mS(12), borderRadius: mS(8) }}>
                                 <MaterialCommunityIcons name="information" size={mS(20)} color={colors.primary} style={{ marginRight: hS(10) }} />
-                                <Text style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
                                     If the trip extends beyond {TripPayload.package_hours || 0} Hrs/day, extra charges as ₹60 per extra hour applicable.
                                 </Text>
                             </View>
 
                             <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#EFF6FF', padding: mS(12), borderRadius: mS(8) }}>
                                 <MaterialCommunityIcons name="clock-outline" size={mS(20)} color={colors.primary} style={{ marginRight: hS(10) }} />
-                                <Text style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
                                     Fares will be adjusted based on additional time usage
                                 </Text>
                             </View>
@@ -579,7 +578,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                             {(TripPayload.ride_type === 'ROUND_TRIP' || TripPayload.ride_type === 'OUTSTATION_ROUND_TRIP') && (
                                 <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : '#EFF6FF', padding: mS(12), borderRadius: mS(8) }}>
                                     <MaterialCommunityIcons name="food" size={mS(20)} color={colors.primary} style={{ marginRight: hS(10) }} />
-                                    <Text style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ flex: 1, color: appColors.text, fontSize: mS(13) }}>
                                         Please provide food & accommodation for the driver
                                     </Text>
                                 </View>
@@ -593,7 +592,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                             onPress={() => setShowPolicyModal(true)}
                         >
                             <MaterialCommunityIcons name="file-document-outline" size={mS(20)} color={colors.primary} />
-                            <Text style={{ color: colors.primary, fontSize: mS(14), fontWeight: '600' }}>View cancellation policy</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: colors.primary, fontSize: mS(14), fontWeight: '600' }}>View cancellation policy</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -607,12 +606,12 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                             <TouchableOpacity onPress={() => setShowPolicyModal(false)} style={{ padding: mS(5), marginLeft: -mS(5) }}>
                                 <MaterialCommunityIcons name="arrow-left" size={mS(28)} color={appColors.text} />
                             </TouchableOpacity>
-                            <Text style={[styles.modalTitle, { color: appColors.text, marginBottom: 0, marginLeft: hS(10) }]}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.modalTitle, { color: appColors.text, marginBottom: 0, marginLeft: hS(10) }]}>
                                 Cancellation Policy
                             </Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={{ color: appColors.secondaryText, fontSize: mS(16), lineHeight: vS(24) }}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.secondaryText, fontSize: mS(16), lineHeight: vS(24) }}>
                                 • You can cancel your request free of charge before a driver accepts.{"\n\n"}
                                 • If you cancel after a driver is assigned and has started moving towards you, a cancellation fee may apply to compensate the driver for their time and fuel.{"\n\n"}
                                 • Cancellations due to driver delays (exceeding the estimated time of arrival significantly) will not incur any fees.{"\n\n"}
@@ -624,7 +623,7 @@ export default function DriverSelectionPage({ screenName, service, TripPayload, 
                             style={[styles.bookBtn, { marginTop: vS(10) }]}
                             onPress={() => setShowPolicyModal(false)}
                         >
-                            <Text style={styles.bookBtnText}>Close</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.bookBtnText}>Close</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

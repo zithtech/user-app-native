@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
     View, Text, StyleSheet, FlatList, TextInput,
     TouchableOpacity, KeyboardAvoidingView, Platform,
@@ -8,6 +8,7 @@ import {
     Alert,
     Animated
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -76,6 +77,7 @@ const ChatScreen = ({ route, navigation }: any) => {
         sendLocation,
         sendTyping,
         sendSeen,
+        setChatScreenPresence,
         onMessage,
         onTyping,
         onDelivered,
@@ -83,6 +85,13 @@ const ChatScreen = ({ route, navigation }: any) => {
         onSeen,
         onHistory,
     } = useChat(rideId, userId);
+
+    useFocusEffect(
+        useCallback(() => {
+            setChatScreenPresence(true);
+            return () => setChatScreenPresence(false);
+        }, [setChatScreenPresence])
+    );
     const { colors: appColors, isDark } = useAppTheme();
 
     const [message, setMessage] = useState('');

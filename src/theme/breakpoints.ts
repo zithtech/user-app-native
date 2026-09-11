@@ -1,0 +1,7 @@
+export const BREAKPOINTS = {
+  SMALL: 360,
+  COMPACT: 412,
+  LARGE_PHONE: 480,
+  TABLET: 600,
+  FOLDABLE: 700,
+};
