@@ -26,6 +26,11 @@ import {
   PreferencesScreen_Nav,
   NotificationScreen_Nav,
   SafetyScreen_Nav,
+  DeleteAccountInfoScreen_Nav,
+  DeleteAccountReasonScreen_Nav,
+  DeleteAccountVerifyScreen_Nav,
+  DeleteAccountConfirmScreen_Nav,
+  DeleteAccountSuccessScreen_Nav,
   SearchDriverScreen_Nav,
   ContactScreen_Nav,
   userMapTest_nav,
@@ -93,6 +98,11 @@ const AboutVDrive = withSuspense(lazy(() => import('../Screens/NavBarMenu/Profil
 const Preferences = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/Preferences')));
 const NotificationScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/NotificationScreen')));
 const SafetyScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/SafetyScreen')));
+const DeleteAccountInfoScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/DeleteAccountInfo')));
+const DeleteAccountReasonScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/DeleteAccountReason')));
+const DeleteAccountVerifyScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/DeleteAccountVerify')));
+const DeleteAccountConfirmScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/DeleteAccountConfirm')));
+const DeleteAccountSuccessScreen = withSuspense(lazy(() => import('../Screens/NavBarMenu/ProfileScreen/ProfileScreenComponents/SettingsComponents/DeleteAccountSuccess')));
 const ContactListScreen = withSuspense(lazy(() => import('../Screens/ContactScreen')));
 const OffersScreen = withSuspense(lazy(() => import('../Screens/Offers/OffersScreen')));
 const WalletScreen = withSuspense(lazy(() => import('../Screens/Profile/WalletScreen')));
@@ -306,6 +316,31 @@ const RootNavigation = () => {
         options={{
           headerShown: false,
         }}
+      />
+      < Stack.Screen
+        name={DeleteAccountInfoScreen_Nav}
+        component={DeleteAccountInfoScreen}
+        options={{ headerTitle: 'Delete Account' }}
+      />
+      < Stack.Screen
+        name={DeleteAccountReasonScreen_Nav}
+        component={DeleteAccountReasonScreen}
+        options={{ headerTitle: 'Delete Account' }}
+      />
+      < Stack.Screen
+        name={DeleteAccountVerifyScreen_Nav}
+        component={DeleteAccountVerifyScreen}
+        options={{ headerTitle: 'Verification' }}
+      />
+      < Stack.Screen
+        name={DeleteAccountConfirmScreen_Nav}
+        component={DeleteAccountConfirmScreen}
+        options={{ headerTitle: 'Confirmation' }}
+      />
+      < Stack.Screen
+        name={DeleteAccountSuccessScreen_Nav}
+        component={DeleteAccountSuccessScreen}
+        options={{ headerShown: false }}
       />
       < Stack.Screen
         name={AboutVdriveScreen_Nav}

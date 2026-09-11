@@ -22,6 +22,7 @@ import { SavedLocation } from '../../../../../service/utils/storage';
 import { useUpdateUserMutation } from '../../../../../service/userApi';
 import { updateUserStore } from '../../../../../redux/userSlice';
 import { hS, vS, mS } from '../../../../../lib/responsive';
+import { ResponsiveContainer } from "../../../../../Components/ResponsiveContainer";
 import { useAppTheme } from "../../../../../hooks/useAppTheme";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -144,10 +145,10 @@ const Favourites = () => {
     const renderCustomHeader = () => (
         <View style={[styles.customHeader, { paddingTop: insets.top + vS(10) }]}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity style={[styles.headerIconBtn, { backgroundColor: isDark ? '#FFFFFF' : '#FFFFFF' }]} onPress={() => navigation.goBack()}>
-                    <MaterialCommunityIcons name="arrow-left" size={mS(20)} color="#111827" />
+                <TouchableOpacity style={[styles.headerIconBtn, { backgroundColor: isDark ? appColors.card : '#FFFFFF' }]} onPress={() => navigation.goBack()}>
+                    <MaterialCommunityIcons name="arrow-left" size={mS(20)} color={isDark ? "#FFF" : "#111827"} />
                 </TouchableOpacity>
-                <Text style={[styles.headerTitle, { color: isDark ? "#FFF" : "#111827" }]}>Favourites</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.headerTitle, { color: isDark ? "#FFF" : "#111827" }]}>Favourites</Text>
             </View>
             {/* <TouchableOpacity style={styles.headerIconBtn}>
                 <MaterialCommunityIcons name="plus" size={mS(20)} color="#3B82F6" />
@@ -160,7 +161,7 @@ const Favourites = () => {
         const isRecent = index < 2;
 
         return (
-            <View style={[styles.card, { backgroundColor: isDark ? 'transparent' : '#FFFFFF', borderColor: isDark ? '#334155' : '#E5E7EB' }]}>
+            <View style={[styles.card, { backgroundColor: isDark ? appColors.card : '#FFFFFF', borderColor: isDark ? appColors.border : '#E5E7EB' }]}>
                 <View style={styles.cardLeft}>
                     <View style={[styles.iconContainer, { backgroundColor: iconTheme.bg }]}>
                         <MaterialCommunityIcons
@@ -171,24 +172,24 @@ const Favourites = () => {
                     </View>
                     <View style={styles.textGroup}>
                         <View style={styles.titleRow}>
-                            <Text style={[styles.titleText, { color: isDark ? '#FFF' : '#111827' }]} numberOfLines={1}>{item?.showname || item?.name || 'Other'}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.titleText, { color: isDark ? '#FFF' : '#111827' }]} numberOfLines={1}>{item?.showname || item?.name || 'Other'}</Text>
                             {isRecent && (
-                                <View style={[styles.recentBadge, { backgroundColor: isDark ? 'rgba(255, 255, 255, 0.9)' : '#E8F2FF' }]}>
-                                    <Text style={[styles.recentBadgeText, { color: isDark ? '#3B82F6' : '#3B82F6' }]}>Recent</Text>
+                                <View style={[styles.recentBadge, { backgroundColor: isDark ? appColors.primary + "15" : '#E8F2FF' }]}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.recentBadgeText, { color: isDark ? appColors.primary : '#3B82F6' }]}>Recent</Text>
                                 </View>
                             )}
                         </View>
-                        <Text style={[styles.addressText, { color: isDark ? '#9CA3AF' : '#6B7280' }]} numberOfLines={1}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.addressText, { color: isDark ? '#9CA3AF' : '#6B7280' }]} numberOfLines={1}>
                             {item.address || 'No address provided'}
                         </Text>
 
-                        <View style={styles.metaRow}>
+                        {/* <View style={styles.metaRow}>
                             <MaterialCommunityIcons name="map-marker-outline" size={mS(10)} color={isDark ? "#9CA3AF" : "#9CA3AF"} />
-                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>2.3 km</Text>
-                            <Text style={[styles.metaDot, { color: isDark ? '#4B5563' : '#D1D5DB' }]}>•</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>{item.distance ? `${Number(item.distance).toFixed(1)} km` : ''} </Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.metaDot, { color: isDark ? '#4B5563' : '#D1D5DB' }]}>•</Text>
                             <MaterialCommunityIcons name="clock-outline" size={mS(10)} color={isDark ? "#9CA3AF" : "#9CA3AF"} />
-                            <Text style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>8 min</Text>
-                        </View>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.metaText, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>{item.eta ? `${Number(item.eta).toFixed(1)} min` : ''}</Text>
+                        </View> */}
                     </View>
                 </View>
                 <View style={styles.actionGroup}>
@@ -210,10 +211,12 @@ const Favourites = () => {
     const renderListFooter = () => (
         <View style={styles.footerSection}>
             <View style={styles.sectionHeaderRow}>
-                <Text style={[styles.sectionHeader, { color: isDark ? '#9CA3AF' : '#6B7280' }]}>RECENT LOCATIONS</Text>
-                <TouchableOpacity>
-                    <Text style={styles.viewAllText}>View All</Text>
-                </TouchableOpacity>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionHeader, { color: isDark ? '#9CA3AF' : '#6B7280' }]}>RECENT LOCATIONS</Text>
+                {/* <TouchableOpacity onPress={() => {
+                    
+                 }}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.viewAllText}>View All</Text>
+                </TouchableOpacity> */}
             </View>
 
             <View style={styles.recentContainer}>
@@ -222,19 +225,19 @@ const Favourites = () => {
                         key={loc.id || index.toString()}
                         style={[
                             styles.recentCard,
-                            { backgroundColor: isDark ? '#1E293B' : '#F3F4F6' },
+                            { backgroundColor: isDark ? appColors.card : '#F3F4F6' },
                             index !== recentLocations.length - 1 && { marginBottom: vS(8) }
                         ]}
                     >
                         <MaterialCommunityIcons name="history" size={mS(18)} color={isDark ? "#9CA3AF" : "#6B7280"} style={styles.recentIcon} />
                         <View style={styles.recentTextGroup}>
-                            <Text style={[styles.recentTitle, { color: isDark ? '#FFF' : '#111827' }]} numberOfLines={1}>{loc.showname || loc.name}</Text>
-                            <Text style={[styles.recentSubtitle, { color: isDark ? '#9CA3AF' : '#6B7280' }]} numberOfLines={1}>{loc.address}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.recentTitle, { color: isDark ? '#FFF' : '#111827' }]} numberOfLines={1}>{loc.showname || loc.name}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.recentSubtitle, { color: isDark ? '#9CA3AF' : '#6B7280' }]} numberOfLines={1}>{loc.address}</Text>
                         </View>
                     </TouchableOpacity>
                 ))}
                 {recentLocations.length === 0 && (
-                    <Text style={{ color: isDark ? '#9CA3AF' : '#9CA3AF', fontSize: mS(13), fontStyle: 'italic', paddingHorizontal: hS(4) }}>No recent locations yet.</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#9CA3AF', fontSize: mS(13), fontStyle: 'italic', paddingHorizontal: hS(4) }}>No recent locations yet.</Text>
                 )}
             </View>
 
@@ -243,8 +246,8 @@ const Favourites = () => {
                     <MaterialCommunityIcons name="lightbulb-outline" size={mS(20)} color={isDark ? "#38bdf8" : "#3B82F6"} />
                 </View>
                 <View style={styles.proTipTextGroup}>
-                    <Text style={[styles.proTipTitle, { color: isDark ? '#FFF' : '#1E3A8A' }]}>Pro Tip</Text>
-                    <Text style={[styles.proTipDesc, { color: isDark ? '#bae6fd' : '#64748B' }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.proTipTitle, { color: isDark ? '#FFF' : '#1E3A8A' }]}>Pro Tip</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.proTipDesc, { color: isDark ? '#bae6fd' : '#64748B' }]}>
                         Save your frequent destinations as favourites for faster bookings.
                     </Text>
                 </View>
@@ -257,15 +260,16 @@ const Favourites = () => {
             <View style={[styles.emptyIconWrapper, { backgroundColor: appColors.iconBox }]}>
                 <MaterialCommunityIcons name="map-marker-star-outline" size={mS(60)} color={appColors.secondaryText} />
             </View>
-            <Text style={[styles.emptyText, { color: appColors.text }]}>No Saved Places</Text>
-            <Text style={[styles.emptySubText, { color: appColors.secondaryText }]}>Save your favorite destinations for a faster booking experience.</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptyText, { color: appColors.text }]}>No Saved Places</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.emptySubText, { color: appColors.secondaryText }]}>Save your favorite destinations for a faster booking experience.</Text>
         </View>
     );
 
     return (
-        <View style={[styles.container, { backgroundColor: isDark ? '#0F172A' : '#F8FAFC' }]}>
+        <View style={[styles.container, { backgroundColor: isDark ? appColors.background : '#F8FAFC' }]}>
             <StatusBar barStyle={isDark ? "light-content" : "dark-content"} backgroundColor={isDark ? '#0F172A' : '#F8FAFC'} />
 
+            <ResponsiveContainer>
             {renderCustomHeader()}
 
             <View style={styles.content}>
@@ -277,13 +281,14 @@ const Favourites = () => {
                     showsVerticalScrollIndicator={false}
                     ListHeaderComponent={() => (
                         <View style={styles.listHeaderWrapper}>
-                            <Text style={[styles.sectionHeaderMain, { color: isDark ? '#9CA3AF' : '#6B7280' }]}>SAVED PLACES</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionHeaderMain, { color: isDark ? '#9CA3AF' : '#6B7280' }]}>SAVED PLACES</Text>
                         </View>
                     )}
                     ListFooterComponent={renderListFooter}
                     ListEmptyComponent={EmptyList}
                 />
             </View>
+            </ResponsiveContainer>
 
             {/* Options Bottom Sheet Modal */}
             <Modal statusBarTranslucent navigationBarTranslucent visible={optionsVisible} transparent={true} animationType="slide">
@@ -291,26 +296,26 @@ const Favourites = () => {
                     <View style={[styles.optionsCard, { backgroundColor: appColors.card }]}>
                         <View style={[styles.indicator, { backgroundColor: appColors.border }]} />
                         <View style={styles.modalHeader}>
-                            <Text style={[styles.optionsHeader, { color: appColors.secondaryText }]}>Location Options</Text>
-                            <Text style={[styles.selectedItemName, { color: appColors.text }]} numberOfLines={1}>{selectedItem?.showname || selectedItem?.name}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionsHeader, { color: appColors.secondaryText }]}>Location Options</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.selectedItemName, { color: appColors.text }]} numberOfLines={1}>{selectedItem?.showname || selectedItem?.name}</Text>
                         </View>
 
                         <TouchableOpacity style={styles.optionRow} onPress={handleRename}>
                             <View style={[styles.optionIconContainer, { backgroundColor: isDark ? 'rgba(0, 122, 255, 0.15)' : '#F0F7FF' }]}>
                                 <MaterialCommunityIcons name="pencil-outline" size={mS(20)} color={isDark ? '#60A5FA' : '#007AFF'} />
                             </View>
-                            <Text style={[styles.optionText, { color: appColors.text }]}>Rename Location</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionText, { color: appColors.text }]}>Rename Location</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.optionRow} onPress={handleDelete}>
                             <View style={[styles.optionIconContainer, { backgroundColor: isDark ? 'rgba(255, 59, 48, 0.15)' : '#FFF0F0' }]}>
                                 <MaterialCommunityIcons name="trash-can-outline" size={mS(20)} color="#FF3B30" />
                             </View>
-                            <Text style={[styles.optionText, { color: '#FF3B30' }]}>Remove from Favorites</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionText, { color: '#FF3B30' }]}>Remove from Favorites</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={[styles.cancelActionBtn, { backgroundColor: appColors.iconBox }]} onPress={handleCloseOptions}>
-                            <Text style={[styles.cancelActionText, { color: appColors.text }]}>Cancel</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.cancelActionText, { color: appColors.text }]}>Cancel</Text>
                         </TouchableOpacity>
                     </View>
                 </Pressable>
@@ -320,12 +325,11 @@ const Favourites = () => {
             <Modal statusBarTranslucent navigationBarTranslucent visible={renameVisible} transparent={true} animationType="fade">
                 <View style={[styles.renameOverlay, isDark && { backgroundColor: 'rgba(0,0,0,0.8)' }]}>
                     <View style={[styles.renameCard, { backgroundColor: appColors.card }]}>
-                        <Text style={[styles.renameTitle, { color: appColors.text }]}>Rename Favorite</Text>
-                        <Text style={[styles.renameSubtitle, { color: appColors.secondaryText }]}>Give your location a recognizable name</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.renameTitle, { color: appColors.text }]}>Rename Favorite</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.renameSubtitle, { color: appColors.secondaryText }]}>Give your location a recognizable name</Text>
 
                         <View style={[styles.inputWrapper, { backgroundColor: appColors.background, borderColor: appColors.border }]}>
-                            <TextInput
-                                style={[styles.textInput, { color: appColors.text }]}
+                            <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.textInput, { color: appColors.text }]}
                                 value={newName}
                                 onChangeText={setNewName}
                                 placeholder="e.g., My Favorite Cafe"
@@ -341,14 +345,14 @@ const Favourites = () => {
 
                         <View style={styles.buttonGroup}>
                             <TouchableOpacity style={[styles.modalBtn, styles.cancelBtn, { backgroundColor: appColors.card, borderColor: appColors.border }]} onPress={() => setRenameVisible(false)}>
-                                <Text style={[styles.cancelBtnText, { color: appColors.text }]}>Discard</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.cancelBtnText, { color: appColors.text }]}>Discard</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={[styles.modalBtn, styles.saveBtn, !newName.trim() && { opacity: 0.6 }]}
                                 onPress={confirmRename}
                                 disabled={!newName.trim()}
                             >
-                                <Text style={styles.saveBtnText}>Save</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.saveBtnText}>Save</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

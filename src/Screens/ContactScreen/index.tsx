@@ -11,6 +11,7 @@ import { hS, mS, vS } from '../../lib/responsive';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useAppTheme } from '../../hooks/useAppTheme';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 
 const RECENT_CONTACTS_KEY = '@recent_contacts';
 const FAVORITE_CONTACTS_KEY = '@favorite_contacts';
@@ -198,17 +199,17 @@ const ContactListScreen = ({ navigation, route }: any) => {
                     {item.thumbnailPath ? (
                         <Image source={{ uri: item.thumbnailPath }} style={styles.avatarImage} />
                     ) : (
-                        <Text style={[styles.avatarText, { color: isDark ? colors.primary : '#1E3A8A' }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.avatarText, { color: isDark ? colors.primary : '#1E3A8A' }]}>
                             {initials.toUpperCase()}
                         </Text>
                     )}
                 </View>
 
                 <View style={styles.contactInfo}>
-                    <Text style={[styles.name, { color: colors.text }]} numberOfLines={1}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.name, { color: colors.text }]} numberOfLines={1}>
                         {item.displayName}
                     </Text>
-                    <Text style={[styles.phone, { color: colors.secondaryText }]}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.phone, { color: colors.secondaryText }]}>
                         {rawPhone}
                     </Text>
                 </View>
@@ -236,6 +237,7 @@ const ContactListScreen = ({ navigation, route }: any) => {
 
     return (
         <View style={[styles.container, { backgroundColor: isDark ? colors.background : '#F9FAFB' }]}>
+            <ResponsiveContainer>
             {/* Header Area */}
             <View style={[styles.navHeader, { paddingTop: insets.top, backgroundColor: isDark ? colors.background : '#F9FAFB' }]}>
                 <TouchableOpacity
@@ -245,7 +247,7 @@ const ContactListScreen = ({ navigation, route }: any) => {
                 >
                     <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={colors.text} />
                 </TouchableOpacity>
-                <Text style={[styles.navTitle, { color: colors.text }]}>Select Contact</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.navTitle, { color: colors.text }]}>Select Contact</Text>
 
                 <TouchableOpacity onPress={openCreateContactForm} style={styles.rightHeaderButton}>
                     <AntDesign name="user" size={mS(20)} color={colors.text} />
@@ -280,7 +282,7 @@ const ContactListScreen = ({ navigation, route }: any) => {
                             }
                         ]}
                     >
-                        <Text style={[
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                             styles.filterText,
                             {
                                 color: activeTab === tab
@@ -303,7 +305,7 @@ const ContactListScreen = ({ navigation, route }: any) => {
                     stickySectionHeadersEnabled={false}
                     renderSectionHeader={({ section: { title } }) => (
                         <View style={styles.alphabetHeader}>
-                            <Text style={[styles.alphabetText, { color: isDark ? '#E2E8F0' : '#1E293B' }]}>{title}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.alphabetText, { color: isDark ? '#E2E8F0' : '#1E293B' }]}>{title}</Text>
                         </View>
                     )}
                     contentContainerStyle={styles.listContent}
@@ -318,13 +320,14 @@ const ContactListScreen = ({ navigation, route }: any) => {
                             onPress={() => scrollToSection(letter)}
                             style={styles.sidebarLetterContainer}
                         >
-                            <Text style={[styles.sidebarLetter, { color: isDark ? colors.primary : '#2563EB' }]}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sidebarLetter, { color: isDark ? colors.primary : '#2563EB' }]}>
                                 {letter}
                             </Text>
                         </TouchableOpacity>
                     ))}
                 </View>
             </View>
+            </ResponsiveContainer>
         </View>
     );
 };

@@ -1,13 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { AppState, AppStateStatus } from "react-native";
 import { useSocket } from "../Socket/SocketContext";
 
 export const useChat = (rideId: string, userId: string) => {
     const { socket } = useSocket();
 
+    const appState = useRef(AppState.currentState);
+
     useEffect(() => {
         socket.emit("joinChat", { rideId, userId });
 
+        const handleAppStateChange = (nextAppState: AppStateStatus) => {
+            appState.current = nextAppState;
+            socket.emit("chatPresence", {
+                rideId,
+                userId,
+                appState: nextAppState,
+            });
+        };
+
+        const subscription = AppState.addEventListener("change", handleAppStateChange);
+
         return () => {
+            subscription.remove();
             socket.off("receiveChatMessage");
             socket.off("chatHistory");          // ✅ clean up
             socket.off("typingUpdate");
@@ -16,6 +31,15 @@ export const useChat = (rideId: string, userId: string) => {
             socket.off("messageSeenUpdate");
         };
     }, []);
+
+    const setChatScreenPresence = (isActive: boolean) => {
+        socket.emit("chatPresence", {
+            rideId,
+            userId,
+            appState: appState.current,
+            currentScreen: isActive ? "TripChatScreen" : null,
+        });
+    };
 
     const sendMessage = (text: string) => {
         const payload = {
@@ -87,6 +111,7 @@ export const useChat = (rideId: string, userId: string) => {
         sendLocation,
         sendTyping,
         sendSeen,
+        setChatScreenPresence,
         onMessage,
         onTyping,
         onDelivered,

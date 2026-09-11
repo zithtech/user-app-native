@@ -22,6 +22,8 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { useAppTheme } from '../../hooks/useAppTheme';
 import { hS, vS, mS } from '../../lib/responsive';
 
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
+
 const { width } = Dimensions.get('window');
 
 const OTPSuccessScreen: React.FC = () => {
@@ -110,52 +112,53 @@ const OTPSuccessScreen: React.FC = () => {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: appColors.background }]}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={appColors.background} translucent />
-
-      <View style={styles.content}>
-        <View style={styles.iconWrapper}>
-          <View style={[
-            styles.mainIconContainer,
-            {
-              backgroundColor: '#10B981',
-              shadowColor: '#10B981',
-              shadowOpacity: isDark ? 0.6 : 0.4,
-              shadowRadius: isDark ? 20 : 12,
-              elevation: isDark ? 20 : 12,
-            }
-          ]}>
-            <MaterialCommunityIcons name="check-decagram" size={60} color="#FFFFFF" />
+      <ResponsiveContainer>
+        <View style={styles.content}>
+          <View style={styles.iconWrapper}>
+            <View style={[
+              styles.mainIconContainer,
+              {
+                backgroundColor: '#10B981',
+                shadowColor: '#10B981',
+                shadowOpacity: isDark ? 0.6 : 0.4,
+                shadowRadius: isDark ? 20 : 12,
+                elevation: isDark ? 20 : 12,
+              }
+            ]}>
+              <MaterialCommunityIcons name="check-decagram" size={60} color="#FFFFFF" />
+            </View>
+            {particles.map((p, i) => (
+              <Particle key={i} delay={p.delay} color={p.color} shape={p.shape} />
+            ))}
           </View>
-          {particles.map((p, i) => (
-            <Particle key={i} delay={p.delay} color={p.color} shape={p.shape} />
-          ))}
+
+          <Animated.View style={[styles.textContainer, animatedContentStyle]}>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.title, { color: appColors.text }]}>Verification Successful</Text>
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.description, { color: isDark ? appColors.secondaryText : '#64748B' }]}>
+              Success! Your OTP is verified. Your account is now active and ready to go.
+            </Text>
+          </Animated.View>
         </View>
 
-        <Animated.View style={[styles.textContainer, animatedContentStyle]}>
-          <Text style={[styles.title, { color: appColors.text }]}>Verification Successful</Text>
-          <Text style={[styles.description, { color: isDark ? appColors.secondaryText : '#64748B' }]}>
-            Success! Your OTP is verified. Your account is now active and ready to go.
-          </Text>
-        </Animated.View>
-      </View>
-
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={[
-            styles.continueButton,
-            {
-              backgroundColor: appColors.button,
-              shadowColor: isDark ? appColors.button : '#000',
-              shadowOpacity: isDark ? 0.5 : 0.2,
-              shadowRadius: isDark ? 15 : 8,
-              elevation: isDark ? 10 : 4,
-            }
-          ]}
-          onPress={handleContinue}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.continueText}>CONTINUE</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={[
+              styles.continueButton,
+              {
+                backgroundColor: appColors.button,
+                shadowColor: isDark ? appColors.button : '#000',
+                shadowOpacity: isDark ? 0.5 : 0.2,
+                shadowRadius: isDark ? 15 : 8,
+                elevation: isDark ? 10 : 4,
+              }
+            ]}
+            onPress={handleContinue}
+            activeOpacity={0.8}
+          >
+            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.continueText}>CONTINUE</Text>
+          </TouchableOpacity>
+        </View>
+      </ResponsiveContainer>
     </SafeAreaView>
   );
 };

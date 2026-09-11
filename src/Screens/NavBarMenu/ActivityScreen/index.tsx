@@ -1,6 +1,7 @@
 
 import { ActivityIndicator, Animated, FlatList, Platform, RefreshControl, ScrollView, StyleSheet, TextInput, TouchableOpacity, View, Image } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ResponsiveContainer } from "../../../Components/ResponsiveContainer";
 import { Text } from "../../../Components";
 import { Styles } from "../../../lib/styles";
 import fonts from "../../../constant/fonts";
@@ -362,6 +363,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: isDark ? '#020813' : '#FFFFFF' }}>
+            <ResponsiveContainer>
             <Animated.View style={{ flex: 1, opacity: screenFadeAnim, transform: [{ translateY: screenSlideAnim }] }}>
                 {/* ───────────────────── SEARCH & FILTER SECTION ───────────────────── */}
                 <View style={{
@@ -455,8 +457,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                     onPress={() => setShowDatePicker(true)}
                                     style={{ flex: 1, marginLeft: 8, height: 48, justifyContent: 'center' }}
                                 >
-                                    <TextInput
-                                        placeholder="Tap calendar icon..."
+                                    <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholder="Tap calendar icon..."
                                         placeholderTextColor={appColors.lightTextColor}
                                         style={{ fontSize: 14, color: appColors.text, paddingVertical: 0 }}
                                         value={startDate && endDate ? `${formatDateToDMY(startDate)} to ${formatDateToDMY(endDate)}` : ''}
@@ -465,8 +466,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                     />
                                 </TouchableOpacity>
                             ) : (
-                                <TextInput
-                                    placeholder="Search destination..."
+                                <TextInput allowFontScaling={true} maxFontSizeMultiplier={1.2} placeholder="Search destination..."
                                     placeholderTextColor={appColors.lightTextColor}
                                     style={{ flex: 1, marginLeft: 8, fontSize: 14, color: appColors.text }}
                                     value={searchQuery}
@@ -499,7 +499,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                 borderColor: isDark ? 'rgba(59, 130, 246, 0.2)' : '#DBEAFE'
                             }}
                         >
-                            <Text style={{
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{
                                 color: isDark ? '#60A5FA' : '#2563EB',
                                 fontSize: 13,
                                 fontWeight: '700',
@@ -548,7 +548,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                         <View style={{ width: 18, height: 18, borderRadius: 4, backgroundColor: activeTab === 'completed' ? '#FFFFFF' : 'transparent', alignItems: 'center', justifyContent: 'center', marginRight: 8, borderWidth: activeTab === 'completed' ? 0 : 1, borderColor: isDark ? '#64748B' : '#94A3B8' }}>
                             <MaterialCommunityIcons name="check" size={14} color={activeTab === 'completed' ? (isDark ? '#007BFF' : '#152D5E') : 'transparent'} />
                         </View>
-                        <Text style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'completed' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'completed' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
                             Completed
                         </Text>
                     </TouchableOpacity>
@@ -571,7 +571,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                         <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: activeTab === 'cancelled' ? '#FFFFFF' : 'transparent', alignItems: 'center', justifyContent: 'center', marginRight: 8, borderWidth: activeTab === 'cancelled' ? 0 : 1, borderColor: activeTab === 'cancelled' ? 'transparent' : (isDark ? '#64748B' : '#94A3B8') }}>
                             <MaterialCommunityIcons name="close" size={12} color={activeTab === 'cancelled' ? (isDark ? '#007BFF' : '#152D5E') : (isDark ? '#9CA3AF' : '#94A3B8')} />
                         </View>
-                        <Text style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'cancelled' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'cancelled' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
                             Cancelled
                         </Text>
                     </TouchableOpacity>
@@ -594,7 +594,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                         <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: activeTab === 'upcoming' ? '#FFFFFF' : 'transparent', alignItems: 'center', justifyContent: 'center', marginRight: 8, borderWidth: activeTab === 'upcoming' ? 0 : 1, borderColor: activeTab === 'upcoming' ? 'transparent' : (isDark ? '#64748B' : '#94A3B8') }}>
                             <MaterialCommunityIcons name="clock-outline" size={14} color={activeTab === 'upcoming' ? (isDark ? '#007BFF' : '#152D5E') : (isDark ? '#9CA3AF' : '#94A3B8')} />
                         </View>
-                        <Text style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'upcoming' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 13, fontWeight: '700', color: activeTab === 'upcoming' ? '#FFFFFF' : (isDark ? '#9CA3AF' : '#64748B') }}>
                             Upcoming
                         </Text>
                     </TouchableOpacity>
@@ -603,7 +603,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                 {/* ───────────────────── SEE ALL / SHOW LESS BUTTON ───────────────────── */}
                 {/* ───────────────────── LIST HEADER & SEE ALL ───────────────────── */}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginBottom: 10 }}>
-                    <Text style={{ fontSize: 16, fontWeight: '700', color: isDark ? '#FFFFFF' : appColors.text }}>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 16, fontWeight: '700', color: isDark ? '#FFFFFF' : appColors.text }}>
                         {activeTab === 'completed' ? 'Completed Rides' : activeTab === 'cancelled' ? 'Cancelled Rides' : 'Upcoming Rides'}
                     </Text>
                     {!isLoading && !isFetching && !hasActiveFilters && trips?.data?.total && trips.data.total > 5 ? (
@@ -616,7 +616,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                 }
                             }}
                         >
-                            <Text style={{
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{
                                 fontSize: 14,
                                 fontWeight: '700',
                                 color: isDark ? '#007BFF' : colors.button,
@@ -666,7 +666,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                     size={70}
                                     color={appColors.lightTextColor}
                                 />
-                                <Text style={{
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{
                                     color: appColors.text,
                                     fontSize: 16,
                                     fontWeight: '600',
@@ -675,7 +675,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                 }}>
                                     {searchQuery || selectedLocation ? "No matches found" : "No rides yet"}
                                 </Text>
-                                <Text style={{ color: appColors.lightTextColor, textAlign: 'center', marginTop: 8 }}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: appColors.lightTextColor, textAlign: 'center', marginTop: 8 }}>
                                     {searchQuery || selectedLocation
                                         ? "Try adjusting your filters or search terms."
                                         : activeTab === 'upcoming'
@@ -693,7 +693,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                             borderRadius: 10
                                         }}
                                     >
-                                        <Text style={{ color: isDark ? appColors.text : colors.button, fontWeight: '700' }}>Reset Filters</Text>
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? appColors.text : colors.button, fontWeight: '700' }}>Reset Filters</Text>
                                     </TouchableOpacity>
                                 )}
                             </View>
@@ -763,16 +763,16 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         {/* Middle Section (Destination + Subtitle) */}
                                         <View style={{ flex: 1, paddingRight: 4 }}>
-                                            <Text numberOfLines={1} style={{ fontSize: 13, fontWeight: '700', color: isDark ? appColors.text : '#0F172A' }}>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1} style={{ fontSize: 13, fontWeight: '700', color: isDark ? appColors.text : '#0F172A' }}>
                                                 {item.drop_address}
                                             </Text>
                                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                                                 <MaterialCommunityIcons name={item.booking_type === 'SCHEDULED' ? "calendar-month-outline" : "update"} size={12} color="#64748B" />
-                                                <Text style={{ fontSize: 10, color: item.booking_type === 'SCHEDULED' ? '#64748B' : '#3B82F6', marginLeft: 4, fontWeight: '700', letterSpacing: 0.2 }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 10, color: item.booking_type === 'SCHEDULED' ? '#64748B' : '#3B82F6', marginLeft: 4, fontWeight: '700', letterSpacing: 0.2 }}>
                                                     {item.booking_type === 'SCHEDULED' ? 'SCHEDULED' : 'LIVE'}
                                                 </Text>
                                                 <MaterialCommunityIcons name="circle-small" size={14} color="#CBD5E1" style={{ marginHorizontal: 0 }} />
-                                                <Text style={{ fontSize: 9.5, color: '#64748B', fontWeight: '500' }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 9.5, color: '#64748B', fontWeight: '500' }}>
                                                     {item?.scheduled_start_time || item?.original_scheduled_start_time ? (
                                                         <>
                                                             {formatDate(new Date(item?.scheduled_start_time || item?.original_scheduled_start_time))}
@@ -790,7 +790,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
 
                                         {/* Right Section (Price + Status) */}
                                         <View style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
-                                            <Text style={{ fontSize: 13, fontWeight: '800', color: isDark ? appColors.text : '#0F172A' }}>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 13, fontWeight: '800', color: isDark ? appColors.text : '#0F172A' }}>
                                                 ₹{Number(item.total_fare).toFixed(2)}
                                             </Text>
                                             <View style={{
@@ -800,7 +800,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                                                     item.trip_status.toLowerCase() === 'completed' ? (isDark ? '#064E3B' : '#DCFCE7') :
                                                         (item.trip_status.toLowerCase() === 'requested' || item.trip_status.toLowerCase() === 'accepted') ? (isDark ? '#7C2D12' : '#FFEDD5') : (isDark ? '#7F1D1D' : '#FEE2E2')
                                             }}>
-                                                <Text style={{
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{
                                                     fontSize: 7.5, fontWeight: '800', letterSpacing: 0.2,
                                                     color:
                                                         item.trip_status.toLowerCase() === 'completed' ? (isDark ? '#10B981' : '#166534') :
@@ -818,6 +818,7 @@ const Activity: React.FC<ScreenProps> = ({ navigation }) => {
                     />
                 )}
             </Animated.View>
+            </ResponsiveContainer>
         </View>
     );
 };

@@ -9,6 +9,7 @@ import colors from "../../../constant/colors";
 import React from "react";
 import { HelpContactScreen_Nav } from "../../../Navigations/navigations";
 import { useAppTheme } from "../../../hooks/useAppTheme";
+import { ResponsiveContainer } from "../../../Components/ResponsiveContainer";
 
 
 
@@ -38,12 +39,12 @@ const ServiceScreen: React.FC<ScreenProps> = ({ navigation }) => {
                 }
                 <TouchableOpacity style={[Styles.flexRow, Styles.justifyContentCenter, Styles.alignItemsCenter, Styles.g1]} onPress={() => navigation.navigate(HelpContactScreen_Nav)}>
                     <MaterialIcons name="headphones" size={20} color={appColors.text} />
-                    <Text style={[Styles.fs16, fonts.light, { color: appColors.text }]}>Help</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs16, fonts.light, { color: appColors.text }]}>Help</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={[{ gap: 10, marginHorizontal: 20 }]}>
-                <Text style={[Styles.fs18, fonts.bold, Styles.textCenter, {
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs18, fonts.bold, Styles.textCenter, {
                     fontWeight: 'bold', color: appColors.text
                 }]}>Select Your Services</Text>
 
@@ -54,11 +55,11 @@ const ServiceScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     <ImageBackground source={require('../../../assets/png/CabService.png')} resizeMode='cover' style={[Styles.p5]}>
                         <View style={[Styles.g3]}>
                             <View>
-                                <Text style={[Styles.fs20, {
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs20, {
                                     fontWeight: 'bold',
                                     color: '#fff'
                                 }]}>Cab</Text>
-                                <Text style={[{ color: '#fff' }]}>Your Ride,Ready Anytime</Text></View>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[{ color: '#fff' }]}>Your Ride,Ready Anytime</Text></View>
                             <View>
                                 <Button
                                     onPress={() => navigation.navigate('Home')}
@@ -69,7 +70,7 @@ const ServiceScreen: React.FC<ScreenProps> = ({ navigation }) => {
                                         borderColor: isDark ? 'transparent' : '#111'
                                     }]}>
                                     <View style={[Styles.flexRow, Styles.alignItemsCenter, Styles.g2]}>
-                                        <Text style={[Styles.fs12, fonts.light, {
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs12, fonts.light, {
                                             color: appColors.text
                                         }]}>Book Now
                                         </Text>
@@ -90,11 +91,11 @@ const ServiceScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     <ImageBackground source={require('../../../assets/png/DriverService.png')} resizeMode='cover' style={[Styles.p5]}>
                         <View style={[Styles.g3]}>
                             <View>
-                                <Text style={[Styles.fs20, {
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs20, {
                                     fontWeight: 'bold',
                                     color: '#fff'
                                 }]}>Driver</Text>
-                                <Text style={[{ color: '#fff' }]}>Your Car,Our trusted driver</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[{ color: '#fff' }]}>Your Car,Our trusted driver</Text>
                             </View>
                             <View>
                                 <Button
@@ -106,7 +107,7 @@ const ServiceScreen: React.FC<ScreenProps> = ({ navigation }) => {
                                         borderColor: isDark ? 'transparent' : '#111'
                                     }]}>
                                     <View style={[Styles.flexRow, Styles.alignItemsCenter, Styles.g2]}>
-                                        <Text style={[Styles.fs12, fonts.light, {
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[Styles.fs12, fonts.light, {
                                             color: appColors.text
                                         }]}>Hire Now
                                         </Text>

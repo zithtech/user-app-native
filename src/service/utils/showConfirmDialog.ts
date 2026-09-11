@@ -1,14 +1,18 @@
 // utils/showConfirmDialog.ts
 import { Alert } from 'react-native';
 
-export const showConfirmDialog = (message: string): Promise<boolean> => {
+export const showConfirmDialog = (
+    message: string,
+    title: string = 'Device Conflict',
+    confirmText: string = 'Yes, Log Out'
+): Promise<boolean> => {
     return new Promise((resolve) => {
         Alert.alert(
-            'Device Conflict',
+            title,
             message,
             [
                 { text: 'Cancel', onPress: () => resolve(false), style: 'cancel' },
-                { text: 'Yes, Log Out', onPress: () => resolve(true), style: 'destructive' },
+                { text: confirmText, onPress: () => resolve(true), style: 'destructive' },
             ],
             { cancelable: false }
         );

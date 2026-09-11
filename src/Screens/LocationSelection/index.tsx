@@ -26,6 +26,7 @@ import { useUpdateUserMutation } from '../../service/userApi';
 import { updateUserStore } from '../../redux/userSlice';
 import CustomAlert from '../../Components/CustomAlert';
 import { hS, mS, vS } from '../../lib/responsive';
+import { ResponsiveContainer } from '../../Components/ResponsiveContainer';
 import { ContactScreen_Nav } from '../../Navigations/navigations';
 import { useLocation } from '../../hooks/useLocation';
 import { useAppTheme } from '../../hooks/useAppTheme';
@@ -764,7 +765,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                             <View style={{ backgroundColor: '#FFD700', borderRadius: mS(12), padding: mS(2) }}>
                                 <MaterialCommunityIcons name="account-circle" size={18} color="#1E293B" />
                             </View>
-                            <Text style={{ fontSize: mS(12), fontWeight: '600', color: '#FFFFFF', marginHorizontal: hS(6) }}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), fontWeight: '600', color: '#FFFFFF', marginHorizontal: hS(6) }}>
                                 {selected}
                             </Text>
                         </TouchableOpacity>
@@ -805,7 +806,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                     marginBottom: vS(20),
                                 }} />
 
-                                <Text style={{ fontSize: mS(18), fontWeight: '700', color: colors.text, marginBottom: vS(20) }}>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(18), fontWeight: '700', color: colors.text, marginBottom: vS(20) }}>
                                     Who is this ride for?
                                 </Text>
 
@@ -839,13 +840,13 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                             style={[styles.addNewContainer, { backgroundColor: colors.iconBox, borderColor: isDark ? colors.primary : colors.button }]}
                                         >
                                             <MaterialCommunityIcons name="account-plus-outline" size={mS(22)} color={isDark ? colors.primary : colors.button} />
-                                            <Text style={[styles.addNewText, { color: isDark ? colors.primary : colors.button }]}>Add New Contact</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.addNewText, { color: isDark ? colors.primary : colors.button }]}>Add New Contact</Text>
                                         </TouchableOpacity>
                                     ) : (
                                         <View style={[styles.limitReachedContainer, {
                                             borderColor: isDark ? colors.primary : colors.button
                                         }]}>
-                                            <Text style={[styles.limitReachedText, { color: isDark ? colors.primary : colors.button }]}>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.limitReachedText, { color: isDark ? colors.primary : colors.button }]}>
                                                 Limit reached. Delete a contact to add a new one.
                                             </Text>
                                         </View>
@@ -865,6 +866,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                         keyboardShouldPersistTaps="handled"
                         showsVerticalScrollIndicator={false}
                     >
+                        <ResponsiveContainer>
 
                         {/* LOCATION INPUTS */}
                         <Animated.View
@@ -933,9 +935,8 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                     <MaterialCommunityIcons name='map' size={mS(18)} color={pickupError ? '#EF4444' : (isDark ? '#34D399' : "#FFFFFF")} />
                                 </View>
                                 <View style={styles.textContainer}>
-                                    <Text style={[styles.label, { color: colors.secondaryText }]}>PICKUP</Text>
-                                    <Text
-                                        numberOfLines={1}
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.label, { color: colors.secondaryText }]}>PICKUP</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1}
                                         style={[styles.value, { color: startLocation ? colors.text : colors.secondaryText }, !startLocation && styles.placeholder]}
                                     >
                                         {startLocation || "Enter pickup location"}
@@ -964,9 +965,8 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                     <MaterialCommunityIcons name='map-marker' size={mS(18)} color={destinationError ? '#EF4444' : (isDark ? '#F87171' : "#FFFFFF")} />
                                 </View>
                                 <View style={styles.textContainer}>
-                                    <Text style={[styles.label, { color: colors.secondaryText }]}>DESTINATION</Text>
-                                    <Text
-                                        numberOfLines={1}
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.label, { color: colors.secondaryText }]}>DESTINATION</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1}
                                         style={[styles.value, { color: destination ? colors.text : colors.secondaryText }, !destination && styles.placeholder]}
                                     >
                                         {destination || "Where to?"}
@@ -977,7 +977,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                         </Animated.View>
 
                         {showCityError && (
-                            <Text style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(8), marginLeft: hS(16) }}>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#EF4444', fontSize: mS(12), marginTop: vS(8), marginLeft: hS(16) }}>
                                 OneWay rides are limited to 4 hours. Please select Outstation.
                             </Text>
                         )}
@@ -990,7 +990,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                             }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: vS(12), marginLeft: hS(4) }}>
                                     <MaterialCommunityIcons name="car-side" size={mS(20)} color={isDark ? '#FFFFFF' : '#1E293B'} />
-                                    <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Trip Preferences</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Trip Preferences</Text>
                                 </View>
                                 <View style={{
                                     backgroundColor: isDark ? '#1E293B' : '#FFFFFF',
@@ -1004,7 +1004,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                         android: { elevation: 2 },
                                     }),
                                 }}>
-                                    <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Package Hours</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Package Hours</Text>
                                     <Dropdown
                                         style={{ height: vS(30) }}
                                         placeholderStyle={{ color: colors.secondaryText, fontSize: mS(14) }}
@@ -1042,7 +1042,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                             }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: vS(12), marginLeft: hS(4) }}>
                                     <MaterialCommunityIcons name="car-side" size={mS(20)} color={isDark ? '#FFFFFF' : '#1E293B'} />
-                                    <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Trip Preferences</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Trip Preferences</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                     <View style={{ flex: 1, marginRight: hS(6) }}>
@@ -1058,7 +1058,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 android: { elevation: 2 },
                                             }),
                                         }}>
-                                            <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Trip Type</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Trip Type</Text>
                                             <Dropdown
                                                 style={{ height: vS(30) }}
                                                 placeholderStyle={{ color: colors.secondaryText, fontSize: mS(14) }}
@@ -1105,7 +1105,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 android: { elevation: 2 },
                                             }),
                                         }}>
-                                            <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Package Hours</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Package Hours</Text>
                                             <Dropdown
                                                 style={{ height: vS(30) }}
                                                 placeholderStyle={{ color: colors.secondaryText, fontSize: mS(14) }}
@@ -1147,7 +1147,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                             />
                             {(pickupError || destinationError || vehicleError || advanceError || tripTypeError || packageError) && (
                                 <View style={{ marginTop: vS(8), alignItems: 'center' }}>
-                                    <Text style={{ color: '#EF4444', fontSize: mS(13), fontWeight: '700', textAlign: 'center', paddingHorizontal: hS(20) }}>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#EF4444', fontSize: mS(13), fontWeight: '700', textAlign: 'center', paddingHorizontal: hS(20) }}>
                                         {pickupError ? "Please select pickup location" :
                                             destinationError ? "Please select destination" :
                                                 vehicleError ? "Please select your vehicle" :
@@ -1175,7 +1175,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                 <View style={{ marginHorizontal: hS(16), marginTop: vS(2), marginBottom: vS(2) }}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: vS(12), marginLeft: hS(4) }}>
                                         <MaterialCommunityIcons name="calendar-month" size={mS(20)} color="#3B82F6" />
-                                        <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Schedule Ride</Text>
+                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(16), fontWeight: '800', marginLeft: hS(8) }}>Schedule Ride</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                         {/* Date Picker Item */}
@@ -1199,8 +1199,8 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                         >
                                             <MaterialCommunityIcons name="calendar-month-outline" size={mS(24)} color="#3B82F6" />
                                             <View style={{ marginLeft: hS(8) }}>
-                                                <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Date</Text>
-                                                <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(13), fontWeight: '700' }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Date</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(13), fontWeight: '700' }}>
                                                     {formattedDate || "Select Date"}
                                                 </Text>
                                             </View>
@@ -1230,8 +1230,8 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                         >
                                             <MaterialCommunityIcons name="clock-outline" size={mS(24)} color="#3B82F6" />
                                             <View style={{ marginLeft: hS(8) }}>
-                                                <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Time</Text>
-                                                <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(13), fontWeight: '700' }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontSize: mS(10), fontWeight: '700', marginBottom: vS(2) }}>Time</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontSize: mS(13), fontWeight: '700' }}>
                                                     {formattedTime || "Select Time"}
                                                 </Text>
                                             </View>
@@ -1264,8 +1264,8 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 <MaterialCommunityIcons name="clock-outline" size={mS(24)} color="#3B82F6" />
                                             </View>
                                             <View style={{ flex: 1 }}>
-                                                <Text style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontWeight: '800', fontSize: mS(15), marginBottom: vS(2) }}>Advance Booking</Text>
-                                                <Text style={{ color: isDark ? '#9CA3AF' : '#64748B', fontWeight: '600', fontSize: mS(12) }}>Schedule your ride in advance</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#FFFFFF' : '#1E293B', fontWeight: '800', fontSize: mS(15), marginBottom: vS(2) }}>Advance Booking</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: isDark ? '#9CA3AF' : '#64748B', fontWeight: '600', fontSize: mS(12) }}>Schedule your ride in advance</Text>
                                             </View>
                                             {(selectedRide === RideType.OUTSTATION_ONE_WAY || selectedRide === RideType.OUTSTATION_ROUND_TRIP) ? (
                                                 <Pressable onPress={handleToggleAdvanceBooking}>
@@ -1319,7 +1319,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 })
                                             }}
                                         >
-                                            <Text style={{ color: '#FFFFFF', fontWeight: '800', fontSize: mS(16), marginRight: hS(8) }}>Continue</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#FFFFFF', fontWeight: '800', fontSize: mS(16), marginRight: hS(8) }}>Continue</Text>
                                             <MaterialCommunityIcons name="arrow-right" size={mS(20)} color="#FFFFFF" />
                                         </TouchableOpacity>
                                         <TouchableOpacity
@@ -1340,7 +1340,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                         >
                                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                                 <MaterialCommunityIcons name="map-marker-radius" size={mS(24)} color="#3B82F6" style={{ marginRight: hS(12) }} />
-                                                <Text style={{ color: '#3B82F6', fontWeight: '700', fontSize: mS(15) }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: '#3B82F6', fontWeight: '700', fontSize: mS(15) }}>
                                                     {loading ? "Locating..." : "Set location on map"}
                                                 </Text>
                                             </View>
@@ -1356,11 +1356,11 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 // marginTop: 10,
                                                 marginBottom: vS(10)
                                             }}>
-                                                <Text style={{ fontSize: mS(12), fontWeight: '800', color: colors.secondaryText, letterSpacing: 1 }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), fontWeight: '800', color: colors.secondaryText, letterSpacing: 1 }}>
                                                     FAVOURITES
                                                 </Text>
                                                 {/* <TouchableOpacity onPress={clearRecents}>
-                                                                            <Text style={{ fontSize: 12, fontWeight: '700', color: '#2563EB' }}>
+                                                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: 12, fontWeight: '700', color: '#2563EB' }}>
                                                                                 Clear All
                                                                             </Text>
                                                                         </TouchableOpacity> */}
@@ -1372,7 +1372,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 justifyContent: 'center',
                                                 padding: mS(40),
                                             }}>
-                                                <Text style={{ color: colors.secondaryText }}>No favorite places yet. Start searching to add some!</Text>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: colors.secondaryText }}>No favorite places yet. Start searching to add some!</Text>
                                             </View>
                                         ) : (
                                             <View style={{
@@ -1394,7 +1394,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                     }} key={item.id || index}
                                                         onPress={() => handleSelectFavourites(item)}
                                                     >
-                                                        <Text style={{
+                                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{
                                                             fontSize: mS(14),
                                                             fontWeight: '600',
                                                             color: colors.text,
@@ -1415,7 +1415,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 ))}
                                                 {localuser.favourite_places.length === 10 ? (
                                                     <View style={styles.limitReachedContainer}>
-                                                        <Text style={styles.limitReachedText}>
+                                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.limitReachedText}>
                                                             Limit reached. Delete a favorite location to add a new one.
                                                         </Text>
                                                     </View>
@@ -1472,11 +1472,11 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                 marginTop: vS(20),
                                                 marginBottom: vS(10)
                                             }}>
-                                                <Text style={{ fontSize: mS(12), fontWeight: '800', color: '#94A3B8', letterSpacing: 1 }}>
+                                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), fontWeight: '800', color: '#94A3B8', letterSpacing: 1 }}>
                                                     RECENT
                                                 </Text>
                                                 <TouchableOpacity onPress={clearRecents}>
-                                                    <Text style={{ fontSize: mS(12), fontWeight: '700', color: '#2563EB' }}>
+                                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), fontWeight: '700', color: '#2563EB' }}>
                                                         Clear All
                                                     </Text>
                                                 </TouchableOpacity>
@@ -1507,10 +1507,10 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                                         <MaterialCommunityIcons name="clock-outline" size={mS(22)} color="#64748B" />
                                                     </View>
                                                     <View style={{ flex: 1 }}>
-                                                        <Text style={{ fontSize: mS(16), fontWeight: '700', color: '#1E293B' }}>
+                                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(16), fontWeight: '700', color: '#1E293B' }}>
                                                             {item.name}
                                                         </Text>
-                                                        <Text numberOfLines={1} style={{ fontSize: mS(13), color: '#64748B', marginTop: vS(2) }}>
+                                                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1} style={{ fontSize: mS(13), color: '#64748B', marginTop: vS(2) }}>
                                                             {item.address}
                                                         </Text>
                                                     </View>
@@ -1524,6 +1524,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                 )}
                             </View>
                         </View>
+                        </ResponsiveContainer>
                     </ScrollView>
                 </View>
             ) : (
@@ -1553,7 +1554,7 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
                                     })
                                 }]}>
                                     <MaterialCommunityIcons name="arrow-left" size={mS(20)} color={colors.text} />
-                                    <Text style={[styles.compactLabel, { color: colors.text, fontWeight: '700' }]}>BOOK FOR {selected.toUpperCase()}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.compactLabel, { color: colors.text, fontWeight: '700' }]}>BOOK FOR {selected.toUpperCase()}</Text>
                                 </View>
                                 <View style={[styles.editIconContainer, {
                                     backgroundColor: isDark ? 'rgba(0,0,0,0.6)' : '#FFFFFF',
@@ -1570,13 +1571,13 @@ const LocationSearch: React.FC<LocationInputProps> = ({ pickupLocation, dropLoca
 
                             <View style={styles.compactRow}>
                                 <View style={[styles.locationContainer, { backgroundColor: colors.background, borderColor: colors.border }]}>
-                                    <Text style={[styles.compactLabel, { color: colors.secondaryText }]}>FROM</Text>
-                                    <Text numberOfLines={1} style={[styles.compactValue, { color: colors.text }]}>{startLocation}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.compactLabel, { color: colors.secondaryText }]}>FROM</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1} style={[styles.compactValue, { color: colors.text }]}>{startLocation}</Text>
                                 </View>
                                 <MaterialCommunityIcons name="arrow-right" size={mS(20)} color={colors.secondaryText} />
                                 <View style={[styles.locationContainer, { backgroundColor: colors.background, borderColor: colors.border }]}>
-                                    <Text style={[styles.compactLabel, { color: colors.secondaryText }]}>TO</Text>
-                                    <Text numberOfLines={1} style={[styles.compactValue, { color: colors.text }]}>{destination}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.compactLabel, { color: colors.secondaryText }]}>TO</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} numberOfLines={1} style={[styles.compactValue, { color: colors.text }]}>{destination}</Text>
                                 </View>
                             </View>
                         </ImageBackground>

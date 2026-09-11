@@ -1,4 +1,5 @@
 import { ActivityIndicator, Alert, Animated, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, ToastAndroid, TouchableOpacity, TouchableWithoutFeedback, View, Image } from "react-native"
+import { ResponsiveContainer } from "../../../../Components/ResponsiveContainer";
 import { Text } from "../../../../Components"
 import { Styles } from "../../../../lib/styles"
 import Button from "../../../../Components/Button"
@@ -510,12 +511,13 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                 </Svg>
             </View>
 
+            <ResponsiveContainer>
             {/* Custom Header with back button */}
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: hS(20), paddingTop: insets.top + vS(10), paddingBottom: vS(10), zIndex: 10 }}>
                 <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
                     <MaterialCommunityIcons name="arrow-left" size={mS(24)} color={isDark ? colors.text : '#0F172A'} />
                 </TouchableOpacity>
-                <Text style={{ fontSize: mS(20), fontWeight: '700', color: isDark ? colors.text : '#0F172A', marginLeft: hS(16) }}>Profile</Text>
+                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(20), fontWeight: '700', color: isDark ? colors.text : '#0F172A', marginLeft: hS(16) }}>Profile</Text>
             </View>
 
             <ScrollView
@@ -537,9 +539,9 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                     </View>
 
                     <View style={{ flex: 1, marginLeft: hS(16) }}>
-                        <Text style={{ fontSize: mS(18), fontWeight: '800', color: isDark ? '#F8FAFC' : '#0F172A' }}>{user?.full_name || 'User'}</Text>
-                        <Text style={{ fontSize: mS(12), color: isDark ? '#94A3B8' : '#64748B', marginTop: vS(2) }}>Member since</Text>
-                        <Text style={{ fontSize: mS(13), fontWeight: '700', color: isDark ? '#F8FAFC' : '#0F172A' }}>{formatDate(user?.created_at)}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(18), fontWeight: '800', color: isDark ? '#F8FAFC' : '#0F172A' }}>{user?.full_name || 'User'}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), color: isDark ? '#94A3B8' : '#64748B', marginTop: vS(2) }}>Member since</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(13), fontWeight: '700', color: isDark ? '#F8FAFC' : '#0F172A' }}>{formatDate(user?.created_at)}</Text>
                     </View>
 
                     <TouchableOpacity
@@ -548,13 +550,13 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                         activeOpacity={0.7}
                     >
                         <MaterialCommunityIcons name="pencil-outline" size={mS(14)} color={isDark ? '#38BDF8' : '#2563EB'} />
-                        <Text style={{ fontSize: mS(13), fontWeight: '600', color: isDark ? '#38BDF8' : '#2563EB', marginLeft: hS(4) }}>Edit</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(13), fontWeight: '600', color: isDark ? '#38BDF8' : '#2563EB', marginLeft: hS(4) }}>Edit</Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* --- Section: Personal Details --- */}
                 <View style={styles.sectionHeader}>
-                    <Text style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Personal Information</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Personal Information</Text>
                 </View>
 
                 <View style={[
@@ -590,8 +592,8 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                                 </View>
 
                                 <View style={styles.rowContent}>
-                                    <Text style={[styles.rowLabel, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>{item.Label}</Text>
-                                    <Text style={[
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rowLabel, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>{item.Label}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                         styles.rowValue,
                                         { color: isDark ? '#F8FAFC' : colors.text },
                                         !isEditable && { color: isDark ? '#94A3B8' : colors.lightTextColor }
@@ -608,7 +610,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
 
                 {/* --- Section: Account Details --- */}
                 <View style={styles.sectionHeader}>
-                    <Text style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Account Details</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Account Details</Text>
                 </View>
 
                 <View style={[
@@ -627,8 +629,8 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                             <MaterialCommunityIcons name="history" size={mS(20)} color={isDark ? '#38BDF8' : colors.button} />
                         </View>
                         <View style={styles.rowContent}>
-                            <Text style={[styles.rowLabel, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>Account Since</Text>
-                            <Text style={[styles.rowValue, { color: isDark ? '#F8FAFC' : colors.text }]}>{formatDate(user.created_at)}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rowLabel, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>Account Since</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rowValue, { color: isDark ? '#F8FAFC' : colors.text }]}>{formatDate(user.created_at)}</Text>
                         </View>
                         <MaterialCommunityIcons name="chevron-right" size={mS(20)} color={isDark ? '#64748B' : colors.border} />
                     </View>
@@ -636,8 +638,8 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
 
                 {/* --- Section: Emergency Contacts --- */}
                 <View style={styles.sectionHeader}>
-                    <Text style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Emergency Contacts</Text>
-                    <Text style={[styles.sectionSubtitle, { color: isDark ? '#64748B' : colors.secondaryText }]}>Up to 5 trusted contacts</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionTitle, { color: isDark ? '#94A3B8' : colors.lightTextColor, textTransform: 'uppercase', letterSpacing: 1, fontWeight: '800', fontSize: mS(14) }]}>Emergency Contacts</Text>
+                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.sectionSubtitle, { color: isDark ? '#64748B' : colors.secondaryText }]}>Up to 5 trusted contacts</Text>
                 </View>
 
                 <View style={[
@@ -649,7 +651,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                         <View style={styles.emergencyHeader}>
                             <View style={styles.emergencyIconTitle}>
                                 <MaterialCommunityIcons name="phone-plus-outline" size={mS(20)} color={isDark ? '#38BDF8' : colors.button} />
-                                <Text style={[styles.rowLabel, { color: isDark ? '#F8FAFC' : colors.lightTextColor }]}>Emergency Contacts</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.rowLabel, { color: isDark ? '#F8FAFC' : colors.lightTextColor }]}>Emergency Contacts</Text>
                             </View>
 
                             <TouchableOpacity
@@ -666,7 +668,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                                     size={mS(16)}
                                     color={emergencyContacts.length >= 5 ? (isDark ? '#475569' : colors.border) : (isDark ? '#38BDF8' : colors.button)}
                                 />
-                                <Text style={[
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                     styles.addBadgeText,
                                     { color: isDark ? '#38BDF8' : colors.button },
                                     emergencyContacts.length >= 5 && { color: isDark ? '#475569' : colors.lightTextColor }
@@ -682,12 +684,12 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                                         style={[styles.contactItem, { backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#F8FAFC', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'transparent' }]}
                                     >
                                         <View style={[styles.contactAvatar, { backgroundColor: isDark ? '#3B82F6' : colors.button }]}>
-                                            <Text style={styles.contactInitial}>{contact.name.charAt(0)}</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.contactInitial}>{contact.name.charAt(0)}</Text>
                                         </View>
                                         <View style={styles.contactInfo}>
-                                            <Text style={[styles.contactName, { color: isDark ? '#F8FAFC' : colors.text }]}>{contact.name}</Text>
-                                            <Text style={[styles.contactPhone, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>{contact.phone}</Text>
-                                            <Text style={[styles.contactRelationshipText, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.contactName, { color: isDark ? '#F8FAFC' : colors.text }]}>{contact.name}</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.contactPhone, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>{contact.phone}</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.contactRelationshipText, { color: isDark ? '#94A3B8' : colors.lightTextColor }]}>
                                                 <MaterialCommunityIcons name="family-tree" size={mS(12)} /> {contact.relationship}
                                             </Text>
                                         </View>
@@ -712,12 +714,13 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                             </View>
                         ) : (
                             <View style={styles.noContactsBox}>
-                                <Text style={[styles.noContactsText, { color: isDark ? '#64748B' : colors.lightTextColor }]}>No emergency contacts added yet.</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.noContactsText, { color: isDark ? '#64748B' : colors.lightTextColor }]}>No emergency contacts added yet.</Text>
                             </View>
                         )}
                     </View>
                 </View>
             </ScrollView>
+            </ResponsiveContainer>
 
             {/* --- Modals / Bottom Sheets --- */}
             {clickedLabel === 'Name' &&
@@ -779,7 +782,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                             ]}
                         >
                             <View style={localStyles.dragHandle} />
-                            <Text style={[localStyles.genderSheetTitle, { color: colors.text }]}>Select Gender</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[localStyles.genderSheetTitle, { color: colors.text }]}>Select Gender</Text>
 
                             <View style={localStyles.optionsWrapper}>
                                 {['Male', 'Female', 'Other'].map((option) => (
@@ -805,7 +808,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                                                     color={gender === option.toLowerCase() ? isDark ? colors.primary : colors.button : colors.lightTextColor}
                                                 />
                                             </View>
-                                            <Text style={[
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[
                                                 localStyles.optionText,
                                                 { color: colors.text },
                                                 gender === option.toLowerCase() && { color: isDark ? colors.primary : colors.button, fontWeight: '800' }
@@ -832,7 +835,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                                     setVisible(false);
                                 }}
                             >
-                                <Text style={localStyles.genderSaveBtnText}>Save Changes</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={localStyles.genderSaveBtnText}>Save Changes</Text>
                             </TouchableOpacity>
                         </Animated.View>
                     </Pressable>
@@ -857,7 +860,7 @@ const ProfileUpdatescreen: React.FC<ScreenProps> = ({ navigation }) => {
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
                         <View style={{ backgroundColor: colors.card, padding: hS(24), borderRadius: mS(16), alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 10, elevation: 5 }}>
                             <ActivityIndicator size="large" color={colors.primary} />
-                            <Text style={{ marginTop: vS(12), color: colors.text, fontSize: mS(16), fontWeight: '600' }}>Updating information...</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ marginTop: vS(12), color: colors.text, fontSize: mS(16), fontWeight: '600' }}>Updating information...</Text>
                         </View>
                     </View>
                 </Modal>

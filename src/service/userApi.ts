@@ -357,6 +357,32 @@ export const userApi = createApi({
     }),
 
 
+    // ─────────── ACCOUNT DELETION ───────────
+    initiateDeleteAccount: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `/users/${id}/delete/initiate`,
+        method: 'POST',
+      }),
+    }),
+    verifyOTPForDelete: builder.mutation<any, { id: string; otp: string; reason?: string; phone_number?: string; role?: string; device_id?: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/users/${id}/delete/verify-otp`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    cancelDeleteAccount: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `/users/${id}/delete/cancel`,
+        method: 'POST',
+      }),
+    }),
+    getDeleteAccountStatus: builder.query<any, string>({
+      query: (id) => `/users/${id}/delete/status`,
+    }),
+
+
+
   }),
 });
 
@@ -407,6 +433,13 @@ export const {
   useGetWalletSettingsQuery,
   useUpdateWalletSettingsMutation,
   useReportTransactionIssueMutation,
+
+  useInitiateDeleteAccountMutation,
+  useVerifyOTPForDeleteMutation,
+  useCancelDeleteAccountMutation,
+  useGetDeleteAccountStatusQuery,
+  useLazyGetDeleteAccountStatusQuery,
+
 } = userApi;
 
 

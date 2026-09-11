@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { useVerifyOtpMutation } from '../userApi';
+import { useVerifyOtpMutation, useCancelDeleteAccountMutation } from '../userApi';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/userSlice';
 import { showConfirmDialog } from '../utils/showConfirmDialog';
@@ -23,6 +23,7 @@ interface VerifyOtpParams {
 export const useVerifyOtp = (navigation: any) => {
     const dispatch = useDispatch();
     const [verifyOtp] = useVerifyOtpMutation();
+    const [cancelDelete] = useCancelDeleteAccountMutation();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -58,10 +59,40 @@ export const useVerifyOtp = (navigation: any) => {
                 return;
             }
 
-            // Save tokens and user
+            
+            // Save tokens and user early so that RTK Query has auth headers for the cancel API
             await storage.setAccessToken(accessToken);
             await storage.setRefreshToken(refreshToken);
             dispatch(setUser(userData));
+
+            if (response.data.pending_deletion?.is_pending) {
+
+                const confirmed = await showConfirmDialog(
+                    'Your account is scheduled for deletion. Do you want to cancel the deletion request and restore your account?',
+                    'Restore Account',
+                    'Yes, Restore'
+                );
+
+                if (confirmed) {
+                    try {
+                        await cancelDelete(userData.id).unwrap();
+                        Alert.alert("Success", "Account deletion cancelled successfully. Welcome back!");
+                    } catch (e: any) {
+                        console.log(e, "error restore")
+                        setError('Failed to restore account');
+                        Alert.alert('Error', 'Failed to restore account. Please contact support.');
+                        return;
+                    }
+                } else {
+                    // Abort login: clear the early saved tokens so they aren't logged in on reload
+                    await storage.removeAccessToken();
+                    await storage.removeRefreshToken();
+                    dispatch(setUser(null)); 
+                    return; 
+                }
+            }
+
+
 
             // Navigate based on onboarding status
             const status = userData?.onboarding_status;
@@ -75,7 +106,21 @@ export const useVerifyOtp = (navigation: any) => {
                 targetScreen = isNewUser ? SignUpScreen_Nav : TabNavigation_Nav;
             }
 
-            navigation.replace(OTPSuccessScreen_Nav, { targetScreen });
+            if (targetScreen === SignUpScreen_Nav) {
+                Alert.alert(
+                    'Welcome! 👋',
+                    "You don't have an account yet. Let's create one.",
+                    [
+                        {
+                            text: 'Continue to Sign Up',
+                            onPress: () => navigation.replace(OTPSuccessScreen_Nav, { targetScreen })
+                        }
+                    ],
+                    { cancelable: false }
+                );
+            } else {
+                navigation.replace(OTPSuccessScreen_Nav, { targetScreen });
+            }
 
         } catch (error: any) {
             const err = error?.data?.data || error?.data?.error || error;

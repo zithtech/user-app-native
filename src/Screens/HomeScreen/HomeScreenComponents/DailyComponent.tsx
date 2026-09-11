@@ -171,48 +171,50 @@ export function DailyComponent() {
                 style={[
                     styles.heroCard,
                     {
-                        backgroundColor: isDark ? '#1E3A8A' : appColors.button,
-                        borderColor: appColors.border,
+                        backgroundColor: isDark ? '#0A1931' : appColors.button,
+                        borderColor: isDark ? '#152B4D' : appColors.border,
+                        borderWidth: isDark ? 1 : 0,
                     }
                 ]}
             >
                 {/* Left Content */}
                 <View style={styles.heroContent}>
-                    <View style={[styles.heroBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.15)' : '#FFFFFF' }]}>
+                    <View style={[styles.heroBadge, { backgroundColor: isDark ? 'rgba(37, 99, 235, 0.2)' : '#FFFFFF' }]}>
                         <Ionicons name="flash" size={14} color={isDark ? '#FCD34D' : appColors.primary} />
-                        <Text style={[styles.badgeText, { color: isDark ? '#FFFFFF' : '#000' }]}>LIMITED TIME OFFER</Text>
+                        <Text style={[styles.badgeText, { color: isDark ? '#E2E8F0' : '#000' }]}>LIMITED TIME OFFER</Text>
                     </View>
 
-                    <Text style={[fonts.bold, styles.heroTitle]}>
-                        Get Scheduled Drivers
+                    <Text style={[fonts.bold, styles.heroTitle, { color: isDark ? '#FFFFFF' : "#FFFFFF" }]}>
+                        Get Scheduled <Text style={{ color: isDark ? '#3B82F6' : '#3B82F6' }}>Drivers</Text>
                     </Text>
 
-                    <Text style={styles.heroDescription}>
+                    <Text style={[styles.heroDescription, { color: isDark ? '#9CA3AF' : '#E0E7FF' }]}>
                         Hire verified drivers who speak your language for up to a week. Professional, reliable, and hassle-free.
                     </Text>
 
                     {/* Quick Stats */}
                     <View style={styles.statsRow}>
-                        <StatBadge icon="star" label="4.8 Rating" value="5K+ Reviews" />
-                        <StatBadge icon="checkmark" label="100% Verified" value="Safe & Secure" />
+                        <StatBadge icon="star" label="4.8 Rating" value="5K+ Reviews" isDark={isDark} appColors={appColors} />
+                        <StatBadge icon="checkmark-shield" label="100% Verified" value="Safe & Secure" isDark={isDark} appColors={appColors} />
                     </View>
 
                     {/* Primary CTA */}
                     <Button
-                        style={[styles.reserveBtn, { backgroundColor: isDark ? appColors.primary : '#FFFFFF' }]}
+                        style={[styles.reserveBtn, { backgroundColor: isDark ? '#007BFF' : '#FFFFFF' }]}
                         onPress={() =>
                             navigation.navigate(LocationSearch_Nav, { screenName: 'Schedule' })
                         }
                     >
-                        <Text style={[fonts.bold, styles.btnTextPrimary, { color: isDark ? '#0F172A' : '#000' }]}>
+                        <Text style={[fonts.bold, styles.btnTextPrimary, { color: isDark ? '#FFFFFF' : '#000' }]}>
                             Reserve Now
                         </Text>
-                        <Ionicons name="arrow-forward" size={16} color={isDark ? '#0F172A' : appColors.primary} />
+                        <Ionicons name="arrow-forward" size={16} color={isDark ? '#FFFFFF' : appColors.primary} />
                     </Button>
 
                     {/* Secondary CTA */}
                     <TouchableOpacity style={styles.learnMoreBtn}>
-                        <Text style={styles.learnMoreText}>Learn more</Text>
+                        <Text style={[styles.learnMoreText, { color: isDark ? '#3B82F6' : '#FFFFFF' }]}>Learn more</Text>
+                        <Ionicons name="chevron-forward" size={12} color={isDark ? '#3B82F6' : '#FFFFFF'} style={{ marginLeft: 2 }} />
                     </TouchableOpacity>
                 </View>
 
@@ -245,9 +247,14 @@ export function DailyComponent() {
 
             {/* Driver Features Grid */}
             <View style={styles.featuresSection}>
-                <Text style={[fonts.bold, styles.sectionTitle, { color: appColors.text }]}>
-                    Why Choose Our Drivers?
-                </Text>
+                <View style={styles.sectionHeader}>
+                    <Text style={[fonts.bold, styles.sectionTitle, { color: isDark ? '#FFFFFF' : appColors.text }]}>
+                        Why Choose Our Drivers?
+                    </Text>
+                    <TouchableOpacity>
+                        <Text style={[styles.viewAllText, { color: isDark ? '#3B82F6' : appColors.primary }]}>View All  </Text>
+                    </TouchableOpacity>
+                </View>
 
                 <View style={styles.featuresGrid}>
                     {driverFeatures.map((feature, index) => (
@@ -259,7 +266,7 @@ export function DailyComponent() {
             {/* Driver Showcase */}
             <View style={styles.driversSection}>
                 <View style={styles.driversHeader}>
-                    <Text style={[fonts.bold, styles.sectionTitle, { color: appColors.text }]}>
+                    <Text style={[fonts.bold, styles.sectionTitle, { color: isDark ? '#FFFFFF' : appColors.text }]}>
                         Recently Scheduled
                     </Text>
                     <TouchableOpacity
@@ -267,7 +274,7 @@ export function DailyComponent() {
                         onPress={() => navigation.navigate(TabNavigation_Nav, {
                             screen: 'Activity'
                         })}>
-                        <Text style={[styles.viewAllText, { color: appColors.primary }]}>View All</Text>
+                        <Text style={[styles.viewAllText, { color: isDark ? '#3B82F6' : appColors.primary }]}>View All  </Text>
                     </TouchableOpacity>
                 </View>
                 <FlatList
@@ -296,7 +303,7 @@ export function DailyComponent() {
             </View>
 
             {/* How It Works */}
-            <View style={[styles.howItWorksSection, { backgroundColor: isDark ? '#1F2937' : '#F9FAFB' }]}>
+            <View style={[styles.howItWorksSection, { backgroundColor: isDark ? '#0A1931' : '#F9FAFB', borderRadius: 16 }]}>
                 <Text style={[fonts.bold, styles.sectionTitle, { color: appColors.text }]}>
                     How It Works
                 </Text>
@@ -336,15 +343,17 @@ interface StatBadgeProps {
     icon: string;
     label: string;
     value: string;
+    isDark: boolean;
+    appColors: any;
 }
 
-function StatBadge({ icon, label, value }: StatBadgeProps) {
+function StatBadge({ icon, label, value, isDark, appColors }: StatBadgeProps) {
     return (
-        <View style={styles.statBadge}>
-            <Ionicons name={icon as any} size={16} color="#FFFFFF" />
+        <View style={[styles.statBadge, { backgroundColor: isDark ? '#152B4D' : 'rgba(255,255,255,0.2)', borderColor: isDark ? '#1E3A8A' : 'rgba(255,255,255,0.3)', borderWidth: 1 }]}>
+            <Ionicons name={icon as any} size={16} color={isDark ? '#3B82F6' : '#FFFFFF'} />
             <View>
-                <Text style={styles.statLabel}>{label}</Text>
-                <Text style={styles.statValue}>{value}</Text>
+                <Text style={[styles.statLabel, { color: isDark ? '#9CA3AF' : '#E0E7FF' }]}>{label}</Text>
+                <Text style={[styles.statValue, { color: isDark ? '#FFFFFF' : '#FFFFFF' }]}>{value}</Text>
             </View>
         </View>
     );
@@ -407,18 +416,18 @@ function FeatureCard({ feature, appColors, isDark, iconcolor, iconBgColor }: Fea
             style={[
                 styles.featureCard,
                 {
-                    backgroundColor: isDark ? '#1F2937' : '#FFFFFF',
-                    borderColor: appColors.border,
+                    backgroundColor: isDark ? '#0A1931' : '#FFFFFF',
+                    borderColor: isDark ? '#152B4D' : appColors.border,
                 }
             ]}
         >
             <View style={[styles.featureIcon, { backgroundColor: iconBgColor || appColors.primary + '15' }]}>
-                <Ionicons name={feature.icon as any} size={20} color={iconcolor || appColors.primary} />
+                <Ionicons name={feature.icon as any} size={28} color={iconcolor || appColors.primary} />
             </View>
-            <Text style={[fonts.bold, styles.featureLabel, { color: appColors.text }]}>
+            <Text style={[fonts.bold, styles.featureLabel, { color: isDark ? '#FFFFFF' : appColors.text, textAlign: 'center' }]}>
                 {feature.label}
             </Text>
-            <Text style={[styles.featureDescription, { color: appColors.secondaryText }]}>
+            <Text style={[styles.featureDescription, { color: isDark ? '#9CA3AF' : appColors.secondaryText, textAlign: 'center' }]}>
                 {feature.description}
             </Text>
         </View>
@@ -451,7 +460,7 @@ function ScheduledTripCard({ trip, appColors, isDark, onPress }: { trip: any; ap
 
     return (
         <TouchableOpacity
-            style={[styles.driverCard, { backgroundColor: isDark ? '#1F2937' : '#FFFFFF', borderColor: appColors.border }]}
+            style={[styles.driverCard, { backgroundColor: isDark ? '#0A1931' : '#FFFFFF', borderColor: isDark ? '#152B4D' : appColors.border }]}
             activeOpacity={0.7}
             onPress={onPress}
         >
@@ -474,30 +483,40 @@ function ScheduledTripCard({ trip, appColors, isDark, onPress }: { trip: any; ap
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: hS(12), marginVertical: vS(8) }}>
-                <View style={[styles.featureIcon, { backgroundColor: appColors.primary + '15', width: hS(36), height: hS(36) }]}>
-                    <Ionicons name="navigate-circle" size={20} color={appColors.primary} />
+                <View style={[styles.featureIcon, { backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : appColors.primary + '15', width: hS(32), height: hS(32) }]}>
+                    <Ionicons name="navigate" size={16} color={isDark ? '#3B82F6' : appColors.primary} />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={[styles.addressLabel, { color: isDark ? 'rgba(255, 255, 255, 0.4)' : '#9CA3AF' }]}>PICKUP</Text>
-                    <Text style={[styles.addressText, { color: appColors.text }]} numberOfLines={1}>{trip.pickup_address || 'Current Location'}</Text>
+                    <Text style={[styles.addressLabel, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>PICKUP</Text>
+                    <Text style={[styles.addressText, { color: isDark ? '#FFFFFF' : appColors.text }]} numberOfLines={1}>{trip.pickup_address || 'Current Location'}</Text>
                 </View>
             </View>
 
+            {/* Connecting Line Placeholder */}
+            <View style={{ position: 'absolute', left: hS(32), top: vS(68), bottom: vS(110), width: 1, backgroundColor: isDark ? '#152B4D' : '#E5E7EB', zIndex: -1 }} />
+
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: hS(12) }}>
-                <View style={[styles.featureIcon, { backgroundColor: '#10B98115', width: hS(36), height: hS(36) }]}>
-                    <Ionicons name="location" size={18} color="#10B981" />
+                <View style={[styles.featureIcon, { backgroundColor: isDark ? 'rgba(16, 185, 129, 0.15)' : '#10B98115', width: hS(32), height: hS(32) }]}>
+                    <Ionicons name="location" size={16} color="#10B981" />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={[styles.addressLabel, { color: isDark ? 'rgba(255, 255, 255, 0.4)' : '#9CA3AF' }]}>DROP-OFF</Text>
-                    <Text style={[styles.addressText, { color: appColors.text }]} numberOfLines={1}>{trip.drop_address}</Text>
+                    <Text style={[styles.addressLabel, { color: isDark ? '#9CA3AF' : '#9CA3AF' }]}>DROP-OFF</Text>
+                    <Text style={[styles.addressText, { color: isDark ? '#FFFFFF' : appColors.text }]} numberOfLines={1}>{trip.drop_address}</Text>
                 </View>
             </View>
 
             {trip.driver_details && (
-                <View style={{ marginTop: vS(10), paddingTop: vS(10), borderTopWidth: 1, borderTopColor: isDark ? 'rgba(255,255,255,0.05)' : '#F3F4F6' }}>
-                    <Text style={[styles.driverNote, { color: appColors.secondaryText }]}>
-                        Driver: <Text style={{ fontWeight: '700', color: appColors.text }}>{trip.driver_details?.full_name}</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: vS(10), paddingTop: vS(10), borderTopWidth: 1, borderTopColor: isDark ? '#152B4D' : '#F3F4F6' }}>
+                    <Text style={[styles.driverNote, { color: isDark ? '#9CA3AF' : appColors.secondaryText }]}>
+                        Driver: <Text style={{ fontWeight: '700', color: isDark ? '#FFFFFF' : appColors.text }}>{trip.driver_details?.full_name}</Text>
                     </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                        <Ionicons name="star" size={12} color="#F59E0B" />
+                        <Text style={{ color: isDark ? '#FFFFFF' : appColors.text, fontSize: mS(12), fontWeight: '700' }}>4.8</Text>
+                        <TouchableOpacity style={{ backgroundColor: isDark ? '#1E3A8A' : appColors.primary + '15', padding: mS(6), borderRadius: mS(20), marginLeft: hS(10) }}>
+                            <Ionicons name="call" size={14} color={isDark ? '#FFFFFF' : appColors.primary} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             )}
         </TouchableOpacity>
@@ -515,17 +534,17 @@ function StepCard({ step, index, appColors, isDark }: StepCardProps) {
     return (
         <View style={styles.stepContainer}>
             <View style={styles.stepNumberContainer}>
-                <View style={[styles.stepIconContainer, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.1)' : '#F3F4F6' }]}>
-                    <Ionicons name={step.icon} size={22} color={appColors.primary} />
+                <View style={[styles.stepIconContainer, { backgroundColor: isDark ? `${appColors.primary}20` : '#EFF6FF', borderWidth: 0 }]}>
+                    <Ionicons name={step.icon as any} size={22} color={appColors.primary} />
                     <View style={[styles.stepBadge, { backgroundColor: appColors.primary }]}>
-                        <Text style={styles.stepBadgeText}>{step.number}</Text>
+                        <Text style={[styles.stepBadgeText, { color: '#FFFFFF' }]}>{step.number}</Text>
                     </View>
                 </View>
                 {index < 3 && <View style={[styles.stepLine, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : '#E5E7EB' }]} />}
             </View>
 
             <View style={styles.stepContent}>
-                <View style={[styles.stepCardContent, { backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F3F4F6' }]}>
+                <View style={[styles.stepCardContent, { backgroundColor: isDark ? 'transparent' : '#FFFFFF', borderColor: isDark ? 'rgba(255,255,255,0.05)' : '#F3F4F6' }]}>
                     <Text style={[fonts.bold, styles.stepTitle, { color: appColors.text }]}>
                         {step.title}
                     </Text>
@@ -748,6 +767,12 @@ const styles = StyleSheet.create({
     // Features Section
     featuresSection: {
         gap: vS(14),
+    },
+    sectionHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: hS(4),
     },
     featuresGrid: {
         flexDirection: 'row',

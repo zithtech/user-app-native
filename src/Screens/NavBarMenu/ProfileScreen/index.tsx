@@ -27,6 +27,7 @@ import { updateUserStore } from '../../../redux/userSlice';
 import Config from 'react-native-config';
 import { useCameraPermission } from "../../../hooks/useCamera";
 import { hS, mS, vS } from "../../../lib/responsive";
+import { ResponsiveContainer } from "../../../Components/ResponsiveContainer";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getLoggedUser } from "../../../service/validation";
 import Skeleton from "../../../Components/Skeleton";
@@ -48,6 +49,7 @@ const ProfileScreenSkeleton = () => {
                     <Skeleton width="100%" height="100%" borderRadius={0} />
                 </View>
 
+                <ResponsiveContainer>
                 <View style={{ alignItems: 'center', marginTop: -mS(50), paddingHorizontal: hS(20) }}>
                     {/* Profile Image Skeleton */}
                     <View style={{ position: 'relative' }}>
@@ -109,6 +111,7 @@ const ProfileScreenSkeleton = () => {
                     <Skeleton width={120} height={14} borderRadius={2} />
                     <Skeleton width={180} height={14} borderRadius={2} />
                 </View>
+                </ResponsiveContainer>
             </ScrollView>
         </View>
     );
@@ -190,21 +193,21 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                 <Pressable style={styles.modaloverlay} onPress={onClose}>
                     <View style={[styles.sheet, { backgroundColor: colors.background, paddingBottom: insets.bottom + vS(20) }]}>
                         <View style={[styles.handle, { backgroundColor: colors.border }]} />
-                        <Text style={[styles.title, { color: colors.text }]}>Profile Photo</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.title, { color: colors.text }]}>Profile Photo</Text>
 
                         <View style={styles.optionsRow}>
                             <TouchableOpacity style={styles.option} onPress={onCamera}>
                                 <View style={[styles.iconCircle, { backgroundColor: colors.iconBox }]}>
                                     <MaterialCommunityIcons name="camera" size={30} color={colors.primary} />
                                 </View>
-                                <Text style={[styles.optionLabel, { color: colors.text }]}>Camera</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionLabel, { color: colors.text }]}>Camera</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.option} onPress={onGallery}>
                                 <View style={[styles.iconCircle, { backgroundColor: colors.iconBox }]}>
                                     <MaterialCommunityIcons name="image-multiple" size={30} color={colors.primary} />
                                 </View>
-                                <Text style={[styles.optionLabel, { color: colors.text }]}>Gallery</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionLabel, { color: colors.text }]}>Gallery</Text>
                             </TouchableOpacity>
 
                             {imageSource && (
@@ -212,7 +215,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                                     <View style={[styles.iconCircle, { backgroundColor: isDark ? '#450a0a' : '#FEE2E2' }]}>
                                         <MaterialCommunityIcons name="trash-can-outline" size={30} color="#EF4444" />
                                     </View>
-                                    <Text style={[styles.optionLabel, { color: colors.text }]}>Remove</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.optionLabel, { color: colors.text }]}>Remove</Text>
                                 </TouchableOpacity>
                             )}
                         </View>
@@ -253,7 +256,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                             >
                                 <MaterialCommunityIcons name="arrow-left" size={mS(28)} color="white" />
                             </TouchableOpacity>
-                            <Text style={styles.fullScreenTitle}>Profile photo</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.fullScreenTitle}>Profile photo</Text>
                         </View>
 
                         <TouchableOpacity
@@ -279,7 +282,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                         ) : (
                             <View style={styles.fullScreenPlaceholder}>
                                 <FontAwesome name="user" size={mS(150)} color="#475569" />
-                                <Text style={styles.noPhotoText}>No profile photo</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={styles.noPhotoText}>No profile photo</Text>
                             </View>
                         )}
                     </View>
@@ -534,6 +537,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
+                <ResponsiveContainer>
                 <View style={{ alignItems: 'center', marginTop: -mS(80), paddingHorizontal: hS(20) }}>
                     {/* Profile Image with Edit Icon */}
                     <View style={{ position: 'relative' }}>
@@ -576,10 +580,10 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     </View>
 
                     <View style={{ alignItems: 'center', marginTop: vS(10) }}>
-                        <Text style={[styles.userName, { color: colors.text, fontSize: mS(20) }]}>{localuser?.full_name}</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.userName, { color: colors.text, fontSize: mS(20) }]}>{localuser?.full_name}</Text>
 
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: vS(4) }}>
-                            <Text style={[styles.userPhone, { color: colors.lightTextColor, fontSize: mS(13) }]}>{localuser?.phone_number}</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.userPhone, { color: colors.lightTextColor, fontSize: mS(13) }]}>{localuser?.phone_number}</Text>
 
                             <View style={{ width: 1, height: mS(12), backgroundColor: colors.lightTextColor, marginHorizontal: hS(10) }} />
 
@@ -588,7 +592,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                                 onPress={() => navigation.navigate(ProfilescreenComponents_Nav, { screen: ProfileUpdateScreen_Nav, params: { user } })}
                             >
                                 <MaterialCommunityIcons name="pencil" size={mS(14)} color={isDark ? colors.text : '#3B82F6'} />
-                                <Text style={[styles.editProfileText, { color: isDark ? colors.text : '#3B82F6', marginLeft: mS(4) }]}>Edit Profile</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.editProfileText, { color: isDark ? colors.text : '#3B82F6', marginLeft: mS(4) }]}>Edit Profile</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -637,14 +641,14 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
                             <View style={{ flex: 1, marginLeft: hS(16), justifyContent: 'center' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: mS(15), fontWeight: '700', color: isDark ? '#FFFFFF' : colors.text }}>{item.name}</Text>
+                                    <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(15), fontWeight: '700', color: isDark ? '#FFFFFF' : colors.text }}>{item.name}</Text>
                                     {item.id === 1 && (
                                         <View style={[styles.ratingBadge, isDark && { backgroundColor: '#F59E0B', borderColor: '#F59E0B', borderWidth: 0, marginLeft: 10 }]}>
-                                            <Text style={[styles.ratingBadgeText, isDark && { color: '#000000', fontWeight: '800' }]}>TOP RATED</Text>
+                                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.ratingBadgeText, isDark && { color: '#000000', fontWeight: '800' }]}>TOP RATED</Text>
                                         </View>
                                     )}
                                 </View>
-                                <Text style={{ fontSize: mS(12), color: isDark ? '#94A3B8' : colors.lightTextColor, marginTop: 2 }}>{item.subtitle}</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ fontSize: mS(12), color: isDark ? '#94A3B8' : colors.lightTextColor, marginTop: 2 }}>{item.subtitle}</Text>
                             </View>
 
                             <MaterialCommunityIcons name="chevron-right" size={mS(22)} color={isDark ? '#FFFFFF' : colors.lightTextColor} />
@@ -673,10 +677,10 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                         </View>
                     )}
                     <View style={isDark ? { flex: 1, paddingRight: 10 } : {}}>
-                        <Text style={isDark ? { fontSize: mS(13), fontWeight: '700', color: '#60A5FA', marginBottom: 4 } : [styles.versionText, { color: colors.lightTextColor }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={isDark ? { fontSize: mS(13), fontWeight: '700', color: '#60A5FA', marginBottom: 4 } : [styles.versionText, { color: colors.lightTextColor }]}>
                             T2Drive v1.0.42 (Beta)
                         </Text>
-                        <Text style={isDark ? { fontSize: mS(11), color: '#94A3B8' } : [styles.brandText, { color: colors.lightTextColor }]}>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={isDark ? { fontSize: mS(11), color: '#94A3B8' } : [styles.brandText, { color: colors.lightTextColor }]}>
                             Made with ❤️ for T2Drive Users
                         </Text>
                     </View>
@@ -690,6 +694,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                         </View>
                     )}
                 </View>
+                </ResponsiveContainer>
 
             </ScrollView>
 
@@ -704,7 +709,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                 <Pressable style={styles.modaloverlay} onPress={() => setBgPickerVisible(false)}>
                     <View style={[styles.sheet, { backgroundColor: colors.background, paddingBottom: insets.bottom + vS(20) }]}>
                         <View style={[styles.handle, { backgroundColor: colors.border }]} />
-                        <Text style={[styles.title, { color: colors.text, marginBottom: vS(15) }]}>Select Profile Background</Text>
+                        <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={[styles.title, { color: colors.text, marginBottom: vS(15) }]}>Select Profile Background</Text>
 
                         <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', paddingHorizontal: hS(20) }}>
                             {DEFAULT_BACKGROUNDS.map((url, idx) => (
@@ -721,7 +726,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                                 onPress={() => handleSetBgImage('#1E1B4B')}
                                 style={{ width: '48%', height: vS(80), marginBottom: vS(15), borderRadius: mS(8), overflow: 'hidden', backgroundColor: '#1E1B4B', justifyContent: 'center', alignItems: 'center' }}
                             >
-                                <Text style={{ color: 'white', fontWeight: '600' }}>Default Color</Text>
+                                <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ color: 'white', fontWeight: '600' }}>Default Color</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -744,7 +749,7 @@ const ProfileScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
                         <View style={{ backgroundColor: colors.card, padding: hS(24), borderRadius: mS(16), alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 10, elevation: 5 }}>
                             <ActivityIndicator size="large" color={colors.primary} />
-                            <Text style={{ marginTop: vS(12), color: colors.text, fontSize: mS(16), fontWeight: '600' }}>Updating profile...</Text>
+                            <Text allowFontScaling={true} maxFontSizeMultiplier={1.2} style={{ marginTop: vS(12), color: colors.text, fontSize: mS(16), fontWeight: '600' }}>Updating profile...</Text>
                         </View>
                     </View>
                 </Modal>

@@ -11,6 +11,7 @@ export enum NotificationType {
     PROMO_CODE = 'PROMO_CODE',
     COUPON_EXPIRY = 'COUPON_EXPIRY',
     PROMOTIONAL_NOTIFICATION = 'PROMOTIONAL_NOTIFICATION',
+    TRIP_CHAT_MESSAGE = 'TRIP_CHAT_MESSAGE',
 }
 
 export interface NotificationData {

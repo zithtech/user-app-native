@@ -252,13 +252,13 @@ const TripScreen: React.FC<TripScreenProps> = ({ navigation }) => {
 
     // ==================== DERIVED STATE ====================
     const currentTrip = tripdata?.success ? tripdata.data : tripfromroute;
-    // ✅ Reload Protection: If already rated (checked via API data), jump straight to summary
+    // ✅ Reload Protection: If already rated (checked via API data) or already paid, jump straight to summary
     // Safe to do inside useEffect to avoid "Cannot update during render" error
     useEffect(() => {
-        if (currentStatus === TripStatus.COMPLETED && currentTrip?.rating) {
+        if (currentStatus === TripStatus.COMPLETED && (currentTrip?.rating || currentTrip?.payment_status === 'PAID')) {
             navigation.navigate(RideCompletedScreen_Nav, { ...currentTrip, isRated: true });
         }
-    }, [currentStatus, currentTrip?.rating]);
+    }, [currentStatus, currentTrip?.rating, currentTrip?.payment_status]);
 
     // Prioritize local assignedDriver, then API driver data
     // Prioritize driver_details (new format), then fall back to driver (old format)
@@ -910,6 +910,11 @@ const TripScreen: React.FC<TripScreenProps> = ({ navigation }) => {
     }
 
     if (currentStatus === TripStatus.COMPLETED) {
+        // If already paid or rated, don't render RatingView, return null to let useEffect navigate
+        if (currentTrip?.rating || currentTrip?.payment_status === 'PAID') {
+            return null;
+        }
+
         return (
             <View style={{ flex: 1, backgroundColor: appColors.background, paddingTop: insets.top }}>
                 <RatingView
