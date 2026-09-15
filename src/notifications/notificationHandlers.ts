@@ -8,8 +8,8 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import { logout } from '../redux/userSlice';
 import { storage } from '../service/utils/storage';
-import { navigationRef, safeReset } from '../Navigations/navigationRef';
-import { Auth_Nav, BookedTripScreen_Nav, WelcomeScreen_Nav } from '../Navigations/navigations';
+import { navigationRef, safeReset, safeNavigate } from '../Navigations/navigationRef';
+import { Auth_Nav, BookedTripScreen_Nav, WelcomeScreen_Nav, HelpContactScreen_Nav } from '../Navigations/navigations';
 import { NotificationType } from './notificationTypes';
 import { getChannelForType, createNotificationChannels, NotificationChannels } from './channels';
 import { addNotification } from '../redux/notificationSlice';
@@ -41,7 +41,7 @@ const NotificationHandler: React.FC = () => {
         const { type, tripId, bookingId, coupon_code, promo_code } = data;
 
         if (coupon_code || promo_code || type === NotificationType.PROMOTIONAL_NOTIFICATION) {
-            navigation.navigate("OffersScreen");
+            safeNavigate("OffersScreen");
             return;
         }
 
@@ -53,12 +53,16 @@ const NotificationHandler: React.FC = () => {
             case NotificationType.RIDE_COMPLETED:
             case NotificationType.TRIP_CHAT_MESSAGE:
                 if (tripId) {
-                    navigation.navigate(BookedTripScreen_Nav, { trip_id: tripId });
+                    safeNavigate(BookedTripScreen_Nav, { trip_id: tripId });
                 }
                 break;
             
             case NotificationType.COUPON_EXPIRY:
-                navigation.navigate("OffersScreen");
+                safeNavigate("OffersScreen");
+                break;
+
+            case NotificationType.SUPPORT_TICKET_UPDATE:
+                safeNavigate(HelpContactScreen_Nav);
                 break;
 
             default:
